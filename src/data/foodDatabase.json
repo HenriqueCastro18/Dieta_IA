@@ -1,0 +1,2082 @@
+{
+    "azeite": {
+        "name": "Azeite de Oliva",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0
+    },
+    "sal": {
+        "name": "Sal de Cozinha",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 38758
+    },
+    "abacate": {
+        "name": "Abacate",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 6.0,
+        "fatsPer100g": 12.0,
+        "sugarTotal": 0.7,
+        "sugarAdded": 0,
+        "fiber": 6.3,
+        "sodiumMg": 2
+    },
+    "abacaxi": {
+        "name": "Abacaxi",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 12.3,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 9.9,
+        "sugarAdded": 0,
+        "fiber": 1.0,
+        "sodiumMg": 1
+    },
+    "abobora": {
+        "name": "Abóbora",
+        "proteinPer100g": 1.0,
+        "carbsPer100g": 6.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 2.8,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 1
+    },
+    "abobrinha": {
+        "name": "Abobrinha",
+        "proteinPer100g": 1.1,
+        "carbsPer100g": 3.0,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 2.5,
+        "sugarAdded": 0,
+        "fiber": 1.1,
+        "sodiumMg": 1
+    },
+    "acai": {
+        "name": "Açaí",
+        "proteinPer100g": 3.8,
+        "carbsPer100g": 6.2,
+        "fatsPer100g": 12.2,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 7.1,
+        "sodiumMg": 10
+    },
+    "acerola": {
+        "name": "Acerola",
+        "proteinPer100g": 0.4,
+        "carbsPer100g": 8.0,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 0.0,
+        "sugarAdded": 0,
+        "fiber": 1.1,
+        "sodiumMg": 7
+    },
+    "acem": {
+        "name": "Acém",
+        "proteinPer100g": 19.0,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 10.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 58
+    },
+    "agriao": {
+        "name": "Agrião",
+        "proteinPer100g": 2.3,
+        "carbsPer100g": 1.3,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 0.2,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 41
+    },
+    "alface": {
+        "name": "Alface",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 1.7,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.9,
+        "sugarAdded": 0,
+        "fiber": 1.3,
+        "sodiumMg": 3
+    },
+    "alcatra": {
+        "name": "Alcatra",
+        "proteinPer100g": 21.6,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 11.6,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 51
+    },
+    "amendoim": {
+        "name": "Amendoim",
+        "proteinPer100g": 25.8,
+        "carbsPer100g": 16.1,
+        "fatsPer100g": 49.2,
+        "sugarTotal": 4.7,
+        "sugarAdded": 0,
+        "fiber": 8.5,
+        "sodiumMg": 18
+    },
+    "amora": {
+        "name": "Amora",
+        "proteinPer100g": 1.4,
+        "carbsPer100g": 9.6,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 4.9,
+        "sugarAdded": 0,
+        "fiber": 5.3,
+        "sodiumMg": 1
+    },
+    "arroz": {
+        "name": "Arroz",
+        "proteinPer100g": 2.5,
+        "carbsPer100g": 28.2,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0.4,
+        "sodiumMg": 1
+    },
+    "arroz integral": {
+        "name": "Arroz Integral",
+        "proteinPer100g": 2.6,
+        "carbsPer100g": 25.8,
+        "fatsPer100g": 1.0,
+        "sugarTotal": 0.2,
+        "sugarAdded": 0,
+        "fiber": 1.8,
+        "sodiumMg": 1
+    },
+    "aveia": {
+        "name": "Aveia",
+        "proteinPer100g": 13.9,
+        "carbsPer100g": 66.6,
+        "fatsPer100g": 8.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 9.1,
+        "sodiumMg": 5
+    },
+    "azeitona": {
+        "name": "Azeitona",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 3.8,
+        "fatsPer100g": 10.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 3.3,
+        "sodiumMg": 1556
+    },
+    "bacalhau": {
+        "name": "Bacalhau",
+        "proteinPer100g": 24.0,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 2000
+    },
+    "banana": {
+        "name": "Banana",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 26.0,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 12.2,
+        "sugarAdded": 0,
+        "fiber": 2.0,
+        "sodiumMg": 1
+    },
+    "batata doce": {
+        "name": "Batata Doce",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 18.4,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 4.2,
+        "sugarAdded": 0,
+        "fiber": 2.2,
+        "sodiumMg": 3
+    },
+    "batata inglesa": {
+        "name": "Batata Inglesa",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 11.9,
+        "fatsPer100g": 0.0,
+        "sugarTotal": 0.8,
+        "sugarAdded": 0,
+        "fiber": 1.3,
+        "sodiumMg": 2
+    },
+    "berinjela": {
+        "name": "Berinjela",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 4.4,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 2.4,
+        "sugarAdded": 0,
+        "fiber": 2.9,
+        "sodiumMg": 1
+    },
+    "beterraba": {
+        "name": "Beterraba",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 9.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 6.8,
+        "sugarAdded": 0,
+        "fiber": 1.9,
+        "sodiumMg": 11
+    },
+    "biscoito agua e sal": {
+        "name": "Biscoito Água e Sal",
+        "proteinPer100g": 10.1,
+        "carbsPer100g": 68.3,
+        "fatsPer100g": 12.4,
+        "sugarTotal": 1.5,
+        "sugarAdded": 1.0,
+        "fiber": 2.5,
+        "sodiumMg": 800
+    },
+    "brocolis": {
+        "name": "Brócolis",
+        "proteinPer100g": 2.1,
+        "carbsPer100g": 4.0,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 1.7,
+        "sugarAdded": 0,
+        "fiber": 3.4,
+        "sodiumMg": 3
+    },
+    "cacao": {
+        "name": "Cacau",
+        "proteinPer100g": 19.6,
+        "carbsPer100g": 57.9,
+        "fatsPer100g": 13.7,
+        "sugarTotal": 1.8,
+        "sugarAdded": 0,
+        "fiber": 33.2,
+        "sodiumMg": 21
+    },
+    "cafe": {
+        "name": "Café",
+        "proteinPer100g": 0.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 0.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 2
+    },
+    "caju": {
+        "name": "Caju",
+        "proteinPer100g": 1.0,
+        "carbsPer100g": 10.3,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 7.4,
+        "sugarAdded": 0,
+        "fiber": 1.7,
+        "sodiumMg": 1
+    },
+    "camarao": {
+        "name": "Camarão",
+        "proteinPer100g": 20.3,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 148
+    },
+    "carambola": {
+        "name": "Carambola",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 8.1,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 3.9,
+        "sugarAdded": 0,
+        "fiber": 2.0,
+        "sodiumMg": 1
+    },
+    "carne moida": {
+        "name": "Carne Moída",
+        "proteinPer100g": 20.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 13.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 55
+    },
+    "carne de porco": {
+        "name": "Carne de Porco",
+        "proteinPer100g": 22.6,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 8.8,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 62
+    },
+    "castanha de caju": {
+        "name": "Castanha de Caju",
+        "proteinPer100g": 18.2,
+        "carbsPer100g": 30.2,
+        "fatsPer100g": 43.8,
+        "sugarTotal": 5.9,
+        "sugarAdded": 0,
+        "fiber": 3.3,
+        "sodiumMg": 12
+    },
+    "castanha do para": {
+        "name": "Castanha do Pará",
+        "proteinPer100g": 14.3,
+        "carbsPer100g": 12.3,
+        "fatsPer100g": 66.4,
+        "sugarTotal": 2.3,
+        "sugarAdded": 0,
+        "fiber": 7.5,
+        "sodiumMg": 3
+    },
+    "cebola": {
+        "name": "Cebola",
+        "proteinPer100g": 1.1,
+        "carbsPer100g": 9.3,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 4.2,
+        "sugarAdded": 0,
+        "fiber": 1.7,
+        "sodiumMg": 4
+    },
+    "cenoura": {
+        "name": "Cenoura",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 7.7,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 4.7,
+        "sugarAdded": 0,
+        "fiber": 3.2,
+        "sodiumMg": 3
+    },
+    "cha": {
+        "name": "Chá",
+        "proteinPer100g": 0.0,
+        "carbsPer100g": 0.2,
+        "fatsPer100g": 0.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 3
+    },
+    "chia": {
+        "name": "Chia",
+        "proteinPer100g": 16.5,
+        "carbsPer100g": 42.1,
+        "fatsPer100g": 30.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 34.4,
+        "sodiumMg": 16
+    },
+    "chuchu": {
+        "name": "Chuchu",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 4.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 1.7,
+        "sugarAdded": 0,
+        "fiber": 1.7,
+        "sodiumMg": 2
+    },
+    "coco": {
+        "name": "Coco",
+        "proteinPer100g": 3.3,
+        "carbsPer100g": 15.2,
+        "fatsPer100g": 33.5,
+        "sugarTotal": 6.2,
+        "sugarAdded": 0,
+        "fiber": 9.0,
+        "sodiumMg": 20
+    },
+    "cogumelo": {
+        "name": "Cogumelo",
+        "proteinPer100g": 3.1,
+        "carbsPer100g": 3.3,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 1.2,
+        "sugarAdded": 0,
+        "fiber": 1.0,
+        "sodiumMg": 5
+    },
+    "couve": {
+        "name": "Couve",
+        "proteinPer100g": 2.4,
+        "carbsPer100g": 4.3,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0.5,
+        "sugarAdded": 0,
+        "fiber": 3.1,
+        "sodiumMg": 6
+    },
+    "couve flor": {
+        "name": "Couve-Flor",
+        "proteinPer100g": 1.9,
+        "carbsPer100g": 5.0,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 1.9,
+        "sugarAdded": 0,
+        "fiber": 2.0,
+        "sodiumMg": 30
+    },
+    "coxa de frango": {
+        "name": "Coxa de Frango",
+        "proteinPer100g": 18.2,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 10.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 84
+    },
+    "cupuacu": {
+        "name": "Cupuaçu",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 11.4,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 9.0,
+        "sugarAdded": 0,
+        "fiber": 1.6,
+        "sodiumMg": 2
+    },
+    "ervilha": {
+        "name": "Ervilha",
+        "proteinPer100g": 5.4,
+        "carbsPer100g": 14.5,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 5.7,
+        "sugarAdded": 0,
+        "fiber": 5.1,
+        "sodiumMg": 5
+    },
+    "espinafre": {
+        "name": "Espinafre",
+        "proteinPer100g": 2.9,
+        "carbsPer100g": 3.6,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 0.4,
+        "sugarAdded": 0,
+        "fiber": 2.2,
+        "sodiumMg": 79
+    },
+    "farelo de trigo": {
+        "name": "Farelo de Trigo",
+        "proteinPer100g": 15.6,
+        "carbsPer100g": 64.5,
+        "fatsPer100g": 4.3,
+        "sugarTotal": 0.4,
+        "sugarAdded": 0,
+        "fiber": 42.8,
+        "sodiumMg": 2
+    },
+    "farinha de mandioca": {
+        "name": "Farinha de Mandioca",
+        "proteinPer100g": 1.1,
+        "carbsPer100g": 88.0,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 6.4,
+        "sodiumMg": 1
+    },
+    "farinha de milho": {
+        "name": "Farinha de Milho",
+        "proteinPer100g": 7.2,
+        "carbsPer100g": 79.1,
+        "fatsPer100g": 1.5,
+        "sugarTotal": 1.0,
+        "sugarAdded": 0,
+        "fiber": 5.3,
+        "sodiumMg": 1
+    },
+    "farinha de trigo": {
+        "name": "Farinha de Trigo",
+        "proteinPer100g": 10.3,
+        "carbsPer100g": 76.0,
+        "fatsPer100g": 1.0,
+        "sugarTotal": 0.3,
+        "sugarAdded": 0,
+        "fiber": 2.7,
+        "sodiumMg": 2
+    },
+    "feijao branco": {
+        "name": "Feijão Branco",
+        "proteinPer100g": 8.2,
+        "carbsPer100g": 21.0,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0.3,
+        "sugarAdded": 0,
+        "fiber": 6.3,
+        "sodiumMg": 1
+    },
+    "feijao carioca": {
+        "name": "Feijão Carioca",
+        "proteinPer100g": 4.8,
+        "carbsPer100g": 13.6,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0.2,
+        "sugarAdded": 0,
+        "fiber": 8.5,
+        "sodiumMg": 2
+    },
+    "feijao fradinho": {
+        "name": "Feijão Fradinho",
+        "proteinPer100g": 7.7,
+        "carbsPer100g": 20.3,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0.4,
+        "sugarAdded": 0,
+        "fiber": 10.6,
+        "sodiumMg": 4
+    },
+    "feijao preto": {
+        "name": "Feijão Preto",
+        "proteinPer100g": 4.5,
+        "carbsPer100g": 14.0,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0.2,
+        "sugarAdded": 0,
+        "fiber": 8.4,
+        "sodiumMg": 1
+    },
+    "figo": {
+        "name": "Figo",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 19.2,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 16.3,
+        "sugarAdded": 0,
+        "fiber": 2.9,
+        "sodiumMg": 1
+    },
+    "frango peito": {
+        "name": "Frango Peito",
+        "proteinPer100g": 23.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52
+    },
+    "goiaba": {
+        "name": "Goiaba",
+        "proteinPer100g": 2.6,
+        "carbsPer100g": 14.3,
+        "fatsPer100g": 1.0,
+        "sugarTotal": 8.9,
+        "sugarAdded": 0,
+        "fiber": 5.4,
+        "sodiumMg": 2
+    },
+    "grao de bico": {
+        "name": "Grão de Bico",
+        "proteinPer100g": 8.9,
+        "carbsPer100g": 27.4,
+        "fatsPer100g": 2.6,
+        "sugarTotal": 4.8,
+        "sugarAdded": 0,
+        "fiber": 7.6,
+        "sodiumMg": 24
+    },
+    "inhame": {
+        "name": "Inhame",
+        "proteinPer100g": 1.5,
+        "carbsPer100g": 27.9,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.5,
+        "sugarAdded": 0,
+        "fiber": 4.1,
+        "sodiumMg": 9
+    },
+    "iogurte natural": {
+        "name": "Iogurte Natural",
+        "proteinPer100g": 3.5,
+        "carbsPer100g": 4.7,
+        "fatsPer100g": 3.3,
+        "sugarTotal": 4.7,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 46
+    },
+    "jabuticaba": {
+        "name": "Jabuticaba",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 15.3,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 12.0,
+        "sugarAdded": 0,
+        "fiber": 2.3,
+        "sodiumMg": 1
+    },
+    "jaca": {
+        "name": "Jaca",
+        "proteinPer100g": 1.7,
+        "carbsPer100g": 23.2,
+        "fatsPer100g": 0.6,
+        "sugarTotal": 19.1,
+        "sugarAdded": 0,
+        "fiber": 1.5,
+        "sodiumMg": 2
+    },
+    "kiwi": {
+        "name": "Kiwi",
+        "proteinPer100g": 1.1,
+        "carbsPer100g": 14.7,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 9.0,
+        "sugarAdded": 0,
+        "fiber": 3.0,
+        "sodiumMg": 3
+    },
+    "laranja": {
+        "name": "Laranja",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 11.8,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 9.4,
+        "sugarAdded": 0,
+        "fiber": 2.4,
+        "sodiumMg": 0
+    },
+    "leite de vaca": {
+        "name": "Leite de Vaca",
+        "proteinPer100g": 3.2,
+        "carbsPer100g": 4.8,
+        "fatsPer100g": 3.3,
+        "sugarTotal": 4.8,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 43
+    },
+    "lentilha": {
+        "name": "Lentilha",
+        "proteinPer100g": 9.0,
+        "carbsPer100g": 20.1,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 1.8,
+        "sugarAdded": 0,
+        "fiber": 7.9,
+        "sodiumMg": 2
+    },
+    "limao": {
+        "name": "Limão",
+        "proteinPer100g": 1.1,
+        "carbsPer100g": 9.3,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 2.5,
+        "sugarAdded": 0,
+        "fiber": 2.8,
+        "sodiumMg": 2
+    },
+    "linhaca": {
+        "name": "Linhaça",
+        "proteinPer100g": 18.3,
+        "carbsPer100g": 28.9,
+        "fatsPer100g": 42.2,
+        "sugarTotal": 1.6,
+        "sugarAdded": 0,
+        "fiber": 27.3,
+        "sodiumMg": 30
+    },
+    "maca": {
+        "name": "Maçã",
+        "proteinPer100g": 0.3,
+        "carbsPer100g": 13.8,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 10.4,
+        "sugarAdded": 0,
+        "fiber": 2.4,
+        "sodiumMg": 1
+    },
+    "macarrao": {
+        "name": "Macarrão",
+        "proteinPer100g": 5.8,
+        "carbsPer100g": 30.7,
+        "fatsPer100g": 0.9,
+        "sugarTotal": 0.6,
+        "sugarAdded": 0,
+        "fiber": 1.8,
+        "sodiumMg": 1
+    },
+    "mandioca": {
+        "name": "Mandioca",
+        "proteinPer100g": 1.1,
+        "carbsPer100g": 38.1,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 1.7,
+        "sugarAdded": 0,
+        "fiber": 1.8,
+        "sodiumMg": 14
+    },
+    "manga": {
+        "name": "Manga",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 15.0,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 13.7,
+        "sugarAdded": 0,
+        "fiber": 1.6,
+        "sodiumMg": 1
+    },
+    "manjericao": {
+        "name": "Manjericão",
+        "proteinPer100g": 3.2,
+        "carbsPer100g": 2.7,
+        "fatsPer100g": 0.6,
+        "sugarTotal": 0.3,
+        "sugarAdded": 0,
+        "fiber": 1.6,
+        "sodiumMg": 4
+    },
+    "manteiga": {
+        "name": "Manteiga",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 0.1,
+        "fatsPer100g": 81.1,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 11
+    },
+    "maracuja": {
+        "name": "Maracujá",
+        "proteinPer100g": 2.2,
+        "carbsPer100g": 23.4,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 11.2,
+        "sugarAdded": 0,
+        "fiber": 10.4,
+        "sodiumMg": 28
+    },
+    "melancia": {
+        "name": "Melancia",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 7.6,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 6.2,
+        "sugarAdded": 0,
+        "fiber": 0.4,
+        "sodiumMg": 1
+    },
+    "melao": {
+        "name": "Melão",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 8.2,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 7.9,
+        "sugarAdded": 0,
+        "fiber": 0.9,
+        "sodiumMg": 16
+    },
+    "mexerica": {
+        "name": "Mexerica",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 13.3,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 10.6,
+        "sugarAdded": 0,
+        "fiber": 1.8,
+        "sodiumMg": 2
+    },
+    "milho": {
+        "name": "Milho",
+        "proteinPer100g": 3.3,
+        "carbsPer100g": 18.7,
+        "fatsPer100g": 1.4,
+        "sugarTotal": 6.3,
+        "sugarAdded": 0,
+        "fiber": 2.0,
+        "sodiumMg": 15
+    },
+    "morango": {
+        "name": "Morango",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 7.7,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 4.9,
+        "sugarAdded": 0,
+        "fiber": 2.0,
+        "sodiumMg": 1
+    },
+    "musculo": {
+        "name": "Músculo",
+        "proteinPer100g": 21.3,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 5.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 53
+    },
+    "nozes": {
+        "name": "Nozes",
+        "proteinPer100g": 15.2,
+        "carbsPer100g": 13.7,
+        "fatsPer100g": 65.2,
+        "sugarTotal": 2.6,
+        "sugarAdded": 0,
+        "fiber": 6.7,
+        "sodiumMg": 2
+    },
+    "ovo": {
+        "name": "Ovo",
+        "proteinPer100g": 12.6,
+        "carbsPer100g": 0.7,
+        "fatsPer100g": 10.6,
+        "sugarTotal": 0.7,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 124
+    },
+    "palmito": {
+        "name": "Palmito",
+        "proteinPer100g": 2.5,
+        "carbsPer100g": 4.6,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 2.4,
+        "sodiumMg": 426
+    },
+    "pao frances": {
+        "name": "Pão Francês",
+        "proteinPer100g": 8.0,
+        "carbsPer100g": 58.7,
+        "fatsPer100g": 3.1,
+        "sugarTotal": 0.7,
+        "sugarAdded": 0.5,
+        "fiber": 2.3,
+        "sodiumMg": 648
+    },
+    "pao integral": {
+        "name": "Pão Integral",
+        "proteinPer100g": 9.4,
+        "carbsPer100g": 44.3,
+        "fatsPer100g": 3.7,
+        "sugarTotal": 5.0,
+        "sugarAdded": 4.0,
+        "fiber": 6.9,
+        "sodiumMg": 450
+    },
+    "papaia": {
+        "name": "Papaia",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 10.8,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 7.8,
+        "sugarAdded": 0,
+        "fiber": 1.7,
+        "sodiumMg": 8
+    },
+    "patinho": {
+        "name": "Patinho",
+        "proteinPer100g": 21.7,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 4.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 48
+    },
+    "peito de peru": {
+        "name": "Peito de Peru",
+        "proteinPer100g": 17.1,
+        "carbsPer100g": 1.5,
+        "fatsPer100g": 1.6,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 950
+    },
+    "peixe tilapia": {
+        "name": "Peixe Tilápia",
+        "proteinPer100g": 20.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52
+    },
+    "pepino": {
+        "name": "Pepino",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 3.6,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 1.7,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 2
+    },
+    "pera": {
+        "name": "Pera",
+        "proteinPer100g": 0.4,
+        "carbsPer100g": 15.2,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 9.8,
+        "sugarAdded": 0,
+        "fiber": 3.1,
+        "sodiumMg": 1
+    },
+    "pimentao": {
+        "name": "Pimentão",
+        "proteinPer100g": 1.0,
+        "carbsPer100g": 6.0,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 4.2,
+        "sugarAdded": 0,
+        "fiber": 2.1,
+        "sodiumMg": 4
+    },
+    "pinhao": {
+        "name": "Pinhão",
+        "proteinPer100g": 3.0,
+        "carbsPer100g": 43.9,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 15.6,
+        "sodiumMg": 2
+    },
+    "pipoca": {
+        "name": "Pipoca",
+        "proteinPer100g": 12.9,
+        "carbsPer100g": 77.8,
+        "fatsPer100g": 4.5,
+        "sugarTotal": 0.9,
+        "sugarAdded": 0,
+        "fiber": 14.5,
+        "sodiumMg": 8
+    },
+    "queijo minas": {
+        "name": "Queijo Minas",
+        "proteinPer100g": 17.4,
+        "carbsPer100g": 3.2,
+        "fatsPer100g": 20.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 600
+    },
+    "queijo mussarela": {
+        "name": "Queijo Mussarela",
+        "proteinPer100g": 22.6,
+        "carbsPer100g": 3.0,
+        "fatsPer100g": 25.2,
+        "sugarTotal": 1.0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 580
+    },
+    "quiabo": {
+        "name": "Quiabo",
+        "proteinPer100g": 1.9,
+        "carbsPer100g": 7.5,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 1.5,
+        "sugarAdded": 0,
+        "fiber": 3.2,
+        "sodiumMg": 7
+    },
+    "rabanete": {
+        "name": "Rabanete",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 3.4,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 1.9,
+        "sugarAdded": 0,
+        "fiber": 1.6,
+        "sodiumMg": 39
+    },
+    "repolho": {
+        "name": "Repolho",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 5.8,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 3.2,
+        "sugarAdded": 0,
+        "fiber": 2.5,
+        "sodiumMg": 18
+    },
+    "rucula": {
+        "name": "Rúcula",
+        "proteinPer100g": 2.6,
+        "carbsPer100g": 3.7,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 2.1,
+        "sugarAdded": 0,
+        "fiber": 1.6,
+        "sodiumMg": 27
+    },
+    "salmao": {
+        "name": "Salmão",
+        "proteinPer100g": 20.4,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 13.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 59
+    },
+    "sardinha": {
+        "name": "Sardinha",
+        "proteinPer100g": 24.6,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 11.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 300
+    },
+    "tangerina": {
+        "name": "Tangerina",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 13.3,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 10.6,
+        "sugarAdded": 0,
+        "fiber": 1.8,
+        "sodiumMg": 2
+    },
+    "tapioquinha": {
+        "name": "Tapioca",
+        "proteinPer100g": 0.2,
+        "carbsPer100g": 54.1,
+        "fatsPer100g": 0.0,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0.2,
+        "sodiumMg": 1
+    },
+    "tomate": {
+        "name": "Tomate",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 3.9,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 2.6,
+        "sugarAdded": 0,
+        "fiber": 1.2,
+        "sodiumMg": 5
+    },
+    "trigo para quibe": {
+        "name": "Trigo para Quibe",
+        "proteinPer100g": 12.3,
+        "carbsPer100g": 75.9,
+        "fatsPer100g": 1.3,
+        "sugarTotal": 0.4,
+        "sugarAdded": 0,
+        "fiber": 18.3,
+        "sodiumMg": 17
+    },
+    "uva": {
+        "name": "Uva",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 18.1,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 15.5,
+        "sugarAdded": 0,
+        "fiber": 0.9,
+        "sodiumMg": 2
+    },
+    "vagem": {
+        "name": "Vagem",
+        "proteinPer100g": 1.8,
+        "carbsPer100g": 7.0,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 3.3,
+        "sugarAdded": 0,
+        "fiber": 2.7,
+        "sodiumMg": 6
+    },
+    "alho": {
+        "name": "Alho",
+        "proteinPer100g": 6.4,
+        "carbsPer100g": 33.1,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 1.0,
+        "sugarAdded": 0,
+        "fiber": 2.1,
+        "sodiumMg": 17
+    },
+    "cebolinha": {
+        "name": "Cebolinha",
+        "proteinPer100g": 3.3,
+        "carbsPer100g": 4.4,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 1.9,
+        "sugarAdded": 0,
+        "fiber": 2.5,
+        "sodiumMg": 3
+    },
+    "salsinha": {
+        "name": "Salsinha",
+        "proteinPer100g": 3.0,
+        "carbsPer100g": 6.3,
+        "fatsPer100g": 0.8,
+        "sugarTotal": 0.9,
+        "sugarAdded": 0,
+        "fiber": 3.3,
+        "sodiumMg": 56
+    },
+    "coentro": {
+        "name": "Coentro",
+        "proteinPer100g": 2.1,
+        "carbsPer100g": 3.7,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0.9,
+        "sugarAdded": 0,
+        "fiber": 2.8,
+        "sodiumMg": 46
+    },
+    "maminha": {
+        "name": "Maminha",
+        "proteinPer100g": 20.9,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 10.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 54
+    },
+    "lagarto": {
+        "name": "Lagarto",
+        "proteinPer100g": 21.5,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 9.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52
+    },
+    "coxao mole": {
+        "name": "Coxão Mole",
+        "proteinPer100g": 21.2,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 8.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 55
+    },
+    "coxao duro": {
+        "name": "Coxão Duro",
+        "proteinPer100g": 21.8,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 9.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 53
+    },
+    "contra file": {
+        "name": "Contra-Filé",
+        "proteinPer100g": 21.0,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 13.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 58
+    },
+    "file mignon": {
+        "name": "Filé Mignon",
+        "proteinPer100g": 22.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 8.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 51
+    },
+    "picanha": {
+        "name": "Picanha",
+        "proteinPer100g": 19.5,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 19.8,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 50
+    },
+    "costela de boi": {
+        "name": "Costela de Boi",
+        "proteinPer100g": 16.2,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 27.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 48
+    },
+    "cupim": {
+        "name": "Cupim",
+        "proteinPer100g": 18.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 23.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 55
+    },
+    "paleta": {
+        "name": "Paleta",
+        "proteinPer100g": 19.4,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 12.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 60
+    },
+    "lombo de porco": {
+        "name": "Lombo de Porco",
+        "proteinPer100g": 21.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 6.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52
+    },
+    "pernil": {
+        "name": "Pernil",
+        "proteinPer100g": 19.8,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 11.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 58
+    },
+    "sobrecoxa de frango": {
+        "name": "Sobrecoxa de Frango",
+        "proteinPer100g": 17.5,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 12.8,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 80
+    },
+    "asa de frango": {
+        "name": "Asa de Frango",
+        "proteinPer100g": 18.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 14.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 77
+    },
+    "coracao de frango": {
+        "name": "Coração de Frango",
+        "proteinPer100g": 15.6,
+        "carbsPer100g": 0.8,
+        "fatsPer100g": 10.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 65
+    },
+    "atum": {
+        "name": "Atum",
+        "proteinPer100g": 23.3,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 4.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 39
+    },
+    "merluza": {
+        "name": "Merluza",
+        "proteinPer100g": 17.2,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 2.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 72
+    },
+    "pescada": {
+        "name": "Pescada",
+        "proteinPer100g": 18.5,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 68
+    },
+    "truta": {
+        "name": "Truta",
+        "proteinPer100g": 20.8,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 6.6,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52
+    },
+    "lula": {
+        "name": "Lula",
+        "proteinPer100g": 15.6,
+        "carbsPer100g": 3.1,
+        "fatsPer100g": 1.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 44
+    },
+    "polvo": {
+        "name": "Polvo",
+        "proteinPer100g": 14.9,
+        "carbsPer100g": 2.2,
+        "fatsPer100g": 1.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 230
+    },
+    "mexilhao": {
+        "name": "Mexilhão",
+        "proteinPer100g": 11.9,
+        "carbsPer100g": 3.7,
+        "fatsPer100g": 2.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 286
+    },
+    "lagosta": {
+        "name": "Lagosta",
+        "proteinPer100g": 18.8,
+        "carbsPer100g": 0.5,
+        "fatsPer100g": 0.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 296
+    },
+    "siriguejo": {
+        "name": "Caranguejo",
+        "proteinPer100g": 18.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 293
+    },
+    "amendoa": {
+        "name": "Amêndoa",
+        "proteinPer100g": 21.2,
+        "carbsPer100g": 21.7,
+        "fatsPer100g": 49.9,
+        "sugarTotal": 4.4,
+        "sugarAdded": 0,
+        "fiber": 12.5,
+        "sodiumMg": 1
+    },
+    "pistache": {
+        "name": "Pistache",
+        "proteinPer100g": 20.2,
+        "carbsPer100g": 27.2,
+        "fatsPer100g": 45.4,
+        "sugarTotal": 7.7,
+        "sugarAdded": 0,
+        "fiber": 10.6,
+        "sodiumMg": 1
+    },
+    "avela": {
+        "name": "Avelã",
+        "proteinPer100g": 15.0,
+        "carbsPer100g": 16.7,
+        "fatsPer100g": 60.8,
+        "sugarTotal": 4.3,
+        "sugarAdded": 0,
+        "fiber": 9.7,
+        "sodiumMg": 0
+    },
+    "semente de girassol": {
+        "name": "Semente de Girassol",
+        "proteinPer100g": 20.8,
+        "carbsPer100g": 20.0,
+        "fatsPer100g": 51.5,
+        "sugarTotal": 2.6,
+        "sugarAdded": 0,
+        "fiber": 8.6,
+        "sodiumMg": 9
+    },
+    "semente de abobora": {
+        "name": "Semente de Abóbora",
+        "proteinPer100g": 30.2,
+        "carbsPer100g": 10.7,
+        "fatsPer100g": 49.1,
+        "sugarTotal": 1.4,
+        "sugarAdded": 0,
+        "fiber": 6.0,
+        "sodiumMg": 7
+    },
+    "gergelim": {
+        "name": "Gergelim",
+        "proteinPer100g": 17.7,
+        "carbsPer100g": 23.4,
+        "fatsPer100g": 49.7,
+        "sugarTotal": 0.3,
+        "sugarAdded": 0,
+        "fiber": 11.8,
+        "sodiumMg": 11
+    },
+    "graviola": {
+        "name": "Graviola",
+        "proteinPer100g": 1.0,
+        "carbsPer100g": 16.8,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 13.5,
+        "sugarAdded": 0,
+        "fiber": 3.3,
+        "sodiumMg": 14
+    },
+    "pitaya": {
+        "name": "Pitaya",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 13.0,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 8.0,
+        "sugarAdded": 0,
+        "fiber": 3.1,
+        "sodiumMg": 0
+    },
+    "roma": {
+        "name": "Romã",
+        "proteinPer100g": 1.7,
+        "carbsPer100g": 18.7,
+        "fatsPer100g": 1.2,
+        "sugarTotal": 13.7,
+        "sugarAdded": 0,
+        "fiber": 4.0,
+        "sodiumMg": 3
+    },
+    "lichia": {
+        "name": "Lichia",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 16.5,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 15.2,
+        "sugarAdded": 0,
+        "fiber": 1.3,
+        "sodiumMg": 1
+    },
+    "atemoia": {
+        "name": "Atemoia",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 22.6,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 18.0,
+        "sugarAdded": 0,
+        "fiber": 4.3,
+        "sodiumMg": 0
+    },
+    "fisalis": {
+        "name": "Fisalis",
+        "proteinPer100g": 1.9,
+        "carbsPer100g": 11.2,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 5.0,
+        "sugarAdded": 0,
+        "fiber": 4.9,
+        "sodiumMg": 1
+    },
+    "jambo": {
+        "name": "Jambo",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 6.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 5.0,
+        "sugarAdded": 0,
+        "fiber": 0.9,
+        "sodiumMg": 0
+    },
+    "siriguela": {
+        "name": "Siriguela",
+        "proteinPer100g": 1.4,
+        "carbsPer100g": 18.9,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 15.0,
+        "sugarAdded": 0,
+        "fiber": 3.9,
+        "sodiumMg": 0
+    },
+    "jenipapo": {
+        "name": "Jenipapo",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 25.7,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 11.0,
+        "sugarAdded": 0,
+        "fiber": 9.4,
+        "sodiumMg": 20
+    },
+    "tamarindo": {
+        "name": "Tamarindo",
+        "proteinPer100g": 2.8,
+        "carbsPer100g": 62.5,
+        "fatsPer100g": 0.6,
+        "sugarTotal": 57.4,
+        "sugarAdded": 0,
+        "fiber": 5.1,
+        "sodiumMg": 28
+    },
+    "umbu": {
+        "name": "Umbu",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 9.4,
+        "fatsPer100g": 0.0,
+        "sugarTotal": 8.0,
+        "sugarAdded": 0,
+        "fiber": 1.1,
+        "sodiumMg": 0
+    },
+    "mirtilo": {
+        "name": "Mirtilo",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 14.5,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 10.0,
+        "sugarAdded": 0,
+        "fiber": 2.4,
+        "sodiumMg": 1
+    },
+    "framboesa": {
+        "name": "Framboesa",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 11.9,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 4.4,
+        "sugarAdded": 0,
+        "fiber": 6.5,
+        "sodiumMg": 1
+    },
+    "gengibre": {
+        "name": "Gengibre",
+        "proteinPer100g": 1.8,
+        "carbsPer100g": 17.8,
+        "fatsPer100g": 0.8,
+        "sugarTotal": 1.7,
+        "sugarAdded": 0,
+        "fiber": 2.0,
+        "sodiumMg": 13
+    },
+    "curcuma": {
+        "name": "Cúrcuma",
+        "proteinPer100g": 7.8,
+        "carbsPer100g": 64.9,
+        "fatsPer100g": 9.9,
+        "sugarTotal": 3.2,
+        "sugarAdded": 0,
+        "fiber": 21.1,
+        "sodiumMg": 38
+    },
+    "hortela": {
+        "name": "Hortelã",
+        "proteinPer100g": 3.8,
+        "carbsPer100g": 14.9,
+        "fatsPer100g": 0.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 8.0,
+        "sodiumMg": 31
+    },
+    "alecrim": {
+        "name": "Alecrim",
+        "proteinPer100g": 3.3,
+        "carbsPer100g": 20.7,
+        "fatsPer100g": 5.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 14.1,
+        "sodiumMg": 26
+    },
+    "tomilho": {
+        "name": "Tomilho",
+        "proteinPer100g": 5.6,
+        "carbsPer100g": 24.5,
+        "fatsPer100g": 1.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 14.0,
+        "sodiumMg": 9
+    },
+    "oregano": {
+        "name": "Orégano",
+        "proteinPer100g": 9.0,
+        "carbsPer100g": 68.9,
+        "fatsPer100g": 4.3,
+        "sugarTotal": 4.1,
+        "sugarAdded": 0,
+        "fiber": 42.5,
+        "sodiumMg": 25
+    },
+    "louro": {
+        "name": "Louro",
+        "proteinPer100g": 7.6,
+        "carbsPer100g": 75.0,
+        "fatsPer100g": 8.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 26.3,
+        "sodiumMg": 23
+    },
+    "aspargo": {
+        "name": "Aspargo",
+        "proteinPer100g": 2.2,
+        "carbsPer100g": 3.9,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 1.9,
+        "sugarAdded": 0,
+        "fiber": 2.1,
+        "sodiumMg": 2
+    },
+    "alcachofra": {
+        "name": "Alcachofra",
+        "proteinPer100g": 3.3,
+        "carbsPer100g": 10.5,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 1.0,
+        "sugarAdded": 0,
+        "fiber": 5.4,
+        "sodiumMg": 94
+    },
+    "almeirao": {
+        "name": "Almeirão",
+        "proteinPer100g": 1.8,
+        "carbsPer100g": 3.3,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.7,
+        "sugarAdded": 0,
+        "fiber": 2.6,
+        "sodiumMg": 12
+    },
+    "escarola": {
+        "name": "Escarola",
+        "proteinPer100g": 1.3,
+        "carbsPer100g": 3.4,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.3,
+        "sugarAdded": 0,
+        "fiber": 3.1,
+        "sodiumMg": 22
+    },
+    "chicoria": {
+        "name": "Chicória",
+        "proteinPer100g": 1.5,
+        "carbsPer100g": 3.4,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.7,
+        "sugarAdded": 0,
+        "fiber": 3.1,
+        "sodiumMg": 45
+    },
+    "nabo": {
+        "name": "Nabo",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 6.4,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 3.8,
+        "sugarAdded": 0,
+        "fiber": 1.8,
+        "sodiumMg": 67
+    },
+    "maxixe": {
+        "name": "Maxixe",
+        "proteinPer100g": 1.4,
+        "carbsPer100g": 2.2,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 1.2,
+        "sugarAdded": 0,
+        "fiber": 1.5,
+        "sodiumMg": 2
+    },
+    "jilo": {
+        "name": "Jiló",
+        "proteinPer100g": 1.4,
+        "carbsPer100g": 6.2,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 3.0,
+        "sugarAdded": 0,
+        "fiber": 4.8,
+        "sodiumMg": 1
+    },
+    "pimenta biquinho": {
+        "name": "Pimenta Biquinho",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 7.0,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 4.0,
+        "sugarAdded": 0,
+        "fiber": 2.5,
+        "sodiumMg": 5
+    },
+    "pimenta dedo de moca": {
+        "name": "Pimenta Dedo de Moça",
+        "proteinPer100g": 1.9,
+        "carbsPer100g": 8.8,
+        "fatsPer100g": 0.4,
+        "sugarTotal": 5.3,
+        "sugarAdded": 0,
+        "fiber": 1.5,
+        "sodiumMg": 9
+    },
+    "quinoa": {
+        "name": "Quinoa",
+        "proteinPer100g": 14.1,
+        "carbsPer100g": 64.2,
+        "fatsPer100g": 6.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 7.0,
+        "sodiumMg": 5
+    },
+    "linhaca dourada": {
+        "name": "Linhaça Dourada",
+        "proteinPer100g": 18.3,
+        "carbsPer100g": 28.9,
+        "fatsPer100g": 42.2,
+        "sugarTotal": 1.6,
+        "sugarAdded": 0,
+        "fiber": 27.3,
+        "sodiumMg": 30
+    },
+    "semente de cânhamo": {
+        "name": "Semente de Cânhamo",
+        "proteinPer100g": 31.6,
+        "carbsPer100g": 8.7,
+        "fatsPer100g": 48.8,
+        "sugarTotal": 1.5,
+        "sugarAdded": 0,
+        "fiber": 4.0,
+        "sodiumMg": 5
+    },
+    "amarante": {
+        "name": "Amarante",
+        "proteinPer100g": 13.6,
+        "carbsPer100g": 65.3,
+        "fatsPer100g": 7.0,
+        "sugarTotal": 1.7,
+        "sugarAdded": 0,
+        "fiber": 6.7,
+        "sodiumMg": 4
+    },
+    "painco": {
+        "name": "Painço",
+        "proteinPer100g": 11.0,
+        "carbsPer100g": 72.9,
+        "fatsPer100g": 4.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 8.5,
+        "sodiumMg": 5
+    },
+    "cevada": {
+        "name": "Cevada",
+        "proteinPer100g": 12.5,
+        "carbsPer100g": 73.5,
+        "fatsPer100g": 2.3,
+        "sugarTotal": 0.8,
+        "sugarAdded": 0,
+        "fiber": 17.3,
+        "sodiumMg": 12
+    },
+    "centeio": {
+        "name": "Centeio",
+        "proteinPer100g": 14.8,
+        "carbsPer100g": 69.8,
+        "fatsPer100g": 2.5,
+        "sugarTotal": 1.0,
+        "sugarAdded": 0,
+        "fiber": 15.1,
+        "sodiumMg": 2
+    },
+    "sorgo": {
+        "name": "Sorgo",
+        "proteinPer100g": 11.3,
+        "carbsPer100g": 74.6,
+        "fatsPer100g": 3.3,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 6.3,
+        "sodiumMg": 6
+    },
+    "tapioca granulada": {
+        "name": "Tapioca Granulada",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 88.7,
+        "fatsPer100g": 0.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0.9,
+        "sodiumMg": 4
+    },
+    "sagu": {
+        "name": "Sagu",
+        "proteinPer100g": 0.2,
+        "carbsPer100g": 85.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 3
+    },
+    "carne de rã": {
+        "name": "Carne de Rã",
+        "proteinPer100g": 16.4,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 58
+    },
+    "carne de coelho": {
+        "name": "Carne de Coelho",
+        "proteinPer100g": 21.8,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 2.3,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 45
+    },
+    "carne de pato": {
+        "name": "Carne de Pato",
+        "proteinPer100g": 18.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 15.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 65
+    },
+    "carne de cordeiro": {
+        "name": "Carne de Cordeiro",
+        "proteinPer100g": 18.2,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 17.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 72
+    },
+    "carne de bode": {
+        "name": "Carne de Bode",
+        "proteinPer100g": 20.6,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 2.3,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 82
+    },
+    "moela de frango": {
+        "name": "Moela de Frango",
+        "proteinPer100g": 17.7,
+        "carbsPer100g": 0.6,
+        "fatsPer100g": 2.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 67
+    },
+    "figado de boi": {
+        "name": "Fígado de Boi",
+        "proteinPer100g": 20.4,
+        "carbsPer100g": 3.9,
+        "fatsPer100g": 4.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 71
+    },
+    "figado de frango": {
+        "name": "Fígado de Frango",
+        "proteinPer100g": 16.9,
+        "carbsPer100g": 0.7,
+        "fatsPer100g": 4.8,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 76
+    },
+    "lingua de boi": {
+        "name": "Língua de Boi",
+        "proteinPer100g": 14.9,
+        "carbsPer100g": 3.7,
+        "fatsPer100g": 16.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 65
+    },
+    "dobradinha": {
+        "name": "Bucho Bovino",
+        "proteinPer100g": 12.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 3.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 69
+    },
+    "sururu": {
+        "name": "Sururu",
+        "proteinPer100g": 12.5,
+        "carbsPer100g": 3.4,
+        "fatsPer100g": 2.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 240
+    },
+    "ostra": {
+        "name": "Ostra",
+        "proteinPer100g": 9.4,
+        "carbsPer100g": 4.9,
+        "fatsPer100g": 2.3,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 417
+    },
+    "ovas de peixe": {
+        "name": "Ovas de Peixe",
+        "proteinPer100g": 22.3,
+        "carbsPer100g": 1.5,
+        "fatsPer100g": 6.4,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 91
+    },
+    "cavalinha": {
+        "name": "Cavalinha",
+        "proteinPer100g": 18.6,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 13.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 90
+    },
+    "namorado": {
+        "name": "Namorado",
+        "proteinPer100g": 18.9,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 64
+    },
+    "dourado": {
+        "name": "Dourado",
+        "proteinPer100g": 19.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 0.7,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 88
+    },
+    "pintado": {
+        "name": "Pintado",
+        "proteinPer100g": 18.2,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 4.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 61
+    },
+    "tucunare": {
+        "name": "Tucunaré",
+        "proteinPer100g": 19.3,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 0.9,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52
+    },
+    "lambari": {
+        "name": "Lambari",
+        "proteinPer100g": 17.5,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 5.1,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 68
+    },
+    "curimata": {
+        "name": "Curimatã",
+        "proteinPer100g": 17.8,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 4.5,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 55
+    },
+    "pacu": {
+        "name": "Pacu",
+        "proteinPer100g": 18.4,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 12.8,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 49
+    },
+    "tainha": {
+        "name": "Tainha",
+        "proteinPer100g": 19.4,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 4.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 65
+    },
+    "garoupa": {
+        "name": "Garoupa",
+        "proteinPer100g": 19.1,
+        "carbsPer100g": 0.0,
+        "fatsPer100g": 1.0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 53
+    }
+}
