@@ -77,15 +77,19 @@ Para otimizar as requisições e reduzir custos de API, implementamos um sistema
 Nós automatizamos o setup! Basta executar o script na raiz do projeto:
 ```bash
 .\setup.bat
+```
 
 ##3. Configuração Manual
 Crie um arquivo .env na raiz do projeto e insira sua chave:
 
 Snippet de código
-VITE_GEMINI_API_KEY=SUA_CHAVE_AQUI
-##4. Execução
 ```bash
+VITE_GEMINI_API_KEY=SUA_CHAVE_AQUI
+```
+```bash
+##4. Execução
 npm run dev
+```
 
 ##👥 Autores e Colaboradores
 **Henrique Castro - Engenharia de Software / Back-end & Arquitetura**
