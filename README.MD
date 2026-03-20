@@ -96,8 +96,8 @@ npm run dev
 **Henrique Castro - Engenharia de Software / Back-end & Arquitetura**
 
 ## 📌 Roadmap (V2)
-** [ ] Migração do Cache para Firebase Firestore. **
+* [ ] Migração do Cache para Firebase Firestore.
 
-** [ ] Sistema de Autenticação de Usuários. **
+* [ ] Sistema de Autenticação de Usuários.
 
-** [ ] Gráficos de progresso semanal. **
+* [ ] Gráficos de progresso semanal.
