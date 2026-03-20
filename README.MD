@@ -14,10 +14,10 @@
 
 | Tela de Pesquisa | Cálculo de Macros |
 | :---: | :---: |
-| ![Tela Principal](./public/screenshots/home.png) | 
+|  ![Tela Principal](./public/screenshots/home.png) | 
 |  ![Tela Principal Mobile](./public/screenshots/homeMobile.png) | 
-|  ![Resultado Nutricional](./public/screenshots/macros.png) |
-|  ![Resultado Nutricional](./public/screenshots/macrosMobile.png) |
+|  ![Resultado Nutricional](./public/screenshots/macro.png) |
+|  ![Resultado Nutricional](./public/screenshots/macroMobile.png) |
 
 | Controle de Água | Ranking e Gamificação |
 | :---: | :---: |
@@ -39,7 +39,7 @@
 | ![Interface de Água](./public/screenshots/refeicaoSalvaMobile.png) |
 
 | Dados |
-| :---: | :---: |
+| :---: |
 | ![Interface de Água](./public/screenshots/dadosPerfil.png) |
 | ![Interface de Água](./public/screenshots/dadosPerfilMobile.png) |
 
