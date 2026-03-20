@@ -79,31 +79,25 @@ Nós automatizamos o setup! Basta executar o script na raiz do projeto:
 .\setup.bat
 ```
 
-##3. Configuração Manual
+### 3. Configuração Manual
 Crie um arquivo .env na raiz do projeto e insira sua chave:
 
 Snippet de código
 ```bash
 VITE_GEMINI_API_KEY=SUA_CHAVE_AQUI
 ```
+
+### 4. Execução
 ```bash
-##4. Execução
 npm run dev
 ```
 
-##👥 Autores e Colaboradores
+### 👥 Autores e Colaboradores
 **Henrique Castro - Engenharia de Software / Back-end & Arquitetura**
 
 ##📌 Roadmap (V2)
-**[ ] Migração do Cache para Firebase Firestore.**
+** [ ] Migração do Cache para Firebase Firestore. **
 
-**[ ] Sistema de Autenticação de Usuários.**
+** [ ] Sistema de Autenticação de Usuários. **
 
-**[ ] Gráficos de progresso semanal.**
-
-##Projeto desenvolvido como Trabalho Final de Curso (TFC) - 7º Semestre de Engenharia de Software.
-
-
----
-
-**Deseja que eu escreva também o script do arquivo `.env.example` para que outros dese**
+** [ ] Gráficos de progresso semanal. **
