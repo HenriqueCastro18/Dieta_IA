@@ -33,10 +33,10 @@
 | :---: | :---: |
 | ![Interface de Água](./public/screenshots/historicoCalendario.png) |
 | ![Interface de Água](./public/screenshots/historicoCalendarioMobile.png) |
-| ![Interface de Água](./public/screenshots/RendimentoDiaTot.png) |
-| ![Interface de Água](./public/screenshots/RendimentoDiaTotMobile.png) |
-| ![Interface de Água](./public/screenshots/RefeicaoSalva.png) |
-| ![Interface de Água](./public/screenshots/RefeicaoSalvaMobile.png) |
+| ![Interface de Água](./public/screenshots/rendimentoDiaTot.png) |
+| ![Interface de Água](./public/screenshots/rendimentoDiaTotMobile.png) |
+| ![Interface de Água](./public/screenshots/refeicaoSalva.png) |
+| ![Interface de Água](./public/screenshots/refeicaoSalvaMobile.png) |
 
 | Dados |
 | :---: | :---: |
