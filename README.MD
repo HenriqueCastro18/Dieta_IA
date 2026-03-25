@@ -1,5 +1,8 @@
 # 🥗 Dieta Fácil - V2 (IA Generativa & Segurança Ativa)
 
+# LINK PARA V1
+* https://dieta-ia-v2.vercel.app/
+
 ![Status](https://img.shields.io/badge/Status-Versão%202.0-blue?style=for-the-badge)
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
