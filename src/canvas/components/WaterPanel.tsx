@@ -1,66 +1,82 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { DBLite } from '../../services/db'; 
+import { DBService } from '../../services/db'; 
 
 export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
   const [currentIntake, setCurrentIntake] = useState(0);
   const [inputAmount, setInputAmount] = useState<string>('');
   const [isSaving, setIsSaving] = useState(false);
+  const [lastSync, setLastSync] = useState<string | null>(null);
   
   const todayDate = new Date().toLocaleDateString('pt-BR');
-  const goalML = useMemo(() => Number(user?.goalWater) || 3500, [user]);
+
+  // Garante que a meta seja sempre um número em ML
+  const goalML = useMemo(() => {
+    const rawGoal = user?.goalWater;
+    if (!rawGoal) return 3500;
+    const parsed = typeof rawGoal === 'string' ? parseFloat(rawGoal.replace(',', '.')) : rawGoal;
+    return parsed < 100 ? parsed * 1000 : parsed;
+  }, [user]);
+
   const progress = Math.min(currentIntake / goalML, 1);
 
-  // 1. CARREGA OS DADOS DO BANCO AO INICIAR
+  // Busca inicial do banco
   useEffect(() => {
-    if (user?.id) {
-      const saved = DBLite.getWaterHistory(todayDate, user.id);
-      setCurrentIntake(Number(saved.amount) || 0);
-    }
-  }, [user?.id, todayDate]);
+    const fetchWater = async () => {
+      const uid = user?.uid || user?.id;
+      if (uid) {
+        try {
+          const saved = await DBService.getWaterHistory(uid, todayDate);
+          if (saved && saved.amount) {
+            setCurrentIntake(Number(saved.amount));
+          }
+        } catch (e) {
+          console.error("Erro ao carregar água:", e);
+        }
+      }
+    };
+    fetchWater();
+  }, [user, todayDate]);
 
-  const addWater = () => {
-    const amount = parseInt(inputAmount);
-    if (isNaN(amount) || amount <= 0) return;
-    setCurrentIntake(prev => prev + amount);
+  const addWater = (amount?: number) => {
+    const value = amount || parseInt(inputAmount);
+    if (isNaN(value) || value <= 0) return;
+    setCurrentIntake(prev => prev + value);
     setInputAmount('');
   };
 
-  // 2. SALVA NO BANCO E SINCRONIZA COM O HISTÓRICO
+  // FUNÇÃO CORRIGIDA: Enviando parâmetros separados para o DBService
   const handleSaveToDB = async () => {
-    if (!user?.id) return;
+    const uid = user?.uid || user?.id;
+    
+    if (!uid) {
+      alert("Erro: Usuário não autenticado.");
+      return;
+    }
+
+    if (isSaving) return;
+    
     setIsSaving(true);
     try {
-      // Simula um delay de rede/processamento
-      await new Promise(resolve => setTimeout(resolve, 600));
+      // CORREÇÃO AQUI: Passando UID, Valor numérico e Data como argumentos individuais
+      await DBService.saveWater(uid, Number(currentIntake), todayDate);
       
-      const success = DBLite.saveWaterIntake(todayDate, user.id, currentIntake);
-      
-      if (success) {
-        alert("Hidratação sincronizada com sucesso!");
-      }
+      setLastSync(new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }));
+      alert("Hidratação sincronizada com sucesso!");
     } catch (error) {
-      console.error("Erro ao salvar:", error);
-      alert("Erro ao sincronizar dados.");
+      console.error("Erro ao salvar no Firebase:", error);
+      alert("Erro ao sincronizar. Verifique o console.");
     } finally {
       setIsSaving(false);
-    }
-  };
-
-  const handleReset = () => {
-    if (window.confirm("Deseja zerar o progresso de hoje?")) {
-      setCurrentIntake(0);
     }
   };
 
   return (
     <section style={containerStyle}>
       <div style={cardStyle}>
-        
-        {/* COLUNA ESQUERDA: INPUT E CONTROLE LOCAL */}
         <div style={uiSide}>
           <header>
-            <span style={dateText}>{todayDate}</span>
+            <span style={dateText}>{todayDate.toUpperCase()}</span>
             <h1 style={titleText}>HIDRATAÇÃO</h1>
           </header>
 
@@ -68,31 +84,35 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
             <div style={mlText}>
               {currentIntake}<small style={unitStyle}>ml</small>
             </div>
-            <p style={goalLabel}>META DIÁRIA: {goalML}ml</p>
+            <p style={goalLabel}>META: {goalML}ml</p>
+          </div>
+
+          <div style={quickAddRow}>
+            <button onClick={() => addWater(250)} style={quickBtn}>+250ml</button>
+            <button onClick={() => addWater(500)} style={quickBtn}>+500ml</button>
           </div>
 
           <div style={inputActionGroup}>
             <input 
               type="number" 
-              placeholder="Qtd em ml" 
+              placeholder="Outra quantidade..." 
               value={inputAmount}
               onChange={(e) => setInputAmount(e.target.value)}
               style={inputStyle}
             />
-            <button style={btnAddStyle} onClick={addWater}>
-              ADICIONAR
+            <button style={btnAddStyle} onClick={() => addWater()}>
+              ADICIONAR À LISTA
             </button>
           </div>
 
-          <button style={btnReset} onClick={handleReset}>
-            ZERAR PROGRESSO
-          </button>
+          <div style={footerActions}>
+             <button style={btnReset} onClick={() => setCurrentIntake(0)}>ZERAR HOJE</button>
+             {lastSync && <span style={syncStatus}>Sincronizado às {lastSync}</span>}
+          </div>
         </div>
 
-        {/* COLUNA DIREITA: VISUALIZAÇÃO E PERSISTÊNCIA */}
         <div style={visualSide}>
           <div style={percBadge}>{Math.round(progress * 100)}%</div>
-          
           <div style={bottleSection}>
             <div style={bottleContainer}>
               <svg viewBox="0 0 100 200" style={svgStyle}>
@@ -102,26 +122,24 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
                     <stop offset="100%" stopColor="#4facfe" />
                   </linearGradient>
                   <clipPath id="bottleClip">
-                    <rect x="10" y="10" width="80" height="180" rx="25" />
+                    <rect x="10" y="5" width="80" height="190" rx="25" />
                   </clipPath>
                 </defs>
-                
-                {/* Garrafa (Fundo) */}
-                <rect x="10" y="10" width="80" height="180" rx="25" fill="#080808" stroke="#1a1a1a" strokeWidth="2" />
-                
-                {/* Água (Animada) */}
+                <rect x="10" y="5" width="80" height="190" rx="25" fill="#080808" stroke="#1a1a1a" strokeWidth="2" />
                 <g clipPath="url(#bottleClip)">
-                  <motion.rect
-                    x="10"
-                    y="10"
-                    width="80"
-                    height="180"
-                    fill="url(#waterGrad)"
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: progress }}
-                    style={{ originY: "100%" }} // Garante que encha de baixo para cima
-                    transition={{ type: "spring", stiffness: 60, damping: 15 }}
-                  />
+                  <motion.g
+                    initial={{ y: 200 }}
+                    animate={{ y: 200 - (progress * 190) }}
+                    transition={{ type: "spring", stiffness: 40, damping: 12 }}
+                  >
+                    <motion.path
+                      d="M 0 0 Q 25 -10 50 0 T 100 0 V 200 H 0 Z"
+                      fill="url(#waterGrad)"
+                      animate={{ x: [-20, 0, -20] }}
+                      transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                    />
+                    <rect y="0" width="100" height="200" fill="url(#waterGrad)" />
+                  </motion.g>
                 </g>
               </svg>
             </div>
@@ -129,39 +147,45 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
             <button 
               style={{
                 ...btnSaveDB,
-                opacity: isSaving ? 0.6 : 1,
+                background: isSaving ? '#111' : '#00f2fe',
+                color: isSaving ? '#444' : '#000',
                 cursor: isSaving ? 'not-allowed' : 'pointer'
               }} 
               onClick={handleSaveToDB}
               disabled={isSaving}
             >
-              {isSaving ? 'SALVANDO...' : 'SALVAR NO HISTÓRICO'}
+              {isSaving ? 'SINCRONIZANDO...' : 'SALVAR NO CLOUD'}
             </button>
           </div>
         </div>
-
       </div>
     </section>
   );
 };
 
-// --- ESTILOS ---
-const containerStyle: React.CSSProperties = { width: '100%', maxWidth: '850px', margin: '20px auto', padding: '0 15px' };
-const cardStyle: React.CSSProperties = { background: '#0a0a0a', borderRadius: '40px', border: '1px solid #1a1a1a', display: 'flex', minHeight: '520px', overflow: 'hidden', flexWrap: 'wrap' };
-const uiSide: React.CSSProperties = { flex: 1, padding: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: '320px' };
-const dateText: React.CSSProperties = { fontSize: '10px', color: '#444', fontWeight: '800', letterSpacing: '2px' };
-const titleText: React.CSSProperties = { color: '#00f2fe', fontSize: '30px', fontWeight: '900', margin: '8px 0 35px' };
-const displayBox: React.CSSProperties = { background: '#050505', padding: '30px', borderRadius: '30px', border: '1px solid #111', textAlign: 'center' };
-const mlText: React.CSSProperties = { fontSize: '64px', fontWeight: '900', color: '#fff' };
-const unitStyle: React.CSSProperties = { fontSize: '20px', color: '#333', marginLeft: '10px' };
-const goalLabel: React.CSSProperties = { fontSize: '10px', color: '#444', fontWeight: 'bold', marginTop: '10px' };
-const inputActionGroup: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '30px' };
-const inputStyle: React.CSSProperties = { background: '#111', border: '1px solid #222', borderRadius: '15px', padding: '15px', color: '#fff', fontSize: '16px', outline: 'none', textAlign: 'center' };
-const btnAddStyle: React.CSSProperties = { background: '#111', border: '1px solid #222', color: '#00f2fe', padding: '15px', borderRadius: '15px', fontSize: '12px', cursor: 'pointer', fontWeight: '900', letterSpacing: '1px' };
-const btnReset: React.CSSProperties = { background: 'none', border: 'none', color: '#222', fontSize: '11px', fontWeight: 'bold', cursor: 'pointer', marginTop: '15px', textAlign: 'center' };
-const visualSide: React.CSSProperties = { width: '40%', background: '#000', borderLeft: '1px solid #111', minWidth: '320px', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' };
-const bottleSection: React.CSSProperties = { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '30px', width: '100%' };
-const bottleContainer: React.CSSProperties = { width: '160px', height: '320px' };
-const svgStyle: React.CSSProperties = { width: '100%', height: '100%', filter: 'drop-shadow(0 0 15px rgba(0,242,254,0.2))' };
-const btnSaveDB: React.CSSProperties = { width: '100%', maxWidth: '240px', background: '#00f2fe', border: 'none', color: '#000', padding: '16px', borderRadius: '15px', fontWeight: '900', fontSize: '12px', letterSpacing: '1px' };
-const percBadge: React.CSSProperties = { position: 'absolute', top: '30px', right: '30px', background: '#00f2fe', color: '#000', padding: '6px 15px', borderRadius: '12px', fontWeight: '900', fontSize: '14px' };
+// --- ESTILOS (MANTIDOS) ---
+const containerStyle: React.CSSProperties = { width: '100%', maxWidth: '900px', margin: '20px auto', padding: '0 15px' };
+const cardStyle: React.CSSProperties = { background: '#050505', borderRadius: '40px', border: '1px solid #111', display: 'flex', minHeight: '550px', overflow: 'hidden', flexWrap: 'wrap', boxShadow: '0 30px 60px rgba(0,0,0,0.5)' };
+const uiSide: React.CSSProperties = { flex: 1.2, padding: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: '320px' };
+const dateText: React.CSSProperties = { fontSize: '10px', color: '#222', fontWeight: '900', letterSpacing: '3px' };
+const titleText: React.CSSProperties = { color: '#fff', fontSize: '32px', fontWeight: '950', margin: '10px 0 40px', letterSpacing: '-1px' };
+const displayBox: React.CSSProperties = { background: '#080808', padding: '40px 20px', borderRadius: '35px', border: '1px solid #111', textAlign: 'center', marginBottom: '20px' };
+const mlText: React.CSSProperties = { fontSize: '72px', fontWeight: '950', color: '#fff', lineHeight: 1 };
+const unitStyle: React.CSSProperties = { fontSize: '18px', color: '#00f2fe', marginLeft: '8px', textTransform: 'uppercase', letterSpacing: '1px' };
+const goalLabel: React.CSSProperties = { fontSize: '10px', color: '#333', fontWeight: '900', marginTop: '15px', letterSpacing: '1px' };
+const quickAddRow: React.CSSProperties = { display: 'flex', gap: '10px', marginBottom: '15px' };
+const quickBtn: React.CSSProperties = { flex: 1, background: '#111', border: '1px solid #1a1a1a', color: '#fff', padding: '15px', borderRadius: '18px', fontSize: '11px', fontWeight: '900', cursor: 'pointer' };
+const inputActionGroup: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '12px' };
+const inputStyle: React.CSSProperties = { background: '#000', border: '1px solid #1a1a1a', borderRadius: '18px', padding: '18px', color: '#fff', fontSize: '14px', outline: 'none', textAlign: 'center' };
+const btnAddStyle: React.CSSProperties = { background: '#fff', color: '#000', padding: '18px', borderRadius: '18px', border: 'none', fontSize: '11px', cursor: 'pointer', fontWeight: '950', letterSpacing: '1px' };
+const footerActions: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '25px' };
+const btnReset: React.CSSProperties = { background: 'none', border: 'none', color: '#222', fontSize: '10px', fontWeight: '900', cursor: 'pointer', letterSpacing: '1px' };
+const syncStatus: React.CSSProperties = { fontSize: '10px', color: '#15803d', fontWeight: 'bold' };
+const visualSide: React.CSSProperties = { width: '38%', background: '#030303', borderLeft: '1px solid #0f0f0f', minWidth: '320px', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' };
+const bottleSection: React.CSSProperties = { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', width: '100%' };
+const bottleContainer: React.CSSProperties = { width: '150px', height: '300px' };
+const svgStyle: React.CSSProperties = { width: '100%', height: '100%', filter: 'drop-shadow(0 0 20px rgba(0,242,254,0.1))' };
+const btnSaveDB: React.CSSProperties = { width: '100%', maxWidth: '240px', border: 'none', padding: '20px', borderRadius: '22px', fontWeight: '950', fontSize: '12px', letterSpacing: '1px', transition: '0.3s' };
+const percBadge: React.CSSProperties = { position: 'absolute', top: '35px', right: '35px', background: 'linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)', color: '#000', padding: '8px 18px', borderRadius: '15px', fontWeight: '950', fontSize: '14px', boxShadow: '0 10px 20px rgba(0,242,254,0.2)' };
+
+export default WaterPanel;

@@ -48,3 +48,10 @@ echo.
 echo Para rodar o projeto agora, digite: npm run dev
 echo.
 pause
+
+:: npm install firebase
+
+:: npm install bcryptjs
+::npm install @types/bcryptjs --save-dev
+
+:: npm install @emailjs/browser

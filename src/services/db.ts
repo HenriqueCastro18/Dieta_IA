@@ -1,183 +1,412 @@
-const DB_KEY = "@dietafacil:users";
-const HISTORY_KEY = "@dietafacil:history";
-const WATER_KEY = "@dietafacil:water"; 
+import { auth, db } from './firebase';
+import bcrypt from 'bcryptjs';
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail 
+} from "firebase/auth";
+import { 
+  doc, 
+  setDoc, 
+  getDoc, 
+  updateDoc, 
+  collection, 
+  query, 
+  where, 
+  getDocs,
+  arrayUnion,
+  Timestamp,
+  orderBy,
+  limit,
+  deleteDoc 
+} from "firebase/firestore";
 
-const formatKey = (dateStr: string) => {
-  if (!dateStr) return "";
+// Interface para o resultado de tentativas falhas
+interface FailedAttemptResult {
+  attempts: number;
+  blocked: boolean;
+}
+
+/**
+ * Formata a chave de data para DD-MM-YYYY (padrão para chaves de documentos)
+ */
+const formatKey = (dateInput: any): string => {
+  if (!dateInput) return new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+  
+  let dateStr = typeof dateInput === 'string' ? dateInput : new Date(dateInput).toLocaleDateString('pt-BR');
+  
+  if (dateStr.includes('-')) return dateStr;
+
   const parts = dateStr.split('/');
-  if (parts.length !== 3) return dateStr;
-  return `${parts[0].padStart(2, '0')}/${parts[1].padStart(2, '0')}/${parts[2]}`;
+  if (parts.length !== 3) return dateStr.replace(/\//g, '-');
+  
+  return `${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}-${parts[2]}`;
 };
 
-export const DBLite = {
-  // --- GESTÃO DE USUÁRIOS & PERFIL ---
-  getUsers: () => {
-    const data = localStorage.getItem(DB_KEY);
-    return data ? JSON.parse(data) : [];
+export const DBService = {
+  // --- CAMADA DE SEGURANÇA (BCRYPT & LOCKOUT) ---
+
+  hashData: async (value: string): Promise<string> => {
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(value, salt);
   },
 
-  saveUser: (newUser: any) => {
-    const users = DBLite.getUsers();
-    const index = users.findIndex((u: any) => u.email === newUser.email);
-    
-    const userWithId = { 
-      ...newUser, 
-      id: newUser.id || Date.now().toString(),
-      // Inicializa histórico de peso se não existir
-      weightHistory: newUser.weightHistory || (newUser.weight ? [{ date: new Date().toISOString(), weight: Number(newUser.weight) }] : [])
-    };
-
-    if (index !== -1) {
-      users[index] = userWithId;
-    } else {
-      users.push(userWithId);
-    }
-
-    localStorage.setItem(DB_KEY, JSON.stringify(users));
-    return userWithId;
+  compareHash: async (value: string, hash: string): Promise<boolean> => {
+    return bcrypt.compare(value, hash);
   },
 
-  validateLogin: (credentials: any) => {
-    const users = DBLite.getUsers();
-    const user = users.find(
-      (u: any) => u.email === credentials.email && u.password === credentials.password
-    );
-    if (!user) throw new Error("E-mail ou senha incorretos.");
-    return user;
-  },
-
-  // --- GESTÃO DE PESO (NOVO) ---
-  updateUserWeight: (userId: string, newWeight: number) => {
-    const users = DBLite.getUsers();
-    const userIndex = users.findIndex((u: any) => u.id === userId);
-    
-    if (userIndex !== -1) {
-      const user = users[userIndex];
-      const weightEntry = { date: new Date().toISOString(), weight: Number(newWeight) };
-      
-      user.weight = Number(newWeight);
-      user.weightHistory = [...(user.weightHistory || []), weightEntry];
-      
-      users[userIndex] = user;
-      localStorage.setItem(DB_KEY, JSON.stringify(users));
-      return user;
-    }
-    return null;
-  },
-
-  // --- GESTÃO DE HISTÓRICO UNIFICADO ---
-  getHistory: () => {
+  checkAccountLockout: async (email: string): Promise<boolean> => {
     try {
-      const data = localStorage.getItem(HISTORY_KEY);
-      return data ? JSON.parse(data) : {};
-    } catch (e) {
-      return {};
+      const emailKey = email.toLowerCase().trim();
+      const lockoutRef = doc(db, "login_lockouts", emailKey);
+      const snap = await getDoc(lockoutRef);
+
+      if (snap.exists()) {
+        const data = snap.data();
+        const lockoutUntil = data.lockoutUntil;
+        
+        if (lockoutUntil && lockoutUntil.toDate() > new Date()) {
+          const diff = lockoutUntil.toDate().getTime() - Date.now();
+          const minutes = Math.ceil(diff / (1000 * 60));
+          throw new Error(`BLOQUEADO|${minutes}`);
+        }
+      }
+      return true;
+    } catch (error: any) {
+      if (error.message.includes("BLOQUEADO")) throw error;
+      return true; 
     }
   },
 
-  saveMeal: (meal: any) => {
+  registerFailedAttempt: async (email: string): Promise<FailedAttemptResult> => {
     try {
-      const data = localStorage.getItem(HISTORY_KEY);
-      const history = data ? JSON.parse(data) : {};
-      const dateKey = formatKey(meal.date);
+      const emailKey = email.toLowerCase().trim();
+      const lockoutRef = doc(db, "login_lockouts", emailKey);
+      const snap = await getDoc(lockoutRef);
+      
+      let attempts = 1;
+      if (snap.exists()) {
+        attempts = (snap.data().count || 0) + 1;
+      }
 
-      if (!history[dateKey]) history[dateKey] = [];
-
-      const newEntry = {
-        ...JSON.parse(JSON.stringify(meal)),
-        date: dateKey,
-        id: `meal-${Date.now()}`
+      const updateData: any = {
+        count: attempts,
+        lastAttempt: Timestamp.now(),
+        email: emailKey,
+        blocked: false
       };
 
-      history[dateKey].push(newEntry);
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+      if (attempts >= 3) {
+        const lockoutDate = new Date();
+        lockoutDate.setMinutes(lockoutDate.getMinutes() + 15);
+        updateData.lockoutUntil = Timestamp.fromDate(lockoutDate);
+        updateData.blocked = true;
+      }
+
+      await setDoc(lockoutRef, updateData, { merge: true });
+      return { attempts, blocked: !!updateData.blocked };
+    } catch (e) {
+      console.error("Erro ao registrar tentativa:", e);
+      return { attempts: 0, blocked: false };
+    }
+  },
+
+  resetLoginAttempts: async (email: string): Promise<void> => {
+    try {
+      const emailKey = email.toLowerCase().trim();
+      await deleteDoc(doc(db, "login_lockouts", emailKey));
+    } catch (e) {
+      console.warn("Erro ao resetar tentativas:", e);
+    }
+  },
+
+  // --- AUTENTICAÇÃO E RECUPERAÇÃO ---
+
+  sendPasswordReset: async (email: string): Promise<void> => {
+    try {
+      auth.languageCode = 'pt-br'; 
+      await sendPasswordResetEmail(auth, email.toLowerCase().trim());
+    } catch (error: any) {
+      console.error("Erro ao enviar e-mail de recuperação:", error);
+      throw error;
+    }
+  },
+
+  login: async (credentials: any) => {
+    const { email, password } = credentials;
+    await DBService.checkAccountLockout(email);
+    
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const uid = userCredential.user.uid;
+      await DBService.resetLoginAttempts(email);
+      const userSnap = await getDoc(doc(db, "users", uid));
+      return userSnap.exists() ? { uid, ...userSnap.data() } : { uid, email };
+    } catch (error: any) {
+      const invalidCodes = ['auth/wrong-password', 'auth/user-not-found', 'auth/invalid-credential'];
+      if (invalidCodes.includes(error.code)) {
+        await DBService.registerFailedAttempt(email);
+      }
+      throw error;
+    }
+  },
+
+  register: async (userData: any) => {
+    const { email, password, name } = userData;
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const uid = userCredential.user.uid;
+
+    const newUser = {
+      uid,
+      name,
+      email: email.toLowerCase().trim(),
+      weight: Number(userData.weight) || 80,
+      goalWater: 3500,
+      goalCalories: 2200,
+      goalProtein: 160,
+      goalCarbs: 250,
+      goalFat: 70,
+      consistency: 0,
+      mfaEnabled: true,
+      weightHistory: [{
+        date: new Date().toISOString(),
+        weight: Number(userData.weight || 80)
+      }],
+      createdAt: new Date().toISOString()
+    };
+
+    await setDoc(doc(db, "users", uid), newUser);
+    return newUser;
+  },
+
+  logout: async () => await signOut(auth),
+
+  // --- SISTEMA DE CACHE / APRENDIZADO DE ALIMENTOS ---
+
+  /**
+   * Salva um alimento analisado pela IA no banco de dados para evitar novas consultas.
+   */
+  saveCustomFood: async (foodData: any) => {
+    try {
+      // Usamos o searchKey + unitGroup como ID único para evitar duplicatas
+      const foodId = `${foodData.searchKey}_${foodData.unitGroup}`;
+      const foodRef = doc(db, "learned_foods", foodId);
+      
+      await setDoc(foodRef, {
+        ...foodData,
+        learnedAt: Timestamp.now()
+      });
       return true;
-    } catch (error) {
-      console.error("Erro ao salvar refeição:", error);
+    } catch (e) {
+      console.error("Erro ao salvar alimento aprendido:", e);
       return false;
     }
   },
 
-  // --- LÓGICA DE PERFORMANCE (CORREÇÃO DE 0%) ---
-  getConsistencyScore: (userId: string, mode: 'week' | 'month', offset: number) => {
+  /**
+   * Busca se um alimento já foi "aprendido" pelo sistema anteriormente.
+   */
+  findCustomFood: async (queryStr: string, unit: string) => {
     try {
-      const history = DBLite.getHistory();
-      let activeDays = 0;
-      let totalDaysInPeriod = mode === 'week' ? 7 : 30;
+      const searchKey = queryStr.toLowerCase().trim();
+      const foodsRef = collection(db, "learned_foods");
       
-      const targetDate = new Date();
-      if (mode === 'month') targetDate.setMonth(targetDate.getMonth() - offset);
-      else targetDate.setDate(targetDate.getDate() - (offset * 7));
-
-      for (let i = 0; i < totalDaysInPeriod; i++) {
-        const checkDate = new Date(targetDate);
-        checkDate.setDate(checkDate.getDate() - i);
-        const dateKey = checkDate.toLocaleDateString('pt-BR');
-        
-        // Verifica se existem REFEIÇÕES (não apenas água) para o usuário neste dia
-        const hasMeal = history[dateKey]?.some((e: any) => e.userId === userId && e.type !== 'water');
-        if (hasMeal) activeDays++;
+      // Filtra por nome (chave de busca) e pela unidade (g, ml, un)
+      const q = query(
+        foodsRef, 
+        where("searchKey", "==", searchKey), 
+        where("unitGroup", "==", unit)
+      );
+      
+      const snap = await getDocs(q);
+      if (!snap.empty) {
+        return snap.docs[0].data();
       }
+      return null;
+    } catch (e) {
+      console.error("Erro ao buscar alimento aprendido:", e);
+      return null;
+    }
+  },
 
-      // Se não houve atividade, retorna 0 fixo (Resolve o problema das imagens)
-      if (activeDays === 0) return 0;
+  // --- PERFIL, REFEIÇÕES E ÁGUA ---
 
-      return Math.round((activeDays / totalDaysInPeriod) * 100);
+  getUserData: async (uid: string) => {
+    if (!uid) return null;
+    try {
+      const userSnap = await getDoc(doc(db, "users", uid));
+      return userSnap.exists() ? { uid, ...userSnap.data() } : null;
+    } catch (e) {
+      console.error("Erro getUserData:", e);
+      return null;
+    }
+  },
+
+  updateProfile: async (userId: string, data: any) => {
+    if (!userId) return false;
+    const userRef = doc(db, "users", userId);
+    const updateData: any = { ...data, lastUpdate: new Date().toISOString() };
+    if (data.weight) {
+      updateData.weight = Number(data.weight);
+      updateData.weightHistory = arrayUnion({
+        date: new Date().toISOString(),
+        weight: Number(data.weight)
+      });
+    }
+    await updateDoc(userRef, updateData);
+    return true;
+  },
+
+  getMealsByDate: async (userId: string, dateStr: string) => {
+    if (!userId) return [];
+    try {
+      const mealsRef = collection(db, "users", userId, "meals");
+      const q = query(mealsRef, where("date", "==", dateStr));
+      const querySnapshot = await getDocs(q);
+      
+      return querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
     } catch (error) {
+      console.error("Erro ao buscar refeições por data:", error);
+      return [];
+    }
+  },
+
+  saveMeal: async (userId: string, mealData: any) => {
+    if (!userId) return false;
+    try {
+      const mealRef = doc(collection(db, "users", userId, "meals"));
+      const timestamp = Date.now();
+      
+      const rawDate = mealData.date || new Date();
+      const displayDate = typeof rawDate === 'string' ? rawDate : new Date(rawDate).toLocaleDateString('pt-BR');
+
+      const fullMeal = { 
+        ...mealData, 
+        id: mealRef.id,
+        timestamp,
+        date: displayDate,
+        createdAt: Timestamp.now(),
+        calories: Number(mealData.calories || 0),
+        protein: Number(mealData.protein || 0),
+        carbs: Number(mealData.carbs || 0),
+        fat: Number(mealData.fat || 0)
+      };
+
+      await setDoc(mealRef, fullMeal);
+
+      const historyRef = doc(db, "users", userId, "history", `${mealRef.id}_meal`);
+      await setDoc(historyRef, {
+        type: 'meal',
+        name: mealData.name || "Refeição",
+        date: displayDate,
+        timestamp,
+        calories: Number(mealData.calories || 0)
+      });
+
+      await DBService.updateUserConsistency(userId);
+      return true;
+    } catch (error) {
+      console.error("Erro ao salvar refeição:", error);
+      throw error;
+    }
+  },
+
+  saveWater: async (userId: string, amount: number, dateInput: any) => {
+    if (!userId) return false;
+    try {
+      const dateKey = formatKey(dateInput);
+      const displayDate = typeof dateInput === 'string' ? dateInput : new Date(dateInput).toLocaleDateString('pt-BR');
+
+      const waterRef = doc(db, "users", userId, "water", dateKey);
+      
+      await setDoc(waterRef, {
+        amount: Number(amount),
+        date: displayDate,
+        updatedAt: Timestamp.now()
+      }, { merge: true });
+
+      const historyRef = doc(db, "users", userId, "history", `${dateKey}_water`);
+      await setDoc(historyRef, {
+        type: 'water',
+        amount: Number(amount),
+        timestamp: Date.now(),
+        date: displayDate
+      });
+
+      await DBService.updateUserConsistency(userId);
+      return true;
+    } catch (e) {
+      console.error("Erro ao salvar água:", e);
+      throw e;
+    }
+  },
+
+  saveWaterIntake: async (userId: string, dateStr: any, amount: number) => {
+    return DBService.saveWater(userId, amount, dateStr);
+  },
+
+  getWaterHistory: async (userId: string, dateStr: any) => {
+    if (!userId) return { amount: 0 };
+    const dateKey = formatKey(dateStr);
+    const snap = await getDoc(doc(db, "users", userId, "water", dateKey));
+    return snap.exists() ? snap.data() : { amount: 0 };
+  },
+
+  // --- CONSISTÊNCIA E RANKING ---
+
+  getConsistencyScore: async (userId: string, days: number = 30, offset: number = 0) => {
+    if (!userId) return 0;
+    try {
+      const historyRef = collection(db, "users", userId, "history");
+      const now = new Date();
+      now.setHours(23, 59, 59, 999);
+      
+      const endTime = now.getTime() - (offset * days * 24 * 60 * 60 * 1000);
+      const startTime = endTime - (days * 24 * 60 * 60 * 1000);
+      
+      const q = query(historyRef, where("timestamp", ">=", startTime), where("timestamp", "<=", endTime));
+      const querySnapshot = await getDocs(q);
+      
+      const uniqueDays = new Set();
+      querySnapshot.forEach(doc => {
+        const d = doc.data();
+        if (d && d.date) uniqueDays.add(d.date);
+      });
+      return Math.round((uniqueDays.size / days) * 100);
+    } catch (e) {
+      console.error("Erro Score:", e);
       return 0;
     }
   },
 
-  // --- GESTÃO DE HIDRATAÇÃO ---
-  saveWaterIntake: (dateStr: string, userId: string, amount: number) => {
-    try {
-      const dateKey = formatKey(dateStr);
-      const waterData = localStorage.getItem(WATER_KEY);
-      const waterHistory = waterData ? JSON.parse(waterData) : {};
-      const storageKey = `${userId}_${dateKey}`;
-
-      waterHistory[storageKey] = {
-        amount: Number(amount),
-        lastUpdated: new Date().toISOString()
-      };
-      localStorage.setItem(WATER_KEY, JSON.stringify(waterHistory));
-
-      const historyData = localStorage.getItem(HISTORY_KEY);
-      const history = historyData ? JSON.parse(historyData) : {};
-      if (!history[dateKey]) history[dateKey] = [];
-
-      history[dateKey] = history[dateKey].filter(
-        (entry: any) => !(entry.type === 'water' && entry.userId === userId)
-      );
-
-      history[dateKey].push({
-        id: `water-${userId}-${Date.now()}`,
-        type: 'water',
-        userId: userId,
-        amount: Number(amount),
-        date: dateKey,
-        timestamp: Date.now()
-      });
-
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-      return true;
-    } catch (error) {
-      return false;
-    }
+  updateUserConsistency: async (userId: string) => {
+    if (!userId) return;
+    const score = await DBService.getConsistencyScore(userId, 30, 0);
+    await updateDoc(doc(db, "users", userId), { consistency: score });
   },
 
-  getWaterHistory: (dateStr: string, userId: string) => {
+  getGlobalRanking: async () => {
     try {
-      const dateKey = formatKey(dateStr);
-      const storageKey = `${userId}_${dateKey}`;
-      const data = localStorage.getItem(WATER_KEY);
-      if (data) {
-        const waterHistory = JSON.parse(data);
-        if (waterHistory[storageKey]) return waterHistory[storageKey];
-      }
-      return { amount: 0 };
-    } catch (error) {
-      return { amount: 0 };
+      const q = query(collection(db, "users"), orderBy("consistency", "desc"), limit(10));
+      const snap = await getDocs(q);
+      return snap.docs
+        .map(doc => {
+          const data = doc.data();
+          if (!data) return null;
+          return {
+            uid: doc.id,
+            name: data.name || "Atleta",
+            consistency: data.consistency || 0
+          };
+        })
+        .filter(item => item !== null);
+    } catch (err) {
+      console.error("Erro ranking:", err);
+      return [];
     }
   }
 };

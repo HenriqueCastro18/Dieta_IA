@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import { DBLite } from '../../../services/db';
+import { DBService } from '../../../services/db';
 
 interface AuthPanelProps {
   onLogin: (userData: any) => void;
@@ -11,28 +11,86 @@ interface AuthPanelProps {
 const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  // Estados para controle de bloqueio vindo do banco (Item 1.11 da sua lista)
+  const [lockoutTime, setLockoutTime] = useState<number | null>(null);
+  const [blockedEmail, setBlockedEmail] = useState<string>('');
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const handleLogin = (credentials: any) => {
+  const handleLogin = async (credentials: any) => {
+    const { email } = credentials;
+    setLoading(true);
+
     try {
-      const user = DBLite.validateLogin(credentials);
-      onLogin(user);
+      // 1. O DBService.login agora retorna os dados do usuário ou lança erro de bloqueio
+      const user = await DBService.login(credentials);
+      
+      if (user) {
+        onLogin(user);
+      }
     } catch (err: any) {
-      alert(err.message);
+      console.error("Erro no login:", err);
+
+      // 2. Captura o erro customizado "BLOQUEADO|X" vindo do checkAccountLockout
+      if (err.message && err.message.includes("BLOQUEADO|")) {
+        const parts = err.message.split('|');
+        const minutes = parseInt(parts[1]);
+        setLockoutTime(Date.now() + (minutes * 60 * 1000));
+        setBlockedEmail(email);
+        return;
+      }
+
+      // 3. Tratamento de credenciais inválidas (Rate Limit - 3 tentativas)
+      const isInvalidCredential = 
+        err.code === 'auth/invalid-credential' || 
+        err.code === 'auth/wrong-password' || 
+        err.code === 'auth/user-not-found';
+
+      if (isInvalidCredential) {
+        try {
+          // Chama o registro de falha que atualiza o Firestore (Item 1.8 e 1.11)
+          const result = await DBService.registerFailedAttempt(email);
+          
+          if (result && result.blocked) {
+            setLockoutTime(Date.now() + (15 * 60 * 1000));
+            setBlockedEmail(email);
+          } else if (result) {
+            alert(`Senha incorreta para ${email}. Tentativa ${result.attempts}/3`);
+          }
+        } catch (dbErr) {
+          console.error("Erro ao registrar falha no Firestore:", dbErr);
+        }
+      } else {
+        alert("Erro ao entrar: " + (err.message || "Verifique suas conexões"));
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleRegister = (userData: any) => {
+  const handleRegister = async (userData: any) => {
+    setLoading(true);
     try {
-      DBLite.saveUser(userData);
-      alert("Conta criada com sucesso! Agora pode fazer login.");
-      setIsFlipped(false);
+      const newUser = await DBService.register(userData);
+      if (newUser) {
+        alert("Conta criada com sucesso!");
+        setIsFlipped(false);
+      }
     } catch (err: any) {
-      alert(err.message);
+      console.error("Erro no registro:", err);
+      alert("Erro ao criar conta: " + (err.message || "Verifique os dados"));
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const resetLockoutVisual = () => {
+    setLockoutTime(null);
+    setBlockedEmail('');
   };
 
   if (!isMounted) return null;
@@ -46,6 +104,31 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
         style={glassCard}
         className="auth-card"
       >
+        {/* Overlay de Bloqueio (Lógica de Segurança de Força Bruta - Item 1.11) */}
+        {lockoutTime && Date.now() < lockoutTime && (
+          <div style={lockoutOverlayStyle}>
+             <span style={{ fontSize: '40px' }}>🚫</span>
+             <h2 style={{ color: '#ff4444', margin: '15px 0', textAlign: 'center' }}>Acesso Suspenso</h2>
+             <p style={{ color: '#888', textAlign: 'center', fontSize: '13px', lineHeight: '1.6' }}>
+                O e-mail <b>{blockedEmail}</b> foi bloqueado por excesso de tentativas.<br/>
+                Por segurança do <b>Smarko Security</b>, aguarde 15 minutos.
+             </p>
+             <button 
+               onClick={resetLockoutVisual} 
+               style={btnRetryStyle}
+             >
+               TENTAR OUTRO E-MAIL
+             </button>
+          </div>
+        )}
+
+        {loading && (
+          <div style={loadingStyle}>
+            <div className="spinner"></div>
+            <span style={{ marginTop: '10px', fontSize: '10px', letterSpacing: '2px' }}>AUTENTICANDO...</span>
+          </div>
+        )}
+
         <AnimatePresence mode="wait" initial={false}>
           {!isFlipped ? (
             <motion.div
@@ -85,8 +168,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
         {`
           body { margin: 0; padding: 0; overflow: hidden; background: #000; }
           *:focus { outline: none !important; }
-
-          /* CONFIGURAÇÃO BASE DO CARTÃO */
           .auth-card {
             width: 100%;
             max-width: 440px;
@@ -96,27 +177,18 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
             border-radius: 32px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.9);
-            overflow: hidden; /* Remove scroll do cartão */
+            position: relative;
           }
-
-          /* AJUSTES PARA ECRÃS PEQUENOS OU BAIXOS (MOBILE/TECLADO ABERTO) */
-          @media (max-height: 780px), (max-width: 480px) {
-            .auth-card { border-radius: 24px; max-width: 380px; }
-            .auth-form-inner { padding: 30px 30px !important; }
-            .auth-logo { width: 45px !important; height: 45px !important; margin-bottom: 15px !important; font-size: 18px !important; }
-            .auth-title { font-size: 22px !important; }
-            .auth-subtitle { font-size: 12px !important; margin-top: 4px !important; }
-            .auth-input-group { gap: 4px !important; }
-            .auth-input { padding: 12px 16px !important; font-size: 14px !important; border-radius: 12px !important; }
-            .auth-btn { padding: 15px !important; margin-top: 5px !important; border-radius: 12px !important; font-size: 14px !important; }
-            footer { margin-top: 20px !important; }
+          .spinner {
+            width: 30px; height: 30px;
+            border: 2px solid rgba(0, 242, 254, 0.1);
+            border-top: 2px solid #00f2fe;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
           }
-
-          /* AJUSTE EXTREMO (Para quando o teclado ocupa quase tudo) */
-          @media (max-height: 600px) {
-            .auth-subtitle { display: none; }
-            .auth-form-inner { padding: 20px 25px !important; }
-            header { margin-bottom: 15px !important; }
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
           }
         `}
       </style>
@@ -124,25 +196,31 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
   );
 };
 
+// Estilos preservados conforme original
 const authWrapper: React.CSSProperties = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-  height: '100vh',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 20,
-  padding: '20px',
+  display: 'flex', justifyContent: 'center', alignItems: 'center',
+  width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: 20, padding: '20px',
 };
 
-const glassCard: React.CSSProperties = {
-  position: 'relative',
+const glassCard: React.CSSProperties = { position: 'relative' };
+const formContent: React.CSSProperties = { padding: '60px 50px' };
+
+const loadingStyle: React.CSSProperties = {
+  position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.85)',
+  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+  color: '#00f2fe', zIndex: 100, fontWeight: '900', backdropFilter: 'blur(12px)'
 };
 
-const formContent: React.CSSProperties = {
-  padding: '60px 50px',
+const lockoutOverlayStyle: React.CSSProperties = {
+  position: 'absolute', inset: 0, background: 'rgba(10, 10, 10, 0.96)',
+  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+  zIndex: 110, padding: '40px', backdropFilter: 'blur(20px)', borderRadius: '32px'
+};
+
+const btnRetryStyle: React.CSSProperties = {
+  marginTop: '30px', background: '#fff', color: '#000', border: 'none',
+  padding: '14px 28px', borderRadius: '14px', cursor: 'pointer',
+  fontSize: '11px', fontWeight: '900', letterSpacing: '1px'
 };
 
 export default AuthPanel;

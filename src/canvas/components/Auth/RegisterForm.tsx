@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface RegisterProps {
-  onRegister: (userData: any) => void;
+  onRegister: (userData: any) => Promise<void> | void;
   onGoToLogin: () => void;
 }
 
@@ -11,17 +11,37 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
   const [pass, setPass] = useState('');
   const [confirm, setConfirm] = useState('');
   const [focused, setFocused] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleAction = (e: React.FormEvent) => {
+  const handleAction = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (pass !== confirm) return alert("As senhas não coincidem!");
-    onRegister({ name, email, password: pass });
+    if (isSubmitting) return;
+
+    if (pass !== confirm) {
+      return alert("As senhas não coincidem!");
+    }
+
+    if (pass.length < 6) {
+      return alert("A senha deve ter pelo menos 6 caracteres.");
+    }
+
+    setIsSubmitting(true);
+    try {
+      // No Firebase, o objeto userData será usado para criar o Auth e o Doc no Firestore
+      await onRegister({ name, email, password: pass });
+    } catch (error: any) {
+      console.error("Erro ao registrar:", error);
+      // O erro já é tratado no AuthPanel, mas mantemos o try/catch para o finally
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getStyle = (id: string) => ({
     ...inputStyle,
     borderColor: focused === id ? '#fff' : '#1a1a1a',
     boxShadow: focused === id ? '0 0 0 1px #fff' : 'none',
+    opacity: isSubmitting ? 0.6 : 1,
   });
 
   return (
@@ -44,6 +64,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
             style={getStyle('name')}
             onFocus={() => setFocused('name')}
             onBlur={() => setFocused(null)}
+            disabled={isSubmitting}
             required 
           />
         </div>
@@ -59,6 +80,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
             style={getStyle('email')}
             onFocus={() => setFocused('email')}
             onBlur={() => setFocused(null)}
+            disabled={isSubmitting}
             required 
           />
         </div>
@@ -75,6 +97,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
               style={getStyle('pass')}
               onFocus={() => setFocused('pass')}
               onBlur={() => setFocused(null)}
+              disabled={isSubmitting}
               required 
             />
           </div>
@@ -89,18 +112,28 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
               style={getStyle('confirm')}
               onFocus={() => setFocused('confirm')}
               onBlur={() => setFocused(null)}
+              disabled={isSubmitting}
               required 
             />
           </div>
         </div>
 
-        <button type="submit" className="auth-btn" style={primaryButton}>
-          CRIAR MINHA CONTA
+        <button 
+          type="submit" 
+          className="auth-btn" 
+          style={{
+            ...primaryButton,
+            opacity: isSubmitting ? 0.7 : 1,
+            cursor: isSubmitting ? 'not-allowed' : 'pointer'
+          }}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'CRIANDO CONTA...' : 'CRIAR MINHA CONTA'}
         </button>
       </form>
 
       <footer style={{ marginTop: '20px', textAlign: 'center' }}>
-        <button onClick={onGoToLogin} style={linkButton}>
+        <button onClick={onGoToLogin} style={linkButton} disabled={isSubmitting}>
           Já tem conta? <span style={{ color: '#fff' }}>Fazer Login</span>
         </button>
       </footer>

@@ -1,31 +1,48 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { DBLite } from '../../services/db'; // Certifique-se de que o caminho está correto
+import { motion } from 'framer-motion';
+import { DBService } from '../../services/db';
 
 export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) => void }> = ({ user, onUpdateUser }) => {
   const [viewMode, setViewMode] = useState<'week' | 'month'>('month');
   const [offset, setOffset] = useState(0); 
-  const [isEditingWeight, setIsEditingWeight] = useState(false);
+  const [isEditing, setIsEditing] = useState(false); 
   const [tempWeight, setTempWeight] = useState(user?.weight?.toString() || '');
   const [realConsistency, setRealConsistency] = useState(0);
+  const [isSaving, setIsSaving] = useState(false);
+  const [ranking, setRanking] = useState<any[]>([]);
 
-  // 1. CARREGAMENTO DE DADOS REAIS DO DBLITE
+  const userId = user?.uid || user?.id;
+
+  // 1. CARREGAMENTO DOS DADOS (SCORE E RANKING)
   useEffect(() => {
-    if (user?.id) {
-      // Busca a consistência real baseada no histórico do DBLite
-      const score = DBLite.getConsistencyScore(user.id, viewMode, offset);
-      setRealConsistency(score);
-    }
-  }, [user?.id, viewMode, offset]);
+    let isMounted = true;
+    const loadStats = async () => {
+      if (!userId) return;
+      try {
+        const days = viewMode === 'week' ? 7 : 30;
+        const score = await DBService.getConsistencyScore(userId, days, offset);
+        const topUsers = await DBService.getGlobalRanking();
+        
+        if (isMounted) {
+          setRealConsistency(score || 0);
+          if (Array.isArray(topUsers)) {
+            setRanking(topUsers);
+          }
+        }
+      } catch (err) {
+        console.error("Erro ao carregar dados do painel:", err);
+      }
+    };
+    loadStats();
+    return () => { isMounted = false; };
+  }, [userId, viewMode, offset]);
 
-  // 2. LÓGICA DE PESO (Diferença desde o primeiro registro)
+  // 2. LÓGICA DE EVOLUÇÃO DE PESO
   const weightStats = useMemo(() => {
     const history = user?.weightHistory || [];
     const current = Number(user?.weight) || 0;
-    
-    if (history.length === 0) return { diff: 0, initial: current, status: 'Estável' };
-
-    const initial = history[0].weight; // Primeiro peso cadastrado na criação da conta
+    // Pega o primeiro peso registrado no histórico ou o peso atual se estiver vazio
+    const initial = history.length > 0 ? Number(history[0].weight) : current; 
     const diff = current - initial;
     
     return {
@@ -36,47 +53,60 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
     };
   }, [user]);
 
-  // 3. NAVEGAÇÃO DE DATAS
+  // 3. SALVAR NOVO PESO (CORRIGIDO PARA USAR UPDATEPROFILE)
+  const handleWeightSubmit = async () => {
+    const val = parseFloat(tempWeight.replace(',', '.'));
+    if (!isNaN(val) && userId) {
+      setIsSaving(true);
+      try {
+        // No seu db.ts, a função updateProfile já cuida de adicionar ao weightHistory
+        const success = await DBService.updateProfile(userId, { weight: val });
+        
+        if (success) {
+          // Atualiza o estado local para refletir a mudança na UI imediatamente
+          onUpdateUser({ 
+            ...user, 
+            weight: val,
+            weightHistory: [...(user.weightHistory || []), { date: new Date().toISOString(), weight: val }]
+          });
+          setIsEditing(false);
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Erro ao salvar peso.");
+      } finally {
+        setIsSaving(false);
+      }
+    }
+  };
+
+  // 4. RÓTULO DE DATA
   const periodLabel = useMemo(() => {
     const d = new Date();
     if (viewMode === 'month') {
       d.setMonth(d.getMonth() - offset);
       return d.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }).toUpperCase();
     }
-    const day = d.getDay();
-    const diff = d.getDate() - day - (offset * 7);
-    const startOfWeek = new Date(d.setDate(diff));
+    const current = new Date();
+    current.setDate(current.getDate() - (offset * 7));
+    const day = current.getDay();
+    const diff = current.getDate() - day;
+    const startOfWeek = new Date(current.setDate(diff));
     return `SEMANA DE ${startOfWeek.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}`;
   }, [viewMode, offset]);
 
-  const handleWeightSubmit = () => {
-    const val = parseFloat(tempWeight);
-    if (!isNaN(val) && user?.id) {
-      const updatedUser = DBLite.updateUserWeight(user.id, val);
-      if (updatedUser) {
-        onUpdateUser(updatedUser);
-        setIsEditingWeight(false);
-      }
-    }
-  };
-
   return (
     <div style={styles.container}>
-      {/* SELETOR DE PERÍODO */}
       <div style={styles.navHeader}>
         <div style={styles.selectorGroup}>
           <button 
             style={{...styles.btnToggle, ...(viewMode === 'week' ? styles.activeBtn : {})}} 
             onClick={() => {setViewMode('week'); setOffset(0)}}
-          >
-            SEMANAL
-          </button>
+          >SEMANAL</button>
           <button 
             style={{...styles.btnToggle, ...(viewMode === 'month' ? styles.activeBtn : {})}} 
             onClick={() => {setViewMode('month'); setOffset(0)}}
-          >
-            MENSAL
-          </button>
+          >MENSAL</button>
         </div>
         
         <div style={styles.dateNav}>
@@ -86,13 +116,10 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
             style={{...styles.navArrow, opacity: offset === 0 ? 0.3 : 1}} 
             onClick={() => setOffset(prev => Math.max(0, prev - 1))}
             disabled={offset === 0}
-          >
-            ›
-          </button>
+          >›</button>
         </div>
       </div>
 
-      {/* CARD DE PERFORMANCE (CONSISTÊNCIA REAL) */}
       <motion.div layout style={styles.mainScoreCard}>
         <div style={styles.scoreInfo}>
           <span style={styles.labelSmall}>CONSISTÊNCIA DA DIETA</span>
@@ -110,34 +137,34 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
         </div>
       </motion.div>
 
-      {/* CONTROLE DE PESO COM HISTÓRICO */}
       <div style={styles.weightCard}>
         <div style={styles.weightHeader}>
-          <span style={styles.labelSmall}>PESO ATUAL NO PERFIL</span>
-          <button style={styles.editBtn} onClick={() => setIsEditingWeight(!isEditingWeight)}>
-            {isEditingWeight ? 'CANCELAR' : 'ATUALIZAR'}
+          <span style={styles.labelSmall}>PESO ATUAL</span>
+          <button style={styles.editBtn} onClick={() => setIsEditing(!isEditing)}>
+            {isEditing ? 'CANCELAR' : 'ATUALIZAR'}
           </button>
         </div>
 
-        {isEditingWeight ? (
+        {isEditing ? (
           <div style={styles.inputGroup}>
             <input 
               type="number" 
+              step="0.1" 
               value={tempWeight} 
-              onChange={(e) => setTempWeight(e.target.value)}
-              style={styles.weightInput}
-              autoFocus
+              onChange={(e) => setTempWeight(e.target.value)} 
+              style={styles.weightInput} 
+              disabled={isSaving} 
+              autoFocus 
             />
-            <button style={styles.saveBtn} onClick={handleWeightSubmit}>OK</button>
+            <button style={styles.saveBtn} onClick={handleWeightSubmit} disabled={isSaving}>
+              {isSaving ? '...' : 'OK'}
+            </button>
           </div>
         ) : (
           <div style={styles.weightDisplayRow}>
             <h1 style={styles.currentWeight}>{user?.weight || '--'}<small style={styles.unitKg}>kg</small></h1>
             <div style={styles.weightDiffCol}>
-              <span style={{
-                ...styles.diffValue, 
-                color: weightStats.isLoss ? '#4ade80' : weightStats.isGain ? '#f87171' : '#666'
-              }}>
+              <span style={{...styles.diffValue, color: weightStats.isLoss ? '#4ade80' : weightStats.isGain ? '#f87171' : '#666'}}>
                 {weightStats.isLoss ? '-' : weightStats.isGain ? '+' : ''}{weightStats.diff}kg
               </span>
               <p style={styles.labelMini}>DESDE O INÍCIO ({weightStats.initial}kg)</p>
@@ -146,36 +173,47 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
         )}
       </div>
 
-      {/* GRID DE MÉTRICAS COMPLEMENTARES */}
-      <div style={styles.statsGrid}>
-        <div style={styles.miniCard}>
-          <span style={styles.labelSmall}>MÉDIA DIÁRIA</span>
-          <div style={styles.valueGroup}>
-            <span style={styles.valueBig}>{realConsistency === 0 ? 0 : 1950}</span>
-            <span style={styles.unitSmall}>kcal</span>
-          </div>
-        </div>
-        <div style={styles.miniCard}>
-          <span style={styles.labelSmall}>METAS BATIDAS</span>
-          <div style={styles.valueGroup}>
-            <span style={styles.valueBig}>{realConsistency === 0 ? 0 : 4}</span>
-            <span style={styles.unitSmall}>/ {viewMode === 'week' ? '7' : '30'}</span>
-          </div>
+      <div style={styles.rankingSection}>
+        <span style={styles.labelSmall}>RANKING DE CONSISTÊNCIA</span>
+        <div style={styles.rankingList}>
+          {ranking.length > 0 ? (
+            ranking.slice(0, 5).map((player, idx) => {
+              const pId = player.uid || player.id;
+              const isMe = pId === userId;
+              return (
+                <div key={pId || idx} style={{
+                  ...styles.rankItem,
+                  border: isMe ? '1px solid #00f2fe' : '1px solid #111',
+                  background: isMe ? 'rgba(0,242,254,0.05)' : '#080808'
+                }}>
+                  <div style={styles.rankInfoLeft}>
+                    <span style={{...styles.rankPos, color: idx === 0 ? '#fbbf24' : '#555'}}>{idx + 1}º</span>
+                    <span style={styles.rankName}>
+                      {(player.name || 'Atleta').toUpperCase()} {isMe && '(VOCÊ)'}
+                    </span>
+                  </div>
+                  <span style={styles.rankValue}>{player.consistency || 0}%</span>
+                </div>
+              );
+            })
+          ) : (
+            <p style={styles.emptyRanking}>Carregando ranking global...</p>
+          )}
         </div>
       </div>
 
-      <div style={styles.insightBox}>
+      <div style={{...styles.insightBox, marginTop: '20px'}}>
         <p style={styles.insightText}>
           {realConsistency === 0 
-            ? "⚠️ Não há registros para este período. Comece a anotar suas refeições para ver sua evolução!"
-            : "💡 Dica: Manter a consistência acima de 80% ajudará a atingir seus objetivos mais rápido."}
+            ? "⚠️ Registre seu dia no histórico para subir no ranking."
+            : `💡 Você está mantendo uma consistência de ${realConsistency}%! Continue firme.`}
         </p>
       </div>
     </div>
   );
 };
 
-// --- ESTILOS REFINADOS ---
+// ... (Estilos permanecem os mesmos que você enviou)
 const styles: { [key: string]: React.CSSProperties } = {
   container: { padding: '20px', maxWidth: '450px', margin: '0 auto', color: '#fff' },
   navHeader: { marginBottom: '20px' },
@@ -185,7 +223,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   dateNav: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
   dateDisplay: { fontSize: '12px', fontWeight: 'bold', letterSpacing: '1px' },
   navArrow: { background: 'none', border: 'none', color: '#00f2fe', fontSize: '20px', cursor: 'pointer' },
-  
   mainScoreCard: { background: '#080808', border: '1px solid #111', padding: '25px', borderRadius: '30px', display: 'flex', justifyContent: 'space-between', marginBottom: '15px' },
   scoreInfo: { display: 'flex', flexDirection: 'column', justifyContent: 'center' },
   scoreText: { fontSize: '48px', fontWeight: '950', margin: '5px 0', letterSpacing: '-2px' },
@@ -193,7 +230,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   streakBadge: { background: '#111', padding: '15px', borderRadius: '25px', textAlign: 'center', border: '1px solid #1a1a1a', minWidth: '95px' },
   streakCount: { display: 'block', fontSize: '14px', fontWeight: '900', margin: '5px 0' },
   labelLabel: { fontSize: '8px', color: '#555', fontWeight: 'bold', margin: 0 },
-
   weightCard: { background: '#080808', border: '1px solid #111', padding: '20px', borderRadius: '25px', marginBottom: '15px' },
   weightHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' },
   weightDisplayRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' },
@@ -202,18 +238,21 @@ const styles: { [key: string]: React.CSSProperties } = {
   weightDiffCol: { textAlign: 'right' },
   diffValue: { fontSize: '20px', fontWeight: '900' },
   labelMini: { fontSize: '8px', color: '#333', fontWeight: 'bold', marginTop: '4px' },
-
   inputGroup: { display: 'flex', gap: '10px' },
-  weightInput: { flex: 1, background: '#000', border: '1px solid #222', color: '#00f2fe', fontSize: '20px', padding: '10px', borderRadius: '12px', textAlign: 'center' },
-  saveBtn: { background: '#fff', color: '#000', border: 'none', padding: '0 20px', borderRadius: '12px', fontWeight: '900' },
+  weightInput: { flex: 1, background: '#000', border: '1px solid #222', color: '#00f2fe', fontSize: '20px', padding: '10px', borderRadius: '12px', textAlign: 'center', outline: 'none' },
+  saveBtn: { background: '#fff', color: '#000', border: 'none', padding: '0 20px', borderRadius: '12px', fontWeight: '900', cursor: 'pointer' },
   editBtn: { background: 'none', border: 'none', color: '#00f2fe', fontSize: '10px', fontWeight: '900', cursor: 'pointer' },
-
-  statsGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' },
-  miniCard: { background: '#080808', padding: '20px', borderRadius: '25px', border: '1px solid #111' },
-  valueBig: { fontSize: '24px', fontWeight: '900' },
-  unitSmall: { fontSize: '10px', color: '#444', marginLeft: '5px' },
-  valueGroup: { display: 'flex', alignItems: 'baseline', marginTop: '10px' },
-  labelSmall: { fontSize: '9px', fontWeight: '900', color: '#333', letterSpacing: '1px' },
+  labelSmall: { fontSize: '9px', fontWeight: '900', color: '#333', letterSpacing: '1px', marginBottom: '12px', display: 'block' },
   insightBox: { background: 'rgba(255, 255, 255, 0.02)', padding: '20px', borderRadius: '20px', border: '1px dashed #222' },
-  insightText: { fontSize: '12px', color: '#666', lineHeight: '1.6' }
+  insightText: { fontSize: '12px', color: '#666', lineHeight: '1.6' },
+  rankingSection: { marginTop: '10px' },
+  rankingList: { display: 'flex', flexDirection: 'column', gap: '8px' },
+  rankItem: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 20px', borderRadius: '20px' },
+  rankInfoLeft: { display: 'flex', alignItems: 'center', gap: '15px' },
+  rankPos: { fontSize: '16px', fontWeight: '950' },
+  rankName: { fontSize: '12px', fontWeight: '800', color: '#ddd' },
+  rankValue: { fontSize: '14px', fontWeight: '900', color: '#00f2fe' },
+  emptyRanking: { fontSize: '11px', color: '#333', textAlign: 'center', padding: '20px' }
 };
+
+export default CompetitivePanel;
