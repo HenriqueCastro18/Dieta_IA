@@ -1,14 +1,16 @@
 # 🥗 Dieta Fácil - V2 (IA Generativa & Segurança Ativa)
 
-# LINK PARA V1
-* https://dieta-ia-v2.vercel.app/
-
 ![Status](https://img.shields.io/badge/Status-Versão%202.0-blue?style=for-the-badge)
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 ![Google Gemini](https://img.shields.io/badge/Gemini%202.0%20Flash-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
 
 > **Dieta Fácil V2** evoluiu de uma ferramenta de consulta para uma plataforma completa de gestão nutricional e segurança defensiva. Implementamos uma infraestrutura robusta em nuvem, garantindo persistência de dados e proteção de identidade em nível de produção para o projeto de graduação.
+
+---
+# LINK PARA V1
+ * https://dieta-v1.vercel.app/
+---
 
 ---
 
