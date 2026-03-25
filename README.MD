@@ -7,10 +7,14 @@
 
 > **Dieta Fácil V2** evoluiu de uma ferramenta de consulta para uma plataforma completa de gestão nutricional e segurança defensiva. Implementamos uma infraestrutura robusta em nuvem, garantindo persistência de dados e proteção de identidade em nível de produção para o projeto de graduação.
 
----
-# LINK PARA V1
- * https://dieta-v1.vercel.app/
----
+## 🕒 Histórico de Versões (Legacy vs. Production)
+
+O projeto passou por uma refatoração completa de arquitetura para suportar persistência de dados e segurança multicamadas.
+
+| Versão | Status | Acesso Direto | Diferenciais Técnicos |
+| :--- | :--- | :--- | :--- |
+| **V1.0 (MVP)** | `Legacy` | [**Visitar V1** 🚀](https://dieta-v1.vercel.app/) | LocalStorage, JSON Estático, Protótipo de UI. |
+| **V2.0 (Atual)** | `Production` | [**Visitar V2** ✨](https://dieta-ia-v2.vercel.app/) | Firebase , MFA|
 
 ---
 
