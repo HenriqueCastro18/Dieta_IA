@@ -41,19 +41,6 @@ O projeto passou por uma refatoração completa de arquitetura para suportar per
 * **Segurança de Identidade**: Validação estrita de passwords via RegEx (mínimo 8 caracteres, exigência de números e caracteres especiais).
 * **IA Migration**: Migração para o modelo `groq IA`, otimizando a velocidade de resposta em 60%, com mais tokens para ser.
 
----
-
-## 🕒 Histórico de Versões (Legacy vs. Production)
-
-O projeto passou por uma refatoração completa de arquitetura para suportar persistência de dados e segurança multicamadas.
-
-| Versão | Status | Acesso Direto | Diferenciais Técnicos |
-| :--- | :--- | :--- | :--- |
-| **V1.0 (MVP)** | `Legacy` | [**Visitar V1** 🚀](https://dieta-v1.vercel.app/) | LocalStorage, JSON Estático, Protótipo de UI. |
-| **V2.0 (Core)** | `Stable` | [**Visitar V2** ✨](https://dieta-ia-v2.vercel.app/) | Firebase, MFA, Gemini 2.0 Flash, Cloud Persistence. |
-| **V3.0 (Evolution)** | `Production` | [**Visitar V3** 🔥](https://dieta-ia-v3.vercel.app/) | Gamificação (XP/Pets), Treinos IA, Groq Inference, Spritesheets, Segurança Regex. |
-
----
 
 ## 🎮 Sistema de Gamificação (RPG)
 
