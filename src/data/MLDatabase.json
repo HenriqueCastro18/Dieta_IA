@@ -1,1203 +1,1430 @@
 {
-  "agua_coco_natural": {
-    "name": "Água de Coco Natural",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 5.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 5.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 20,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_laranja_natural": {
-    "name": "Suco de Laranja Natural",
-    "proteinPer100g": 0.7,
-    "carbsPer100g": 10.4,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 8.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.2,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "leite_integral": {
-    "name": "Leite Integral",
-    "proteinPer100g": 3.2,
-    "carbsPer100g": 4.8,
-    "fatsPer100g": 3.0,
-    "sugarTotal": 4.8,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 50,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "leite_desnatado": {
-    "name": "Leite Desnatado",
-    "proteinPer100g": 3.3,
-    "carbsPer100g": 5.0,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 5.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 52,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "cafe_expresso_sem_acucar": {
-    "name": "Café Expresso sem Açúcar",
-    "proteinPer100g": 0.1,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "cha_verde_infusao": {
-    "name": "Chá Verde (Infusão)",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "refrigerante_cola": {
-    "name": "Refrigerante de Cola",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 10.6,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 10.6,
-    "sugarAdded": 10.6,
-    "fiber": 0.0,
-    "sodiumMg": 4,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "refrigerante_cola_zero": {
-    "name": "Refrigerante de Cola Zero",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 18,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "cerveja_pilsen": {
-    "name": "Cerveja Pilsen",
-    "proteinPer100g": 0.3,
-    "carbsPer100g": 3.3,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.1,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 4,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "vinho_tinto_seco": {
-    "name": "Vinho Tinto Seco",
-    "proteinPer100g": 0.1,
-    "carbsPer100g": 2.6,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.6,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 4,
-    "baseUnit": "ml",
-    "conversions": { "un": 150 }
-  },
-  "leite_amendoas_sem_acucar": {
-    "name": "Leite de Amêndoas sem Açúcar",
-    "proteinPer100g": 0.4,
-    "carbsPer100g": 0.3,
-    "fatsPer100g": 1.1,
-    "sugarTotal": 0.1,
-    "sugarAdded": 0.0,
-    "fiber": 0.2,
-    "sodiumMg": 65,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "leite_aveia": {
-    "name": "Leite de Aveia",
-    "proteinPer100g": 1.0,
-    "carbsPer100g": 7.0,
-    "fatsPer100g": 1.5,
-    "sugarTotal": 4.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.8,
-    "sodiumMg": 40,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_uva_integral": {
-    "name": "Suco de Uva Integral",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 14.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 14.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "isotonico_frutas_citricas": {
-    "name": "Isotônico Frutas Cítricas",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 6.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 6.0,
-    "sugarAdded": 6.0,
-    "fiber": 0.0,
-    "sodiumMg": 45,
-    "baseUnit": "ml",
-    "conversions": { "un": 500 }
-  },
-  "ovo_galinha_un": {
-    "name": "Ovo de Galinha Inteiro",
-    "proteinPer100g": 13.0,
-    "carbsPer100g": 1.1,
-    "fatsPer100g": 11.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 124,
-    "baseUnit": "un",
-    "conversions": { "un": 50 }
-  },
-  "oleo_soja": {
-    "name": "Óleo de Soja",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "azeite_dende": {
-    "name": "Azeite de Dendê",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "caldo_galinha_liquido": {
-    "name": "Caldo de Galinha Líquido",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 0.4,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 0.1,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 350,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_limao_puro": {
-    "name": "Suco de Limão Puro",
-    "proteinPer100g": 0.4,
-    "carbsPer100g": 7.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 2.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.3,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 30 }
-  },
-  "energetico_tradicional": {
-    "name": "Energético Tradicional",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 11.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 11.0,
-    "sugarAdded": 11.0,
-    "fiber": 0.0,
-    "sodiumMg": 40,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "yakult_leite_fermentado": {
-    "name": "Leite Fermentado (Yakult)",
-    "proteinPer100g": 1.6,
-    "carbsPer100g": 11.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 11.0,
-    "sugarAdded": 10.0,
-    "fiber": 0.0,
-    "sodiumMg": 22,
-    "baseUnit": "ml",
-    "conversions": { "un": 65 }
-  },
-  "bebida_lactea_chocolate": {
-    "name": "Bebida Láctea Chocolate",
-    "proteinPer100g": 2.1,
-    "carbsPer100g": 14.0,
-    "fatsPer100g": 1.8,
-    "sugarTotal": 13.0,
-    "sugarAdded": 9.0,
-    "fiber": 0.5,
-    "sodiumMg": 90,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "kombucha_original": {
-    "name": "Kombucha Original",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 4.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 4.0,
-    "sugarAdded": 4.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "agua_tonica": {
-    "name": "Água Tônica",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 9.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 9.0,
-    "sugarAdded": 9.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "oleo_coco_extra_virgem": {
-    "name": "Óleo de Coco Extra Virgem",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "leite_coco_culinario": {
-    "name": "Leite de Coco Culinário",
-    "proteinPer100g": 1.0,
-    "carbsPer100g": 3.0,
-    "fatsPer100g": 18.0,
-    "sugarTotal": 1.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 15,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "vinagre_maca": {
-    "name": "Vinagre de Maçã",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.9,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.4,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 15 }
-  },
-  "nectar_pessego_caixinha": {
-    "name": "Néctar de Pêssego Caixinha",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 12.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 12.0,
-    "sugarAdded": 8.0,
-    "fiber": 0.0,
-    "sodiumMg": 10,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_caju_concentrado": {
-    "name": "Suco de Caju Concentrado",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 10.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 9.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "iogurte_liquido_morango": {
-    "name": "Iogurte Líquido Morango",
-    "proteinPer100g": 2.5,
-    "carbsPer100g": 15.0,
-    "fatsPer100g": 1.5,
-    "sugarTotal": 14.0,
-    "sugarAdded": 10.0,
-    "fiber": 0.0,
-    "sodiumMg": 45,
-    "baseUnit": "ml",
-    "conversions": { "un": 170 }
-  },
-  "shandy_cerveja_limao": {
-    "name": "Cerveja com Limão (Shandy)",
-    "proteinPer100g": 0.2,
-    "carbsPer100g": 6.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 4.5,
-    "sugarAdded": 3.0,
-    "fiber": 0.0,
-    "sodiumMg": 8,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "cachaca_dose": {
-    "name": "Cachaça",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "vodka_dose": {
-    "name": "Vodka",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "gin_dose": {
-    "name": "Gin",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "whisky_dose": {
-    "name": "Whisky",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.1,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.1,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "saque_dose": {
-    "name": "Saquê",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 5.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "tequila_dose": {
-    "name": "Tequila",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 50 }
-  },
-  "licor_creme_irlandes": {
-    "name": "Licor de Creme Irlandês",
-    "proteinPer100g": 3.0,
-    "carbsPer100g": 25.0,
-    "fatsPer100g": 15.0,
-    "sugarTotal": 20.0,
-    "sugarAdded": 20.0,
-    "fiber": 0.0,
-    "sodiumMg": 40,
-    "baseUnit": "ml",
-    "conversions": { "un": 40 }
-  },
-  "capuccino_pronto_gelado": {
-    "name": "Capuccino Pronto Gelado",
-    "proteinPer100g": 2.8,
-    "carbsPer100g": 12.0,
-    "fatsPer100g": 2.5,
-    "sugarTotal": 10.0,
-    "sugarAdded": 8.0,
-    "fiber": 0.4,
-    "sodiumMg": 60,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "suco_tomate_temperado": {
-    "name": "Suco de Tomate Temperado",
-    "proteinPer100g": 0.8,
-    "carbsPer100g": 4.2,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 3.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.4,
-    "sodiumMg": 250,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "leite_soja_original": {
-    "name": "Leite de Soja Original",
-    "proteinPer100g": 2.4,
-    "carbsPer100g": 3.5,
-    "fatsPer100g": 1.2,
-    "sugarTotal": 3.0,
-    "sugarAdded": 2.0,
-    "fiber": 0.5,
-    "sodiumMg": 45,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_maca_caixinha": {
-    "name": "Suco de Maçã Caixinha (100% fruta)",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 11.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 10.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 10,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "cha_mate_batido_limao": {
-    "name": "Chá Mate Batido com Limão",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 15.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 14.5,
-    "sugarAdded": 14.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 300 }
-  },
-  "guarana_refrigerante": {
-    "name": "Refrigerante de Guaraná",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 10.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 10.0,
-    "sugarAdded": 10.0,
-    "fiber": 0.0,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "bebida_arroz_original": {
-    "name": "Bebida de Arroz Original",
-    "proteinPer100g": 0.1,
-    "carbsPer100g": 12.0,
-    "fatsPer100g": 1.0,
-    "sugarTotal": 5.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.2,
-    "sodiumMg": 40,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "bebida_castanha_caju": {
-    "name": "Bebida de Castanha de Caju",
-    "proteinPer100g": 0.6,
-    "carbsPer100g": 2.0,
-    "fatsPer100g": 2.5,
-    "sugarTotal": 0.1,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 50,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "creme_leite_fresco": {
-    "name": "Creme de Leite Fresco",
-    "proteinPer100g": 2.0,
-    "carbsPer100g": 3.0,
-    "fatsPer100g": 35.0,
-    "sugarTotal": 3.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 30,
-    "baseUnit": "ml",
-    "conversions": { "un": 15 }
-  },
-  "molho_shoyu_tradicional": {
-    "name": "Molho Shoyu Tradicional",
-    "proteinPer100g": 1.5,
-    "carbsPer100g": 3.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 1.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5000,
-    "baseUnit": "ml",
-    "conversions": { "un": 10 }
-  },
-  "xarope_groselha": {
-    "name": "Xarope de Groselha",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 80.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 80.0,
-    "sugarAdded": 80.0,
-    "fiber": 0.0,
-    "sodiumMg": 15,
-    "baseUnit": "ml",
-    "conversions": { "un": 20 }
-  },
-  "agua_com_gas": {
-    "name": "Água com Gás",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 500 }
-  },
-
-  "suco_acerola_natural": {
-    "name": "Suco de Acerola Natural",
-    "proteinPer100g": 0.9,
-    "carbsPer100g": 8.0,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 4.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.3,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_melancia_natural": {
-    "name": "Suco de Melancia Natural",
-    "proteinPer100g": 0.6,
-    "carbsPer100g": 7.5,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 6.2,
-    "sugarAdded": 0.0,
-    "fiber": 0.4,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "suco_abacaxi_hortela": {
-    "name": "Suco de Abacaxi com Hortelã",
-    "proteinPer100g": 0.4,
-    "carbsPer100g": 11.5,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 9.2,
-    "sugarAdded": 0.0,
-    "fiber": 0.5,
-    "sodiumMg": 1,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "suco_maracuja_natural": {
-    "name": "Suco de Maracujá Natural",
-    "proteinPer100g": 0.8,
-    "carbsPer100g": 9.6,
-    "fatsPer100g": 0.3,
-    "sugarTotal": 5.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.2,
-    "sodiumMg": 4,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "leite_condensado_un": {
-    "name": "Leite Condensado (Colher)",
-    "proteinPer100g": 7.7,
-    "carbsPer100g": 54.0,
-    "fatsPer100g": 8.0,
-    "sugarTotal": 54.0,
-    "sugarAdded": 45.0,
-    "fiber": 0.0,
-    "sodiumMg": 110,
-    "baseUnit": "ml",
-    "conversions": { "un": 20 }
-  },
-  "vinho_branco_seco": {
-    "name": "Vinho Branco Seco",
-    "proteinPer100g": 0.1,
-    "carbsPer100g": 2.4,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.9,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 150 }
-  },
-  "champanhe_brut": {
-    "name": "Champanhe Brut",
-    "proteinPer100g": 0.2,
-    "carbsPer100g": 1.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 1.2,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 4,
-    "baseUnit": "ml",
-    "conversions": { "un": 125 }
-  },
-  "cha_preto_infusao": {
-    "name": "Chá Preto (Infusão)",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.3,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 3,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "cha_hibisco_infusao": {
-    "name": "Chá de Hibisco",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "oleo_milho": {
-    "name": "Óleo de Milho",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "oleo_girassol": {
-    "name": "Óleo de Girassol",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "azeite_extra_virgem": {
-    "name": "Azeite de Oliva Extra Virgem",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "leite_semi_desnatado": {
-    "name": "Leite Semi-desnatado",
-    "proteinPer100g": 3.2,
-    "carbsPer100g": 4.8,
-    "fatsPer100g": 1.5,
-    "sugarTotal": 4.8,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 51,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_goiaba_natural": {
-    "name": "Suco de Goiaba Natural",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 11.0,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 9.0,
-    "sugarAdded": 0.0,
-    "fiber": 1.2,
-    "sodiumMg": 2,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "refrigerante_guarana_zero": {
-    "name": "Refrigerante Guaraná Zero",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 12,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "refrigerante_laranja": {
-    "name": "Refrigerante de Laranja",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 12.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 12.0,
-    "sugarAdded": 12.0,
-    "fiber": 0.0,
-    "sodiumMg": 10,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "refrigerante_limao": {
-    "name": "Refrigerante de Limão",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 10.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 10.0,
-    "sugarAdded": 10.0,
-    "fiber": 0.0,
-    "sodiumMg": 8,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "bebida_soja_maca": {
-    "name": "Bebida de Soja Sabor Maçã",
-    "proteinPer100g": 0.6,
-    "carbsPer100g": 10.5,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 10.0,
-    "sugarAdded": 7.0,
-    "fiber": 0.2,
-    "sodiumMg": 35,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "bebida_soja_uva": {
-    "name": "Bebida de Soja Sabor Uva",
-    "proteinPer100g": 0.6,
-    "carbsPer100g": 11.2,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 11.0,
-    "sugarAdded": 8.0,
-    "fiber": 0.2,
-    "sodiumMg": 38,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "leite_avelas": {
-    "name": "Leite de Avelãs",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 3.0,
-    "fatsPer100g": 1.6,
-    "sugarTotal": 3.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.3,
-    "sodiumMg": 48,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "cafe_com_leite_integral": {
-    "name": "Café com Leite Integral",
-    "proteinPer100g": 1.6,
-    "carbsPer100g": 2.4,
-    "fatsPer100g": 1.5,
-    "sugarTotal": 2.4,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 26,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "smoothie_frutas_vermelhas": {
-    "name": "Smoothie Frutas Vermelhas",
-    "proteinPer100g": 0.8,
-    "carbsPer100g": 13.0,
-    "fatsPer100g": 0.5,
-    "sugarTotal": 11.0,
-    "sugarAdded": 0.0,
-    "fiber": 1.5,
-    "sodiumMg": 15,
-    "baseUnit": "ml",
-    "conversions": { "un": 300 }
-  },
-  "whey_protein_pronto_shake": {
-    "name": "Shake Proteico Pronto (Chocolate)",
-    "proteinPer100g": 6.0,
-    "carbsPer100g": 2.0,
-    "fatsPer100g": 1.0,
-    "sugarTotal": 1.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.5,
-    "sodiumMg": 80,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "bebida_amendoim_original": {
-    "name": "Bebida de Amendoim",
-    "proteinPer100g": 1.2,
-    "carbsPer100g": 1.5,
-    "fatsPer100g": 3.5,
-    "sugarTotal": 0.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.4,
-    "sodiumMg": 55,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "creme_leite_caixinha": {
-    "name": "Creme de Leite (Caixinha)",
-    "proteinPer100g": 1.5,
-    "carbsPer100g": 4.0,
-    "fatsPer100g": 17.0,
-    "sugarTotal": 4.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 45,
-    "baseUnit": "ml",
-    "conversions": { "un": 15 }
-  },
-  "mel_un": {
-    "name": "Mel de Abelha (Colher)",
-    "proteinPer100g": 0.3,
-    "carbsPer100g": 82.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 82.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 4,
-    "baseUnit": "ml",
-    "conversions": { "un": 15 }
-  },
-  "molho_ingles": {
-    "name": "Molho Inglês",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 19.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 15.0,
-    "sugarAdded": 10.0,
-    "fiber": 0.0,
-    "sodiumMg": 980,
-    "baseUnit": "ml",
-    "conversions": { "un": 10 }
-  },
-  "catchup_un": {
-    "name": "Catchup (Sachet)",
-    "proteinPer100g": 1.0,
-    "carbsPer100g": 26.0,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 22.0,
-    "sugarAdded": 20.0,
-    "fiber": 0.3,
-    "sodiumMg": 900,
-    "baseUnit": "ml",
-    "conversions": { "un": 7 }
-  },
-  "mostarda_un": {
-    "name": "Mostarda (Sachet)",
-    "proteinPer100g": 4.0,
-    "carbsPer100g": 5.0,
-    "fatsPer100g": 3.5,
-    "sugarTotal": 1.0,
-    "sugarAdded": 0.5,
-    "fiber": 1.5,
-    "sodiumMg": 1100,
-    "baseUnit": "ml",
-    "conversions": { "un": 7 }
-  },
-  "maionese_un": {
-    "name": "Maionese (Sachet)",
-    "proteinPer100g": 1.0,
-    "carbsPer100g": 3.0,
-    "fatsPer100g": 40.0,
-    "sugarTotal": 2.0,
-    "sugarAdded": 1.5,
-    "fiber": 0.0,
-    "sodiumMg": 600,
-    "baseUnit": "ml",
-    "conversions": { "un": 7 }
-  },
-  "sopa_creme_cebola_pronta": {
-    "name": "Sopa Creme de Cebola (Pronta)",
-    "proteinPer100g": 1.2,
-    "carbsPer100g": 6.5,
-    "fatsPer100g": 2.0,
-    "sugarTotal": 1.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.4,
-    "sodiumMg": 380,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "sopa_creme_aspargos_pronta": {
-    "name": "Sopa Creme de Aspargos (Pronta)",
-    "proteinPer100g": 1.4,
-    "carbsPer100g": 5.8,
-    "fatsPer100g": 2.5,
-    "sugarTotal": 1.2,
-    "sugarAdded": 0.0,
-    "fiber": 0.6,
-    "sodiumMg": 340,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "canja_de_galinha": {
-    "name": "Canja de Galinha (Líquida/Caldo)",
-    "proteinPer100g": 3.5,
-    "carbsPer100g": 4.0,
-    "fatsPer100g": 1.2,
-    "sugarTotal": 0.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.3,
-    "sodiumMg": 320,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "caldo_carne_liquido": {
-    "name": "Caldo de Carne Líquido",
-    "proteinPer100g": 0.8,
-    "carbsPer100g": 0.5,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 0.2,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 400,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "caldo_legumes_liquido": {
-    "name": "Caldo de Legumes Líquido",
-    "proteinPer100g": 0.3,
-    "carbsPer100g": 0.8,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.4,
-    "sugarAdded": 0.0,
-    "fiber": 0.1,
-    "sodiumMg": 360,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "bebida_energetica_acai": {
-    "name": "Bebida Energética Sabor Açaí",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 12.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 12.0,
-    "sugarAdded": 12.0,
-    "fiber": 0.0,
-    "sodiumMg": 42,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "suco_cranberry_industrial": {
-    "name": "Suco de Cranberry (Néctar)",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 11.8,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 11.5,
-    "sugarAdded": 9.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "te_gelado_limao": {
-    "name": "Chá Gelado Sabor Limão",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 7.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 6.8,
-    "sugarAdded": 6.8,
-    "fiber": 0.0,
-    "sodiumMg": 10,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "te_gelado_pessego": {
-    "name": "Chá Gelado Sabor Pêssego",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 7.2,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 7.0,
-    "sugarAdded": 7.0,
-    "fiber": 0.0,
-    "sodiumMg": 10,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "cerveja_artesanal_ipa": {
-    "name": "Cerveja Artesanal IPA",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 4.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.2,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "cerveja_preta_malzbier": {
-    "name": "Cerveja Preta (Malzbier)",
-    "proteinPer100g": 0.4,
-    "carbsPer100g": 9.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 5.0,
-    "sugarAdded": 3.0,
-    "fiber": 0.0,
-    "sodiumMg": 12,
-    "baseUnit": "ml",
-    "conversions": { "un": 350 }
-  },
-  "vinho_do_porto": {
-    "name": "Vinho do Porto",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 12.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 12.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 60 }
-  },
-  "espumante_moscatel": {
-    "name": "Espumante Moscatel",
-    "proteinPer100g": 0.2,
-    "carbsPer100g": 8.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 7.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 5,
-    "baseUnit": "ml",
-    "conversions": { "un": 125 }
-  },
-  "sidra_maca": {
-    "name": "Sidra de Maçã",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 11.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 10.0,
-    "sugarAdded": 4.0,
-    "fiber": 0.0,
-    "sodiumMg": 8,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "sakura_shoyu_light": {
-    "name": "Molho Shoyu Light",
-    "proteinPer100g": 2.0,
-    "carbsPer100g": 2.5,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 1.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 2800,
-    "baseUnit": "ml",
-    "conversions": { "un": 10 }
-  },
-  "oleo_gergelim": {
-    "name": "Óleo de Gergelim",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 100.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 0,
-    "baseUnit": "ml",
-    "conversions": { "un": 13 }
-  },
-  "molho_pimenta_liquido": {
-    "name": "Molho de Pimenta Líquido",
-    "proteinPer100g": 0.5,
-    "carbsPer100g": 2.0,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 0.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.5,
-    "sodiumMg": 1800,
-    "baseUnit": "ml",
-    "conversions": { "un": 5 }
-  },
-  "suco_beterraba_limao": {
-    "name": "Suco de Beterraba com Limão",
-    "proteinPer100g": 0.8,
-    "carbsPer100g": 9.5,
-    "fatsPer100g": 0.1,
-    "sugarTotal": 7.0,
-    "sugarAdded": 0.0,
-    "fiber": 1.0,
-    "sodiumMg": 45,
-    "baseUnit": "ml",
-    "conversions": { "un": 200 }
-  },
-  "suco_couve_laranja": {
-    "name": "Suco de Couve com Laranja (Verde)",
-    "proteinPer100g": 1.2,
-    "carbsPer100g": 10.0,
-    "fatsPer100g": 0.2,
-    "sugarTotal": 7.5,
-    "sugarAdded": 0.0,
-    "fiber": 0.8,
-    "sodiumMg": 12,
-    "baseUnit": "ml",
-    "conversions": { "un": 250 }
-  },
-  "agua_mineral_sabor_limao": {
-    "name": "Água Mineral com Gás Sabor Limão",
-    "proteinPer100g": 0.0,
-    "carbsPer100g": 0.0,
-    "fatsPer100g": 0.0,
-    "sugarTotal": 0.0,
-    "sugarAdded": 0.0,
-    "fiber": 0.0,
-    "sodiumMg": 15,
-    "baseUnit": "ml",
-    "conversions": { "un": 500 }
-  }
+    "agua_coco_natural": {
+        "name": "Água de Coco Natural",
+        "proteinPer100g": 0,
+        "carbsPer100g": 5,
+        "fatsPer100g": 0,
+        "sugarTotal": 5,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 20,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_laranja_natural": {
+        "name": "Suco de Laranja Natural",
+        "proteinPer100g": 0.7,
+        "carbsPer100g": 10.4,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 8,
+        "sugarAdded": 0,
+        "fiber": 0.2,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "leite_integral": {
+        "name": "Leite Integral",
+        "proteinPer100g": 3.2,
+        "carbsPer100g": 4.8,
+        "fatsPer100g": 3,
+        "sugarTotal": 4.8,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 50,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "leite_desnatado": {
+        "name": "Leite Desnatado",
+        "proteinPer100g": 3.3,
+        "carbsPer100g": 5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 5,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 52,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "cafe_expresso_sem_acucar": {
+        "name": "Café Expresso sem Açúcar",
+        "proteinPer100g": 0.1,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "cha_verde_infusao": {
+        "name": "Chá Verde (Infusão)",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "refrigerante_cola": {
+        "name": "Refrigerante de Cola",
+        "proteinPer100g": 0,
+        "carbsPer100g": 10.6,
+        "fatsPer100g": 0,
+        "sugarTotal": 10.6,
+        "sugarAdded": 10.6,
+        "fiber": 0,
+        "sodiumMg": 4,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "refrigerante_cola_zero": {
+        "name": "Refrigerante de Cola Zero",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 18,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "cerveja_pilsen": {
+        "name": "Cerveja Pilsen",
+        "proteinPer100g": 0.3,
+        "carbsPer100g": 3.3,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 4,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "vinho_tinto_seco": {
+        "name": "Vinho Tinto Seco",
+        "proteinPer100g": 0.1,
+        "carbsPer100g": 2.6,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.6,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 4,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 150
+        }
+    },
+    "leite_amendoas_sem_acucar": {
+        "name": "Leite de Amêndoas sem Açúcar",
+        "proteinPer100g": 0.4,
+        "carbsPer100g": 0.3,
+        "fatsPer100g": 1.1,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0.2,
+        "sodiumMg": 65,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "leite_aveia": {
+        "name": "Leite de Aveia",
+        "proteinPer100g": 1,
+        "carbsPer100g": 7,
+        "fatsPer100g": 1.5,
+        "sugarTotal": 4,
+        "sugarAdded": 0,
+        "fiber": 0.8,
+        "sodiumMg": 40,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_uva_integral": {
+        "name": "Suco de Uva Integral",
+        "proteinPer100g": 0,
+        "carbsPer100g": 14,
+        "fatsPer100g": 0,
+        "sugarTotal": 14,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "isotonico_frutas_citricas": {
+        "name": "Isotônico Frutas Cítricas",
+        "proteinPer100g": 0,
+        "carbsPer100g": 6,
+        "fatsPer100g": 0,
+        "sugarTotal": 6,
+        "sugarAdded": 6,
+        "fiber": 0,
+        "sodiumMg": 45,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 500
+        }
+    },
+    "ovo_galinha_un": {
+        "name": "Ovo de Galinha Inteiro",
+        "proteinPer100g": 13,
+        "carbsPer100g": 1.1,
+        "fatsPer100g": 11,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 124,
+        "baseUnit": "un",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "oleo_soja": {
+        "name": "Óleo de Soja",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "azeite_dende": {
+        "name": "Azeite de Dendê",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "caldo_galinha_liquido": {
+        "name": "Caldo de Galinha Líquido",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 0.4,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 350,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_limao_puro": {
+        "name": "Suco de Limão Puro",
+        "proteinPer100g": 0.4,
+        "carbsPer100g": 7,
+        "fatsPer100g": 0,
+        "sugarTotal": 2.5,
+        "sugarAdded": 0,
+        "fiber": 0.3,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 30
+        }
+    },
+    "energetico_tradicional": {
+        "name": "Energético Tradicional",
+        "proteinPer100g": 0,
+        "carbsPer100g": 11,
+        "fatsPer100g": 0,
+        "sugarTotal": 11,
+        "sugarAdded": 11,
+        "fiber": 0,
+        "sodiumMg": 40,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "yakult_leite_fermentado": {
+        "name": "Leite Fermentado (Yakult)",
+        "proteinPer100g": 1.6,
+        "carbsPer100g": 11,
+        "fatsPer100g": 0,
+        "sugarTotal": 11,
+        "sugarAdded": 10,
+        "fiber": 0,
+        "sodiumMg": 22,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 65
+        }
+    },
+    "bebida_lactea_chocolate": {
+        "name": "Bebida Láctea Chocolate",
+        "proteinPer100g": 2.1,
+        "carbsPer100g": 14,
+        "fatsPer100g": 1.8,
+        "sugarTotal": 13,
+        "sugarAdded": 9,
+        "fiber": 0.5,
+        "sodiumMg": 90,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "kombucha_original": {
+        "name": "Kombucha Original",
+        "proteinPer100g": 0,
+        "carbsPer100g": 4.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 4,
+        "sugarAdded": 4,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "agua_tonica": {
+        "name": "Água Tônica",
+        "proteinPer100g": 0,
+        "carbsPer100g": 9,
+        "fatsPer100g": 0,
+        "sugarTotal": 9,
+        "sugarAdded": 9,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "oleo_coco_extra_virgem": {
+        "name": "Óleo de Coco Extra Virgem",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "leite_coco_culinario": {
+        "name": "Leite de Coco Culinário",
+        "proteinPer100g": 1,
+        "carbsPer100g": 3,
+        "fatsPer100g": 18,
+        "sugarTotal": 1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 15,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "vinagre_maca": {
+        "name": "Vinagre de Maçã",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0.9,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.4,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 15
+        }
+    },
+    "nectar_pessego_caixinha": {
+        "name": "Néctar de Pêssego Caixinha",
+        "proteinPer100g": 0,
+        "carbsPer100g": 12,
+        "fatsPer100g": 0,
+        "sugarTotal": 12,
+        "sugarAdded": 8,
+        "fiber": 0,
+        "sodiumMg": 10,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_caju_concentrado": {
+        "name": "Suco de Caju Concentrado",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 10,
+        "fatsPer100g": 0,
+        "sugarTotal": 9,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "iogurte_liquido_morango": {
+        "name": "Iogurte Líquido Morango",
+        "proteinPer100g": 2.5,
+        "carbsPer100g": 15,
+        "fatsPer100g": 1.5,
+        "sugarTotal": 14,
+        "sugarAdded": 10,
+        "fiber": 0,
+        "sodiumMg": 45,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 170
+        }
+    },
+    "shandy_cerveja_limao": {
+        "name": "Cerveja com Limão (Shandy)",
+        "proteinPer100g": 0.2,
+        "carbsPer100g": 6.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 4.5,
+        "sugarAdded": 3,
+        "fiber": 0,
+        "sodiumMg": 8,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "cachaca_dose": {
+        "name": "Cachaça",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "vodka_dose": {
+        "name": "Vodka",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "gin_dose": {
+        "name": "Gin",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "whisky_dose": {
+        "name": "Whisky",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0.1,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "saque_dose": {
+        "name": "Saquê",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 5,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "tequila_dose": {
+        "name": "Tequila",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 50
+        }
+    },
+    "licor_creme_irlandes": {
+        "name": "Licor de Creme Irlandês",
+        "proteinPer100g": 3,
+        "carbsPer100g": 25,
+        "fatsPer100g": 15,
+        "sugarTotal": 20,
+        "sugarAdded": 20,
+        "fiber": 0,
+        "sodiumMg": 40,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 40
+        }
+    },
+    "capuccino_pronto_gelado": {
+        "name": "Capuccino Pronto Gelado",
+        "proteinPer100g": 2.8,
+        "carbsPer100g": 12,
+        "fatsPer100g": 2.5,
+        "sugarTotal": 10,
+        "sugarAdded": 8,
+        "fiber": 0.4,
+        "sodiumMg": 60,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "suco_tomate_temperado": {
+        "name": "Suco de Tomate Temperado",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 4.2,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 3.5,
+        "sugarAdded": 0,
+        "fiber": 0.4,
+        "sodiumMg": 250,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "leite_soja_original": {
+        "name": "Leite de Soja Original",
+        "proteinPer100g": 2.4,
+        "carbsPer100g": 3.5,
+        "fatsPer100g": 1.2,
+        "sugarTotal": 3,
+        "sugarAdded": 2,
+        "fiber": 0.5,
+        "sodiumMg": 45,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_maca_caixinha": {
+        "name": "Suco de Maçã Caixinha (100% fruta)",
+        "proteinPer100g": 0,
+        "carbsPer100g": 11,
+        "fatsPer100g": 0,
+        "sugarTotal": 10,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 10,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "cha_mate_batido_limao": {
+        "name": "Chá Mate Batido com Limão",
+        "proteinPer100g": 0,
+        "carbsPer100g": 15,
+        "fatsPer100g": 0,
+        "sugarTotal": 14.5,
+        "sugarAdded": 14,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 300
+        }
+    },
+    "guarana_refrigerante": {
+        "name": "Refrigerante de Guaraná",
+        "proteinPer100g": 0,
+        "carbsPer100g": 10,
+        "fatsPer100g": 0,
+        "sugarTotal": 10,
+        "sugarAdded": 10,
+        "fiber": 0,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "bebida_arroz_original": {
+        "name": "Bebida de Arroz Original",
+        "proteinPer100g": 0.1,
+        "carbsPer100g": 12,
+        "fatsPer100g": 1,
+        "sugarTotal": 5,
+        "sugarAdded": 0,
+        "fiber": 0.2,
+        "sodiumMg": 40,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "bebida_castanha_caju": {
+        "name": "Bebida de Castanha de Caju",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 2,
+        "fatsPer100g": 2.5,
+        "sugarTotal": 0.1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 50,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "creme_leite_fresco": {
+        "name": "Creme de Leite Fresco",
+        "proteinPer100g": 2,
+        "carbsPer100g": 3,
+        "fatsPer100g": 35,
+        "sugarTotal": 3,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 30,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 15
+        }
+    },
+    "molho_shoyu_tradicional": {
+        "name": "Molho Shoyu Tradicional",
+        "proteinPer100g": 1.5,
+        "carbsPer100g": 3.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5000,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 10
+        }
+    },
+    "xarope_groselha": {
+        "name": "Xarope de Groselha",
+        "proteinPer100g": 0,
+        "carbsPer100g": 80,
+        "fatsPer100g": 0,
+        "sugarTotal": 80,
+        "sugarAdded": 80,
+        "fiber": 0,
+        "sodiumMg": 15,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 20
+        }
+    },
+    "agua_com_gas": {
+        "name": "Água com Gás",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 500
+        }
+    },
+    "suco_acerola_natural": {
+        "name": "Suco de Acerola Natural",
+        "proteinPer100g": 0.9,
+        "carbsPer100g": 8,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 4.5,
+        "sugarAdded": 0,
+        "fiber": 0.3,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_melancia_natural": {
+        "name": "Suco de Melancia Natural",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 7.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 6.2,
+        "sugarAdded": 0,
+        "fiber": 0.4,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "suco_abacaxi_hortela": {
+        "name": "Suco de Abacaxi com Hortelã",
+        "proteinPer100g": 0.4,
+        "carbsPer100g": 11.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 9.2,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 1,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "suco_maracuja_natural": {
+        "name": "Suco de Maracujá Natural",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 9.6,
+        "fatsPer100g": 0.3,
+        "sugarTotal": 5,
+        "sugarAdded": 0,
+        "fiber": 0.2,
+        "sodiumMg": 4,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "leite_condensado_un": {
+        "name": "Leite Condensado (Colher)",
+        "proteinPer100g": 7.7,
+        "carbsPer100g": 54,
+        "fatsPer100g": 8,
+        "sugarTotal": 54,
+        "sugarAdded": 45,
+        "fiber": 0,
+        "sodiumMg": 110,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 20
+        }
+    },
+    "vinho_branco_seco": {
+        "name": "Vinho Branco Seco",
+        "proteinPer100g": 0.1,
+        "carbsPer100g": 2.4,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.9,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 150
+        }
+    },
+    "champanhe_brut": {
+        "name": "Champanhe Brut",
+        "proteinPer100g": 0.2,
+        "carbsPer100g": 1.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 1.2,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 4,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 125
+        }
+    },
+    "cha_preto_infusao": {
+        "name": "Chá Preto (Infusão)",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0.3,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 3,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "cha_hibisco_infusao": {
+        "name": "Chá de Hibisco",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "oleo_milho": {
+        "name": "Óleo de Milho",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "oleo_girassol": {
+        "name": "Óleo de Girassol",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "azeite_extra_virgem": {
+        "name": "Azeite de Oliva Extra Virgem",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "leite_semi_desnatado": {
+        "name": "Leite Semi-desnatado",
+        "proteinPer100g": 3.2,
+        "carbsPer100g": 4.8,
+        "fatsPer100g": 1.5,
+        "sugarTotal": 4.8,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 51,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_goiaba_natural": {
+        "name": "Suco de Goiaba Natural",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 11,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 9,
+        "sugarAdded": 0,
+        "fiber": 1.2,
+        "sodiumMg": 2,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "refrigerante_guarana_zero": {
+        "name": "Refrigerante Guaraná Zero",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 12,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "refrigerante_laranja": {
+        "name": "Refrigerante de Laranja",
+        "proteinPer100g": 0,
+        "carbsPer100g": 12,
+        "fatsPer100g": 0,
+        "sugarTotal": 12,
+        "sugarAdded": 12,
+        "fiber": 0,
+        "sodiumMg": 10,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "refrigerante_limao": {
+        "name": "Refrigerante de Limão",
+        "proteinPer100g": 0,
+        "carbsPer100g": 10,
+        "fatsPer100g": 0,
+        "sugarTotal": 10,
+        "sugarAdded": 10,
+        "fiber": 0,
+        "sodiumMg": 8,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "bebida_soja_maca": {
+        "name": "Bebida de Soja Sabor Maçã",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 10.5,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 10,
+        "sugarAdded": 7,
+        "fiber": 0.2,
+        "sodiumMg": 35,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "bebida_soja_uva": {
+        "name": "Bebida de Soja Sabor Uva",
+        "proteinPer100g": 0.6,
+        "carbsPer100g": 11.2,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 11,
+        "sugarAdded": 8,
+        "fiber": 0.2,
+        "sodiumMg": 38,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "leite_avelas": {
+        "name": "Leite de Avelãs",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 3,
+        "fatsPer100g": 1.6,
+        "sugarTotal": 3,
+        "sugarAdded": 0,
+        "fiber": 0.3,
+        "sodiumMg": 48,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "cafe_com_leite_integral": {
+        "name": "Café com Leite Integral",
+        "proteinPer100g": 1.6,
+        "carbsPer100g": 2.4,
+        "fatsPer100g": 1.5,
+        "sugarTotal": 2.4,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 26,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "smoothie_frutas_vermelhas": {
+        "name": "Smoothie Frutas Vermelhas",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 13,
+        "fatsPer100g": 0.5,
+        "sugarTotal": 11,
+        "sugarAdded": 0,
+        "fiber": 1.5,
+        "sodiumMg": 15,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 300
+        }
+    },
+    "whey_protein_pronto_shake": {
+        "name": "Shake Proteico Pronto (Chocolate)",
+        "proteinPer100g": 6,
+        "carbsPer100g": 2,
+        "fatsPer100g": 1,
+        "sugarTotal": 1,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 80,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "bebida_amendoim_original": {
+        "name": "Bebida de Amendoim",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 1.5,
+        "fatsPer100g": 3.5,
+        "sugarTotal": 0.5,
+        "sugarAdded": 0,
+        "fiber": 0.4,
+        "sodiumMg": 55,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "creme_leite_caixinha": {
+        "name": "Creme de Leite (Caixinha)",
+        "proteinPer100g": 1.5,
+        "carbsPer100g": 4,
+        "fatsPer100g": 17,
+        "sugarTotal": 4,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 45,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 15
+        }
+    },
+    "mel_un": {
+        "name": "Mel de Abelha (Colher)",
+        "proteinPer100g": 0.3,
+        "carbsPer100g": 82,
+        "fatsPer100g": 0,
+        "sugarTotal": 82,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 4,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 15
+        }
+    },
+    "molho_ingles": {
+        "name": "Molho Inglês",
+        "proteinPer100g": 0,
+        "carbsPer100g": 19,
+        "fatsPer100g": 0,
+        "sugarTotal": 15,
+        "sugarAdded": 10,
+        "fiber": 0,
+        "sodiumMg": 980,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 10
+        }
+    },
+    "catchup_un": {
+        "name": "Catchup (Sachet)",
+        "proteinPer100g": 1,
+        "carbsPer100g": 26,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 22,
+        "sugarAdded": 20,
+        "fiber": 0.3,
+        "sodiumMg": 900,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 7
+        }
+    },
+    "mostarda_un": {
+        "name": "Mostarda (Sachet)",
+        "proteinPer100g": 4,
+        "carbsPer100g": 5,
+        "fatsPer100g": 3.5,
+        "sugarTotal": 1,
+        "sugarAdded": 0.5,
+        "fiber": 1.5,
+        "sodiumMg": 1100,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 7
+        }
+    },
+    "maionese_un": {
+        "name": "Maionese (Sachet)",
+        "proteinPer100g": 1,
+        "carbsPer100g": 3,
+        "fatsPer100g": 40,
+        "sugarTotal": 2,
+        "sugarAdded": 1.5,
+        "fiber": 0,
+        "sodiumMg": 600,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 7
+        }
+    },
+    "sopa_creme_cebola_pronta": {
+        "name": "Sopa Creme de Cebola (Pronta)",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 6.5,
+        "fatsPer100g": 2,
+        "sugarTotal": 1.5,
+        "sugarAdded": 0,
+        "fiber": 0.4,
+        "sodiumMg": 380,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "sopa_creme_aspargos_pronta": {
+        "name": "Sopa Creme de Aspargos (Pronta)",
+        "proteinPer100g": 1.4,
+        "carbsPer100g": 5.8,
+        "fatsPer100g": 2.5,
+        "sugarTotal": 1.2,
+        "sugarAdded": 0,
+        "fiber": 0.6,
+        "sodiumMg": 340,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "canja_de_galinha": {
+        "name": "Canja de Galinha (Líquida/Caldo)",
+        "proteinPer100g": 3.5,
+        "carbsPer100g": 4,
+        "fatsPer100g": 1.2,
+        "sugarTotal": 0.5,
+        "sugarAdded": 0,
+        "fiber": 0.3,
+        "sodiumMg": 320,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "caldo_carne_liquido": {
+        "name": "Caldo de Carne Líquido",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 0.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 0.2,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 400,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "caldo_legumes_liquido": {
+        "name": "Caldo de Legumes Líquido",
+        "proteinPer100g": 0.3,
+        "carbsPer100g": 0.8,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.4,
+        "sugarAdded": 0,
+        "fiber": 0.1,
+        "sodiumMg": 360,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "bebida_energetica_acai": {
+        "name": "Bebida Energética Sabor Açaí",
+        "proteinPer100g": 0,
+        "carbsPer100g": 12.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 12,
+        "sugarAdded": 12,
+        "fiber": 0,
+        "sodiumMg": 42,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "suco_cranberry_industrial": {
+        "name": "Suco de Cranberry (Néctar)",
+        "proteinPer100g": 0,
+        "carbsPer100g": 11.8,
+        "fatsPer100g": 0,
+        "sugarTotal": 11.5,
+        "sugarAdded": 9,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "te_gelado_limao": {
+        "name": "Chá Gelado Sabor Limão",
+        "proteinPer100g": 0,
+        "carbsPer100g": 7,
+        "fatsPer100g": 0,
+        "sugarTotal": 6.8,
+        "sugarAdded": 6.8,
+        "fiber": 0,
+        "sodiumMg": 10,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "te_gelado_pessego": {
+        "name": "Chá Gelado Sabor Pêssego",
+        "proteinPer100g": 0,
+        "carbsPer100g": 7.2,
+        "fatsPer100g": 0,
+        "sugarTotal": 7,
+        "sugarAdded": 7,
+        "fiber": 0,
+        "sodiumMg": 10,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "cerveja_artesanal_ipa": {
+        "name": "Cerveja Artesanal IPA",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 4.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 0.2,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "cerveja_preta_malzbier": {
+        "name": "Cerveja Preta (Malzbier)",
+        "proteinPer100g": 0.4,
+        "carbsPer100g": 9,
+        "fatsPer100g": 0,
+        "sugarTotal": 5,
+        "sugarAdded": 3,
+        "fiber": 0,
+        "sodiumMg": 12,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 350
+        }
+    },
+    "vinho_do_porto": {
+        "name": "Vinho do Porto",
+        "proteinPer100g": 0,
+        "carbsPer100g": 12,
+        "fatsPer100g": 0,
+        "sugarTotal": 12,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 60
+        }
+    },
+    "espumante_moscatel": {
+        "name": "Espumante Moscatel",
+        "proteinPer100g": 0.2,
+        "carbsPer100g": 8,
+        "fatsPer100g": 0,
+        "sugarTotal": 7.5,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 125
+        }
+    },
+    "sidra_maca": {
+        "name": "Sidra de Maçã",
+        "proteinPer100g": 0,
+        "carbsPer100g": 11,
+        "fatsPer100g": 0,
+        "sugarTotal": 10,
+        "sugarAdded": 4,
+        "fiber": 0,
+        "sodiumMg": 8,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "sakura_shoyu_light": {
+        "name": "Molho Shoyu Light",
+        "proteinPer100g": 2,
+        "carbsPer100g": 2.5,
+        "fatsPer100g": 0,
+        "sugarTotal": 1,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 2800,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 10
+        }
+    },
+    "oleo_gergelim": {
+        "name": "Óleo de Gergelim",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 100,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 13
+        }
+    },
+    "molho_pimenta_liquido": {
+        "name": "Molho de Pimenta Líquido",
+        "proteinPer100g": 0.5,
+        "carbsPer100g": 2,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 0.5,
+        "sugarAdded": 0,
+        "fiber": 0.5,
+        "sodiumMg": 1800,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 5
+        }
+    },
+    "suco_beterraba_limao": {
+        "name": "Suco de Beterraba com Limão",
+        "proteinPer100g": 0.8,
+        "carbsPer100g": 9.5,
+        "fatsPer100g": 0.1,
+        "sugarTotal": 7,
+        "sugarAdded": 0,
+        "fiber": 1,
+        "sodiumMg": 45,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 200
+        }
+    },
+    "suco_couve_laranja": {
+        "name": "Suco de Couve com Laranja (Verde)",
+        "proteinPer100g": 1.2,
+        "carbsPer100g": 10,
+        "fatsPer100g": 0.2,
+        "sugarTotal": 7.5,
+        "sugarAdded": 0,
+        "fiber": 0.8,
+        "sodiumMg": 12,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 250
+        }
+    },
+    "agua_mineral_sabor_limao": {
+        "name": "Água Mineral com Gás Sabor Limão",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "sugarTotal": 0,
+        "sugarAdded": 0,
+        "fiber": 0,
+        "sodiumMg": 15,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 500
+        }
+    },
+    "coca_cola": {
+        "name": "Coca Cola",
+        "proteinPer100g": 0.1,
+        "carbsPer100g": 10.6,
+        "fatsPer100g": 0,
+        "sugarTotal": 10.6,
+        "sugarAdded": 10.6,
+        "fiber": 0,
+        "sodiumMg": 10,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 330
+        }
+    },
+    "fanta_laranja": {
+        "name": "Fanta Laranja",
+        "proteinPer100g": 0.2,
+        "carbsPer100g": 11.2,
+        "fatsPer100g": 0,
+        "sugarTotal": 11.2,
+        "sugarAdded": 11.2,
+        "fiber": 0,
+        "sodiumMg": 5,
+        "baseUnit": "ml",
+        "conversions": {
+            "un": 315
+        }
+    }
 }

@@ -17,7 +17,6 @@ export const MFAOverlay: React.FC<MFAProps> = ({ user, onSuccess, onCancel }) =>
   const [isSending, setIsSending] = useState(false);
   const [timeLeft, setTimeLeft] = useState(120);
   
-  // --- NOVOS ESTADOS PARA PROTEÇÃO CONTRA FORÇA BRUTA ---
   const [attempts, setAttempts] = useState(0);
   const [lockoutTime, setLockoutTime] = useState<number | null>(null);
 
@@ -28,7 +27,6 @@ export const MFAOverlay: React.FC<MFAProps> = ({ user, onSuccess, onCancel }) =>
   const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  // Verifica se há um bloqueio ativo ao carregar
   useEffect(() => {
     const savedLockout = localStorage.getItem(`lockout_${user.email}`);
     if (savedLockout) {
@@ -105,7 +103,6 @@ export const MFAOverlay: React.FC<MFAProps> = ({ user, onSuccess, onCancel }) =>
     }
 
     if (inputCode === generatedCode) {
-      // Sucesso: Limpa tentativas e bloqueios
       localStorage.removeItem(`lockout_${user.email}`);
       onSuccess();
     } else {
@@ -115,7 +112,7 @@ export const MFAOverlay: React.FC<MFAProps> = ({ user, onSuccess, onCancel }) =>
       setInputCode('');
 
       if (newAttempts >= 3) {
-        const duration = 5 * 60 * 1000; // 5 minutos de bloqueio
+        const duration = 5 * 60 * 1000;
         const expireAt = Date.now() + duration;
         setLockoutTime(expireAt);
         localStorage.setItem(`lockout_${user.email}`, expireAt.toString());
@@ -123,7 +120,7 @@ export const MFAOverlay: React.FC<MFAProps> = ({ user, onSuccess, onCancel }) =>
     }
   };
 
-  // Se estiver bloqueado, mostra tela de espera
+
   if (lockoutTime && Date.now() < lockoutTime) {
     const remainingSeconds = Math.ceil((lockoutTime - Date.now()) / 1000);
     return (

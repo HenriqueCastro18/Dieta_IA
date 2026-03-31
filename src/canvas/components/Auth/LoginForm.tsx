@@ -116,7 +116,7 @@ const LoginForm: React.FC<LoginProps> = ({ onLogin, onGoToRegister }) => {
               disabled={isSubmitting}
               required 
             />
-            {/* Link de esqueci a senha posicionado abaixo do input */}
+            
             <div style={{ textAlign: 'right', marginTop: '4px' }}>
               <span 
                 onClick={() => { setIsRecovering(true); setStatusMsg(null); }}
@@ -165,7 +165,6 @@ const LoginForm: React.FC<LoginProps> = ({ onLogin, onGoToRegister }) => {
   );
 };
 
-// --- ESTILOS ATUALIZADOS ---
 const headerStyle: React.CSSProperties = { textAlign: 'center', marginBottom: '40px' };
 const logoBadge: React.CSSProperties = { width: '60px', height: '60px', background: '#fff', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: '900', margin: '0 auto 24px', fontSize: '24px' };
 const titleStyle: React.CSSProperties = { color: '#fff', fontSize: '28px', fontWeight: '800' };
@@ -178,7 +177,6 @@ const primaryButton: React.CSSProperties = { padding: '20px', borderRadius: '18p
 const linkButton: React.CSSProperties = { background: 'none', border: 'none', color: '#444', fontSize: '13px', cursor: 'pointer' };
 const backButtonStyle: React.CSSProperties = { background: 'none', border: 'none', color: '#555', fontSize: '12px', fontWeight: '800', cursor: 'pointer', marginTop: '15px' };
 
-// Estilo melhorado para o "Esqueceu a senha?"
 const forgotLinkStyle: React.CSSProperties = { 
   fontSize: '12px', 
   fontWeight: '700', 

@@ -12,8 +12,7 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [loading, setLoading] = useState(false);
-  
-  // Estados para controle de bloqueio vindo do banco (Item 1.11 da sua lista)
+
   const [lockoutTime, setLockoutTime] = useState<number | null>(null);
   const [blockedEmail, setBlockedEmail] = useState<string>('');
 
@@ -26,7 +25,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
     setLoading(true);
 
     try {
-      // 1. O DBService.login agora retorna os dados do usuário ou lança erro de bloqueio
       const user = await DBService.login(credentials);
       
       if (user) {
@@ -35,7 +33,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
     } catch (err: any) {
       console.error("Erro no login:", err);
 
-      // 2. Captura o erro customizado "BLOQUEADO|X" vindo do checkAccountLockout
       if (err.message && err.message.includes("BLOQUEADO|")) {
         const parts = err.message.split('|');
         const minutes = parseInt(parts[1]);
@@ -44,7 +41,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
         return;
       }
 
-      // 3. Tratamento de credenciais inválidas (Rate Limit - 3 tentativas)
       const isInvalidCredential = 
         err.code === 'auth/invalid-credential' || 
         err.code === 'auth/wrong-password' || 
@@ -52,7 +48,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
 
       if (isInvalidCredential) {
         try {
-          // Chama o registro de falha que atualiza o Firestore (Item 1.8 e 1.11)
           const result = await DBService.registerFailedAttempt(email);
           
           if (result && result.blocked) {
@@ -104,7 +99,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
         style={glassCard}
         className="auth-card"
       >
-        {/* Overlay de Bloqueio (Lógica de Segurança de Força Bruta - Item 1.11) */}
         {lockoutTime && Date.now() < lockoutTime && (
           <div style={lockoutOverlayStyle}>
              <span style={{ fontSize: '40px' }}>🚫</span>
@@ -196,7 +190,6 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ onLogin }) => {
   );
 };
 
-// Estilos preservados conforme original
 const authWrapper: React.CSSProperties = {
   display: 'flex', justifyContent: 'center', alignItems: 'center',
   width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: 20, padding: '20px',

@@ -13,7 +13,6 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
 
   const userId = user?.uid || user?.id;
 
-  // 1. CARREGAMENTO DOS DADOS (SCORE E RANKING)
   useEffect(() => {
     let isMounted = true;
     const loadStats = async () => {
@@ -37,11 +36,9 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
     return () => { isMounted = false; };
   }, [userId, viewMode, offset]);
 
-  // 2. LÓGICA DE EVOLUÇÃO DE PESO
   const weightStats = useMemo(() => {
     const history = user?.weightHistory || [];
     const current = Number(user?.weight) || 0;
-    // Pega o primeiro peso registrado no histórico ou o peso atual se estiver vazio
     const initial = history.length > 0 ? Number(history[0].weight) : current; 
     const diff = current - initial;
     
@@ -53,17 +50,14 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
     };
   }, [user]);
 
-  // 3. SALVAR NOVO PESO (CORRIGIDO PARA USAR UPDATEPROFILE)
   const handleWeightSubmit = async () => {
     const val = parseFloat(tempWeight.replace(',', '.'));
     if (!isNaN(val) && userId) {
       setIsSaving(true);
       try {
-        // No seu db.ts, a função updateProfile já cuida de adicionar ao weightHistory
         const success = await DBService.updateProfile(userId, { weight: val });
         
         if (success) {
-          // Atualiza o estado local para refletir a mudança na UI imediatamente
           onUpdateUser({ 
             ...user, 
             weight: val,
@@ -80,7 +74,6 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
     }
   };
 
-  // 4. RÓTULO DE DATA
   const periodLabel = useMemo(() => {
     const d = new Date();
     if (viewMode === 'month') {
@@ -213,7 +206,6 @@ export const CompetitivePanel: React.FC<{ user: any, onUpdateUser: (data: any) =
   );
 };
 
-// ... (Estilos permanecem os mesmos que você enviou)
 const styles: { [key: string]: React.CSSProperties } = {
   container: { padding: '20px', maxWidth: '450px', margin: '0 auto', color: '#fff' },
   navHeader: { marginBottom: '20px' },

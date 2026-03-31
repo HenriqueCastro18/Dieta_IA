@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useDietStore } from '../../store/useDietStore';
 import { fetchFoodData } from '../../data/apiService';
 import { DBService } from '../../services/db';
-import { GeminiService } from '../../services/gemini';
 
-// Interface robusta para garantir Type-Safety no fluxo de dados
 interface FoodInfo {
   name: string;
   proteinPer100g: number;
@@ -25,7 +23,6 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
   const [unit, setUnit] = useState<'g' | 'ml' | 'un'>('g');
   const [loading, setLoading] = useState(false);
   
-  // Estados para processamento culinário (Arquitetura de Cálculo)
   const [cookingMode, setCookingMode] = useState('natural');
   const [oilOption, setOilOption] = useState('0');
   const [customOil, setCustomOil] = useState<number>(0);
@@ -42,24 +39,21 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
     setLoading(true);
     
     try {
-      // 1. BUSCA LOCAL (JSON Estático)
-      let result = await fetchFoodData(query, unit) as FoodInfo | null;
-      
-      // 2. BUSCA NO FIREBASE (Itens aprendidos/Cache)
-      if (!result) {
-        console.log(`Buscando "${query}" no cache do Firebase...`);
-        // O cast duplo resolve o conflito de DocumentData do Firebase SDK
-        const cachedFood = await DBService.findCustomFood(query, unit);
-        result = cachedFood ? (cachedFood as unknown as FoodInfo) : null;
+      let result: FoodInfo | null = null;
+
+      console.log(`Buscando "${query}" no cache do Firebase...`);
+      const cachedFood = await DBService.findCustomFood(query, unit);
+      if (cachedFood) {
+        result = cachedFood as unknown as FoodInfo;
+        console.log("Encontrado no Firebase!", result);
       }
 
-      // 3. INTEGRAÇÃO GEMINI 2.0 FLASH (IA Generativa)
       if (!result) {
-        console.log("Solicitando inteligência ao Gemini 2.0 Flash...");
-        result = await GeminiService.fetchNutrition(query) as FoodInfo | null;
+        console.log(`Solicitando inteligência ao CORE V8 (Groq)... (Unidade: ${unit})`);
+        
+        result = await fetchFoodData(query, unit) as FoodInfo | null;
         
         if (result) {
-          // Salva para evitar chamadas repetidas à API (Otimização de Cota)
           await DBService.saveCustomFood({
             ...result,
             unitGroup: unit,
@@ -71,16 +65,14 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
       if (result) {
         let effectiveWeight = amount;
 
-        // Lógica de conversão de unidades
         if (unit !== 'g' && result.conversions && result.conversions[unit]) {
           effectiveWeight = amount * result.conversions[unit];
         } else if (unit === 'un' && (!result.conversions || !result.conversions.un)) {
-          effectiveWeight = amount * 100; // Fallback padrão para unidades
+          effectiveWeight = amount * 100; 
         }
 
         const factor = effectiveWeight / 100;
 
-        // Cálculo Base
         let p = (result.proteinPer100g || 0) * factor;
         let c = (result.carbsPer100g || 0) * factor;
         let f = (result.fatsPer100g || 0) * factor;
@@ -88,13 +80,11 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
         let fiber = (result.fiber || 0) * factor;
         let sugar = (result.sugarTotal || 0) * factor;
 
-        // Lógica de Adição de Lipídios (Óleos)
         if (cookingMode === 'frito' || cookingMode === 'assado') {
           const addedOilMl = oilOption === 'custom' ? customOil : Number(oilOption);
           f += (addedOilMl * 0.92); 
         }
 
-        // Lógica de Adição de Sódio (Sal)
         const addedSaltG = saltOption === 'custom' ? customSalt : Number(saltOption);
         sodium += (addedSaltG * 387.5); 
 
@@ -105,7 +95,7 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
           p, c, f, sodium, fiber, sugar, cal 
         });
       } else {
-          alert("Alimento não encontrado. Tente ser mais específico para a IA.");
+          alert("Alimento não encontrado ou erro na IA.");
       }
     } catch (error) {
       console.error("Erro no fluxo de cálculo nutricional:", error);
@@ -134,10 +124,8 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
         date: new Date().toLocaleDateString('pt-BR')
       };
 
-      // Persistência no Histórico do Usuário
       await DBService.saveMeal(uid, mealData);
       
-      // Sincronização com o Estado Global (Zustand)
       addFood({ 
         ...mealData, 
         proteins: mealData.protein, 
@@ -156,42 +144,51 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
   };
 
   return (
-    <div style={containerStyle}>
-      <div style={glassCardStyle}>
-        <div style={badgeStyle}>
-          <span style={badgeIcon}>🛡️</span> SEGURANÇA ATIVA (BCRYPT)
+    <div className="v4-nutri-container">
+      <div className="v4-nutri-card">
+        
+        <div className="v4-nutri-badge">
+          <span className="v4-badge-icon">🛡️</span> V4 CORE ENGINE
         </div>
         
-        <h2 style={cardTitleStyle}>NOVO ALIMENTO V2</h2>
+        <h2 className="v4-nutri-title">NOVO ALIMENTO V2</h2>
         
-        <div style={formVertical}>
+        <div className="v4-nutri-form">
           <input 
             type="text" 
-            placeholder="Ex: Peito de Frango, Pizza, Whey..." 
+            placeholder="Ex: Peito de Frango, Pizza..." 
             value={query} 
             onChange={(e) => { setQuery(e.target.value); setPreview(null); }} 
-            style={mainInputStyle} 
+            className="v4-nutri-input-main" 
           />
 
-          <div style={responsiveRow}>
-            <div style={weightInputGroup}>
+          <div className="v4-nutri-row">
+            <div className="v4-nutri-weight-group">
               <input 
                 type="number" 
                 value={amount} 
                 onChange={(e) => setAmount(Number(e.target.value))} 
-                style={weightInputStyle} 
+                className="v4-nutri-weight-input" 
               />
             </div>
-            <select value={unit} onChange={(e) => { setUnit(e.target.value as any); setPreview(null); }} style={unitSelectStyle}>
-              <option value="g">Gramos (g)</option>
+            <select 
+              value={unit} 
+              onChange={(e) => { setUnit(e.target.value as any); setPreview(null); }} 
+              className="v4-nutri-select v4-select-half"
+            >
+              <option value="g">Gramas (g)</option>
               <option value="ml">Mililitros (ml)</option>
               <option value="un">Unidade (un)</option>
             </select>
           </div>
 
-          <div style={sectionStyle}>
-            <label style={labelStyle}>MÉTODO DE PREPARO</label>
-            <select value={cookingMode} onChange={(e) => setCookingMode(e.target.value)} style={selectStyle}>
+          <div className="v4-nutri-section">
+            <label className="v4-nutri-label">MÉTODO DE PREPARO</label>
+            <select 
+              value={cookingMode} 
+              onChange={(e) => setCookingMode(e.target.value)} 
+              className="v4-nutri-select"
+            >
               <option value="natural">Grelhado / Natural / Cru</option>
               <option value="cozido">Cozido em Água</option>
               <option value="assado">Assado</option>
@@ -200,10 +197,10 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
           </div>
 
           {(cookingMode === 'frito' || cookingMode === 'assado') && (
-            <div style={sectionStyle}>
-              <label style={labelStyle}>ADICIONAR ÓLEO (ML)</label>
-              <div style={formGroup}>
-                <select value={oilOption} onChange={(e) => setOilOption(e.target.value)} style={selectStyle}>
+            <div className="v4-nutri-section">
+              <label className="v4-nutri-label">ADICIONAR ÓLEO (ML)</label>
+              <div className="v4-nutri-row-gap">
+                <select value={oilOption} onChange={(e) => setOilOption(e.target.value)} className="v4-nutri-select">
                   <option value="0">Sem Óleo</option>
                   <option value="2">2ml (Fio)</option>
                   <option value="5">5ml (1 colher chá)</option>
@@ -211,85 +208,130 @@ export const NutritionPanel: React.FC<{ user: any }> = ({ user }) => {
                   <option value="custom">Outro...</option>
                 </select>
                 {oilOption === 'custom' && (
-                  <input type="number" placeholder="ml" onChange={(e) => setCustomOil(Number(e.target.value))} style={customInput} />
+                  <input type="number" placeholder="ml" onChange={(e) => setCustomOil(Number(e.target.value))} className="v4-nutri-custom-input" />
                 )}
               </div>
             </div>
           )}
 
-          <div style={sectionStyle}>
-            <label style={labelStyle}>SAL ADICIONADO (G)</label>
-            <div style={formGroup}>
-              <select value={saltOption} onChange={(e) => setSaltOption(e.target.value)} style={selectStyle}>
+          <div className="v4-nutri-section">
+            <label className="v4-nutri-label">SAL ADICIONADO (G)</label>
+            <div className="v4-nutri-row-gap">
+              <select value={saltOption} onChange={(e) => setSaltOption(e.target.value)} className="v4-nutri-select">
                 <option value="0">Sem Sal</option>
                 <option value="0.5">0.5g (Pitada)</option>
                 <option value="1.5">1.5g (Sachê)</option>
                 <option value="custom">Outro...</option>
               </select>
               {saltOption === 'custom' && (
-                <input type="number" placeholder="g" onChange={(e) => setCustomSalt(Number(e.target.value))} style={customInput} />
+                <input type="number" placeholder="g" onChange={(e) => setCustomSalt(Number(e.target.value))} className="v4-nutri-custom-input" />
               )}
             </div>
           </div>
 
-          <button onClick={handleCalculate} disabled={loading || query.length < 2} style={searchButton}>
+          <button 
+            onClick={handleCalculate} 
+            disabled={loading || query.length < 2} 
+            className="v4-nutri-search-btn"
+          >
             {loading ? 'ANALISANDO COM IA...' : 'CALCULAR NUTRIENTES'}
           </button>
         </div>
 
         {preview && (
-          <div style={previewArea}>
-            <p style={foodTitle}>{preview.name.toUpperCase()}</p>
-            <div style={macroGrid}>
-              <div style={macroItem}><span style={pColor}>PROT</span><strong style={macroValue}>{formatValue(preview.p)}g</strong></div>
-              <div style={macroItem}><span style={cColor}>CARB</span><strong style={macroValue}>{formatValue(preview.c)}g</strong></div>
-              <div style={macroItem}><span style={fColor}>GORD</span><strong style={macroValue}>{formatValue(preview.f)}g</strong></div>
+          <div className="v4-nutri-preview">
+            <p className="v4-preview-title">{preview.name.toUpperCase()}</p>
+            
+            <div className="v4-macro-grid">
+              <div className="v4-macro-item"><span className="v4-color-p">PROT</span><strong className="v4-macro-val">{formatValue(preview.p)}g</strong></div>
+              <div className="v4-macro-item"><span className="v4-color-c">CARB</span><strong className="v4-macro-val">{formatValue(preview.c)}g</strong></div>
+              <div className="v4-macro-item"><span className="v4-color-f">GORD</span><strong className="v4-macro-val">{formatValue(preview.f)}g</strong></div>
             </div>
-            <div style={microGrid}>
-              <div style={microItem}><label style={microLabel}>Sódio</label><span style={microValue}>{formatValue(preview.sodium, 0)}mg</span></div>
-              <div style={microItem}><label style={microLabel}>Fibra</label><span style={microValue}>{formatValue(preview.fiber)}g</span></div>
-              <div style={microItem}><label style={microLabel}>Açúcar</label><span style={microValue}>{formatValue(preview.sugar)}g</span></div>
+            
+            <div className="v4-micro-grid">
+              <div className="v4-micro-item"><label className="v4-micro-label">Sódio</label><span className="v4-micro-val">{formatValue(preview.sodium, 0)}mg</span></div>
+              <div className="v4-micro-item"><label className="v4-micro-label">Fibra</label><span className="v4-micro-val">{formatValue(preview.fiber)}g</span></div>
+              <div className="v4-micro-item"><label className="v4-micro-label">Açúcar</label><span className="v4-micro-val">{formatValue(preview.sugar)}g</span></div>
             </div>
-            <button onClick={handleAddFood} disabled={loading} style={addButton}>
+            
+            <button onClick={handleAddFood} disabled={loading} className="v4-nutri-add-btn">
               {loading ? 'SALVANDO...' : `ADICIONAR ${formatValue(preview.cal, 0)} KCAL`}
             </button>
           </div>
         )}
       </div>
+
+      <style>{`
+        .v4-nutri-container { display: flex; justify-content: center; padding: 10px; width: 100%; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        .v4-nutri-container * { box-sizing: border-box; }
+        
+        .v4-nutri-card { 
+            background: rgba(13, 13, 13, 0.85); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 35px; 
+            padding: 30px; 
+            width: 100%; 
+            max-width: 420px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+            position: relative; 
+        }
+
+        .v4-nutri-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: rgba(0, 242, 254, 0.1); border: 1px solid rgba(0, 242, 254, 0.5); color: #00f2fe; padding: 6px 16px; border-radius: 20px; font-size: 9px; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 5px; white-space: nowrap; font-family: 'JetBrains Mono', monospace; box-shadow: 0 0 15px rgba(0, 242, 254, 0.15); }
+        .v4-badge-icon { font-size: 12px; }
+        
+        .v4-nutri-title { font-size: 14px; font-weight: 900; margin-bottom: 25px; color: #fff; text-align: center; letter-spacing: 2px; margin-top: 10px; }
+
+        .v4-nutri-form { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+
+        .v4-nutri-input-main { width: 100%; padding: 18px; border-radius: 16px; border: 1px solid #1a1a1a; background: #0a0a0a; color: white; outline: none; font-size: 16px; font-weight: 600; transition: 0.3s; }
+        .v4-nutri-input-main:focus { border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.1); }
+
+        .v4-nutri-row { display: flex; gap: 12px; width: 100%; }
+        .v4-nutri-weight-group { flex: 1; display: flex; align-items: center; background: #0a0a0a; border-radius: 16px; padding: 0 15px; border: 1px solid #1a1a1a; transition: 0.3s; }
+        .v4-nutri-weight-group:focus-within { border-color: #00f2fe; }
+        
+        .v4-nutri-weight-input { width: 100%; background: transparent; border: none; color: #00f2fe; text-align: center; font-size: 16px; font-weight: 800; outline: none; padding: 16px 0; }
+        
+        .v4-nutri-select { width: 100%; padding: 16px; border-radius: 16px; background: #0a0a0a; color: #eee; border: 1px solid #1a1a1a; outline: none; cursor: pointer; font-size: 16px; font-weight: 600; transition: 0.3s; appearance: none; }
+        .v4-nutri-select:focus { border-color: #00f2fe; }
+        .v4-select-half { flex: 1; color: #00f2fe; font-weight: 800; }
+
+        .v4-nutri-section { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; width: 100%; }
+        .v4-nutri-label { font-size: 10px; color: #888; font-weight: 900; letter-spacing: 1px; }
+        
+        .v4-nutri-row-gap { display: flex; gap: 10px; width: 100%; }
+        .v4-nutri-custom-input { width: 90px; padding: 16px 12px; border-radius: 16px; background: #0a0a0a; color: #00f2fe; border: 1px solid #1a1a1a; text-align: center; font-weight: 800; font-size: 16px; outline: none; transition: 0.3s; }
+        .v4-nutri-custom-input:focus { border-color: #00f2fe; }
+
+        .v4-nutri-search-btn { width: 100%; background: #fff; color: #000; border: none; padding: 18px; border-radius: 18px; font-weight: 950; cursor: pointer; margin-top: 15px; letter-spacing: 1px; font-size: 13px; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .v4-nutri-search-btn:hover { background: #00f2fe; }
+        .v4-nutri-search-btn:active { transform: scale(0.96); }
+        .v4-nutri-search-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #333; color: #888; }
+
+        .v4-nutri-preview { margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .v4-preview-title { color: #00f2fe; font-weight: 950; font-size: 18px; margin-bottom: 20px; letter-spacing: 1px; }
+        
+        .v4-macro-grid { display: flex; justify-content: space-around; margin-bottom: 25px; }
+        .v4-macro-item { display: flex; flex-direction: column; gap: 6px; }
+        .v4-macro-val { color: #fff; font-size: 18px; font-family: 'JetBrains Mono', monospace; font-weight: 800; }
+        
+        .v4-color-p { color: #4ade80; font-size: 10px; font-weight: 900; letter-spacing: 1px; }
+        .v4-color-c { color: #fbbf24; font-size: 10px; font-weight: 900; letter-spacing: 1px; }
+        .v4-color-f { color: #f87171; font-size: 10px; font-weight: 900; letter-spacing: 1px; }
+        
+        .v4-micro-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 30px; background: rgba(0,0,0,0.4); padding: 18px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .v4-micro-item { display: flex; flex-direction: column; gap: 4px; }
+        .v4-micro-label { color: #666; font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+        .v4-micro-val { color: #ddd; font-size: 12px; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+        
+        .v4-nutri-add-btn { width: 100%; padding: 20px; border-radius: 20px; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); color: #000; border: none; cursor: pointer; font-weight: 950; font-size: 13px; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(0,242,254,0.15); transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .v4-nutri-add-btn:active { transform: scale(0.96); }
+        .v4-nutri-add-btn:disabled { opacity: 0.5; filter: grayscale(1); cursor: not-allowed; }
+      `}</style>
     </div>
   );
 };
-
-// --- ESTILOS (Mantendo sua identidade visual Dark/Cyber) ---
-const containerStyle: React.CSSProperties = { display: 'flex', justifyContent: 'center', padding: '10px', width: '100%', boxSizing: 'border-box' };
-const glassCardStyle: React.CSSProperties = { background: '#050505', border: '1px solid #111', borderRadius: '35px', padding: '30px', width: '100%', maxWidth: '420px', boxShadow: '0 20px 40px rgba(0,0,0,0.8)', position: 'relative' };
-const badgeStyle: React.CSSProperties = { position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: '#00f2fe15', border: '1px solid #00f2fe', color: '#00f2fe', padding: '5px 15px', borderRadius: '20px', fontSize: '9px', fontWeight: 'bold', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap' };
-const badgeIcon: React.CSSProperties = { fontSize: '12px' };
-const cardTitleStyle: React.CSSProperties = { fontSize: '14px', fontWeight: '900', marginBottom: '25px', color: '#fff', textAlign: 'center', letterSpacing: '2px', marginTop: '10px' };
-const formVertical: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '20px' };
-const responsiveRow: React.CSSProperties = { display: 'flex', gap: '12px' };
-const mainInputStyle: React.CSSProperties = { width: '100%', padding: '16px', borderRadius: '15px', border: '1px solid #1a1a1a', background: '#0a0a0a', color: 'white', outline: 'none', fontSize: '14px', boxSizing: 'border-box' };
-const weightInputGroup: React.CSSProperties = { flex: 1, display: 'flex', alignItems: 'center', background: '#0a0a0a', borderRadius: '15px', padding: '0 15px', border: '1px solid #1a1a1a' };
-const weightInputStyle: React.CSSProperties = { width: '100%', background: 'transparent', border: 'none', color: '#00f2fe', textAlign: 'center', fontSize: '15px', fontWeight: 'bold', outline: 'none' };
-const unitSelectStyle: React.CSSProperties = { flex: 1, padding: '16px', borderRadius: '15px', background: '#0a0a0a', color: '#00f2fe', border: '1px solid #1a1a1a', fontWeight: 'bold', outline: 'none', cursor: 'pointer' };
-const sectionStyle: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '8px' };
-const labelStyle: React.CSSProperties = { fontSize: '10px', color: '#888', fontWeight: '900', letterSpacing: '1px' };
-const selectStyle: React.CSSProperties = { width: '100%', padding: '14px', borderRadius: '15px', background: '#0a0a0a', color: '#eee', border: '1px solid #1a1a1a', outline: 'none', cursor: 'pointer' };
-const formGroup: React.CSSProperties = { display: 'flex', gap: '10px' };
-const customInput: React.CSSProperties = { width: '80px', padding: '12px', borderRadius: '12px', background: '#0a0a0a', color: '#00f2fe', border: '1px solid #1a1a1a', textAlign: 'center', fontWeight: 'bold' };
-const searchButton: React.CSSProperties = { background: '#fff', color: '#000', border: 'none', padding: '18px', borderRadius: '18px', fontWeight: '900', cursor: 'pointer', marginTop: '10px', letterSpacing: '1px', fontSize: '13px' };
-const previewArea: React.CSSProperties = { marginTop: '30px', paddingTop: '30px', borderTop: '1px solid #111', textAlign: 'center' };
-const foodTitle: React.CSSProperties = { color: '#00f2fe', fontWeight: '950', fontSize: '18px', marginBottom: '20px', letterSpacing: '1px' };
-const macroGrid: React.CSSProperties = { display: 'flex', justifyContent: 'space-around', marginBottom: '25px' };
-const macroItem: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '5px' };
-const macroValue: React.CSSProperties = { color: '#fff', fontSize: '16px' };
-const pColor: React.CSSProperties = { color: '#4ade80', fontSize: '10px', fontWeight: '900' };
-const cColor: React.CSSProperties = { color: '#fbbf24', fontSize: '10px', fontWeight: '900' };
-const fColor: React.CSSProperties = { color: '#f87171', fontSize: '10px', fontWeight: '900' };
-const microGrid: React.CSSProperties = { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px', marginBottom: '30px', background: '#030303', padding: '15px', borderRadius: '20px', border: '1px solid #0f0f0f' };
-const microItem: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '2px' };
-const microLabel: React.CSSProperties = { color: '#666', fontSize: '9px', fontWeight: '900', textTransform: 'uppercase' };
-const microValue: React.CSSProperties = { color: '#ddd', fontSize: '12px', fontWeight: '700' };
-const addButton: React.CSSProperties = { width: '100%', padding: '20px', borderRadius: '20px', background: 'linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)', color: '#000', border: 'none', cursor: 'pointer', fontWeight: '950', fontSize: '14px' };
 
 export default NutritionPanel;

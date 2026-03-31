@@ -10,17 +10,15 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
   
   const todayDate = new Date().toLocaleDateString('pt-BR');
 
-  // Garante que a meta seja sempre um número em ML
   const goalML = useMemo(() => {
     const rawGoal = user?.goalWater;
     if (!rawGoal) return 3500;
     const parsed = typeof rawGoal === 'string' ? parseFloat(rawGoal.replace(',', '.')) : rawGoal;
-    return parsed < 100 ? parsed * 1000 : parsed;
+    return parsed < 100 ? parsed * 1000 : parsed; 
   }, [user]);
 
   const progress = Math.min(currentIntake / goalML, 1);
 
-  // Busca inicial do banco
   useEffect(() => {
     const fetchWater = async () => {
       const uid = user?.uid || user?.id;
@@ -45,7 +43,6 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
     setInputAmount('');
   };
 
-  // FUNÇÃO CORRIGIDA: Enviando parâmetros separados para o DBService
   const handleSaveToDB = async () => {
     const uid = user?.uid || user?.id;
     
@@ -58,11 +55,9 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
     
     setIsSaving(true);
     try {
-      // CORREÇÃO AQUI: Passando UID, Valor numérico e Data como argumentos individuais
       await DBService.saveWater(uid, Number(currentIntake), todayDate);
       
       setLastSync(new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }));
-      alert("Hidratação sincronizada com sucesso!");
     } catch (error) {
       console.error("Erro ao salvar no Firebase:", error);
       alert("Erro ao sincronizar. Verifique o console.");
@@ -72,50 +67,52 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
   };
 
   return (
-    <section style={containerStyle}>
-      <div style={cardStyle}>
-        <div style={uiSide}>
-          <header>
-            <span style={dateText}>{todayDate.toUpperCase()}</span>
-            <h1 style={titleText}>HIDRATAÇÃO</h1>
+    <section className="v4-water-container">
+      <div className="v4-water-card">
+        
+        <div className="v4-water-ui">
+          <header className="v4-water-header">
+            <span className="v4-water-date">{todayDate.toUpperCase()}</span>
+            <h1 className="v4-water-title">HIDRATAÇÃO</h1>
           </header>
 
-          <div style={displayBox}>
-            <div style={mlText}>
-              {currentIntake}<small style={unitStyle}>ml</small>
+          <div className="v4-water-display">
+            <div className="v4-water-ml">
+              {currentIntake}<small>ml</small>
             </div>
-            <p style={goalLabel}>META: {goalML}ml</p>
+            <p className="v4-water-goal">META DIÁRIA: {goalML}ml</p>
           </div>
 
-          <div style={quickAddRow}>
-            <button onClick={() => addWater(250)} style={quickBtn}>+250ml</button>
-            <button onClick={() => addWater(500)} style={quickBtn}>+500ml</button>
+          <div className="v4-water-quick-add">
+            <button className="v4-quick-btn" onClick={() => addWater(250)}>+250ml</button>
+            <button className="v4-quick-btn" onClick={() => addWater(500)}>+500ml</button>
           </div>
 
-          <div style={inputActionGroup}>
+          <div className="v4-water-custom-add">
             <input 
               type="number" 
               placeholder="Outra quantidade..." 
               value={inputAmount}
               onChange={(e) => setInputAmount(e.target.value)}
-              style={inputStyle}
+              className="v4-water-input"
             />
-            <button style={btnAddStyle} onClick={() => addWater()}>
-              ADICIONAR À LISTA
+            <button className="v4-water-add-btn" onClick={() => addWater()}>
+              ADICIONAR
             </button>
           </div>
 
-          <div style={footerActions}>
-             <button style={btnReset} onClick={() => setCurrentIntake(0)}>ZERAR HOJE</button>
-             {lastSync && <span style={syncStatus}>Sincronizado às {lastSync}</span>}
+          <div className="v4-water-footer">
+             <button className="v4-water-reset" onClick={() => setCurrentIntake(0)}>ZERAR HOJE</button>
+             {lastSync && <span className="v4-water-sync">Sincronizado às {lastSync}</span>}
           </div>
         </div>
 
-        <div style={visualSide}>
-          <div style={percBadge}>{Math.round(progress * 100)}%</div>
-          <div style={bottleSection}>
-            <div style={bottleContainer}>
-              <svg viewBox="0 0 100 200" style={svgStyle}>
+        <div className="v4-water-visual">
+          <div className="v4-water-badge">{Math.round(progress * 100)}%</div>
+          
+          <div className="v4-bottle-section">
+            <div className="v4-bottle-container">
+              <svg viewBox="0 0 100 200" className="v4-bottle-svg">
                 <defs>
                   <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#00f2fe" />
@@ -125,18 +122,19 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
                     <rect x="10" y="5" width="80" height="190" rx="25" />
                   </clipPath>
                 </defs>
-                <rect x="10" y="5" width="80" height="190" rx="25" fill="#080808" stroke="#1a1a1a" strokeWidth="2" />
+                <rect x="10" y="5" width="80" height="190" rx="25" fill="#050505" stroke="#1a1a1a" strokeWidth="3" />
                 <g clipPath="url(#bottleClip)">
+                  
                   <motion.g
                     initial={{ y: 200 }}
                     animate={{ y: 200 - (progress * 190) }}
-                    transition={{ type: "spring", stiffness: 40, damping: 12 }}
+                    transition={{ type: "tween", duration: 0.8, ease: "easeInOut" }}
                   >
                     <motion.path
                       d="M 0 0 Q 25 -10 50 0 T 100 0 V 200 H 0 Z"
                       fill="url(#waterGrad)"
                       animate={{ x: [-20, 0, -20] }}
-                      transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                      transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
                     />
                     <rect y="0" width="100" height="200" fill="url(#waterGrad)" />
                   </motion.g>
@@ -145,12 +143,7 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
             </div>
 
             <button 
-              style={{
-                ...btnSaveDB,
-                background: isSaving ? '#111' : '#00f2fe',
-                color: isSaving ? '#444' : '#000',
-                cursor: isSaving ? 'not-allowed' : 'pointer'
-              }} 
+              className={`v4-save-db-btn ${isSaving ? 'is-saving' : ''}`}
               onClick={handleSaveToDB}
               disabled={isSaving}
             >
@@ -159,33 +152,72 @@ export const WaterPanel: React.FC<{ user: any }> = ({ user }) => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .v4-water-container { width: 100%; max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        
+        .v4-water-card { 
+            background: rgba(13, 13, 13, 0.6); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 40px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            display: flex; 
+            min-height: 550px; 
+            overflow: hidden; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5); 
+        }
+
+        .v4-water-ui { flex: 1.2; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; min-width: 300px; }
+        
+        .v4-water-header { margin-bottom: 20px; }
+        .v4-water-date { font-size: 10px; color: #555; font-weight: 900; letter-spacing: 3px; font-family: 'JetBrains Mono', monospace; }
+        .v4-water-title { color: #fff; font-size: 32px; font-weight: 950; margin: 5px 0 0 0; letter-spacing: -1px; }
+
+        .v4-water-display { background: #080808; padding: 30px 20px; border-radius: 30px; border: 1px solid #151515; text-align: center; margin-bottom: 25px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        .v4-water-ml { font-size: 64px; font-weight: 950; color: #fff; line-height: 1; font-family: 'JetBrains Mono', monospace; }
+        .v4-water-ml small { font-size: 18px; color: #00f2fe; margin-left: 8px; text-transform: uppercase; letter-spacing: 1px; font-family: 'Outfit', sans-serif; }
+        .v4-water-goal { font-size: 10px; color: #444; font-weight: 900; margin-top: 15px; letter-spacing: 1.5px; }
+
+        .v4-water-quick-add { display: flex; gap: 10px; margin-bottom: 15px; }
+        .v4-quick-btn { flex: 1; background: #111; border: 1px solid #1a1a1a; color: #fff; padding: 16px; border-radius: 18px; font-size: 12px; font-weight: 900; cursor: pointer; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .v4-quick-btn:hover { background: rgba(0, 242, 254, 0.1); border-color: #00f2fe; color: #00f2fe; }
+        .v4-quick-btn:active { transform: scale(0.95); }
+
+        .v4-water-custom-add { display: flex; gap: 10px; }
+        .v4-water-input { flex: 1; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 18px; padding: 16px; color: #fff; font-size: 14px; outline: none; text-align: center; font-weight: 800; transition: 0.3s; }
+        .v4-water-input:focus { border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.1); }
+        .v4-water-add-btn { background: #fff; color: #000; padding: 16px 24px; border-radius: 18px; border: none; font-size: 11px; cursor: pointer; font-weight: 950; letter-spacing: 1px; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .v4-water-add-btn:hover { background: #00f2fe; }
+        .v4-water-add-btn:active { transform: scale(0.95); }
+
+        .v4-water-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
+        .v4-water-reset { background: none; border: none; color: #333; font-size: 10px; font-weight: 900; cursor: pointer; letter-spacing: 1px; transition: 0.2s; }
+        .v4-water-reset:hover { color: #ff3e3e; }
+        .v4-water-sync { font-size: 10px; color: #00f2fe; font-weight: bold; font-family: 'JetBrains Mono', monospace; }
+
+        .v4-water-visual { flex: 0.8; background: #050505; border-left: 1px solid #111; position: relative; display: flex; flex-direction: column; alignItems: center; justify-content: center; padding: 40px; min-width: 280px; }
+        
+        .v4-water-badge { position: absolute; top: 30px; right: 30px; background: rgba(0, 242, 254, 0.1); color: #00f2fe; border: 1px solid #00f2fe; padding: 8px 16px; border-radius: 12px; font-weight: 950; font-size: 14px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); }
+        
+        .v4-bottle-section { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; width: 100%; height: 100%; }
+        .v4-bottle-container { width: 140px; height: 280px; }
+        .v4-bottle-svg { width: 100%; height: 100%; filter: drop-shadow(0 0 25px rgba(0,242,254,0.15)); }
+        
+        .v4-save-db-btn { width: 100%; max-width: 220px; border: none; padding: 18px; border-radius: 20px; font-weight: 950; font-size: 11px; letter-spacing: 1.5px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: #00f2fe; color: #000; cursor: pointer; }
+        .v4-save-db-btn:hover { background: #4facfe; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3); }
+        .v4-save-db-btn:active { transform: translateY(0) scale(0.96); }
+        .v4-save-db-btn.is-saving { background: #111; color: #444; cursor: not-allowed; box-shadow: none; transform: none; }
+
+        @media (max-width: 768px) {
+            .v4-water-card { flex-direction: column; border-radius: 30px; }
+            .v4-water-visual { border-left: none; border-top: 1px solid #111; padding: 40px 20px; }
+            .v4-water-custom-add { flex-direction: column; }
+            .v4-water-ui { padding: 30px 20px; }
+        }
+      `}</style>
     </section>
   );
 };
-
-// --- ESTILOS (MANTIDOS) ---
-const containerStyle: React.CSSProperties = { width: '100%', maxWidth: '900px', margin: '20px auto', padding: '0 15px' };
-const cardStyle: React.CSSProperties = { background: '#050505', borderRadius: '40px', border: '1px solid #111', display: 'flex', minHeight: '550px', overflow: 'hidden', flexWrap: 'wrap', boxShadow: '0 30px 60px rgba(0,0,0,0.5)' };
-const uiSide: React.CSSProperties = { flex: 1.2, padding: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: '320px' };
-const dateText: React.CSSProperties = { fontSize: '10px', color: '#222', fontWeight: '900', letterSpacing: '3px' };
-const titleText: React.CSSProperties = { color: '#fff', fontSize: '32px', fontWeight: '950', margin: '10px 0 40px', letterSpacing: '-1px' };
-const displayBox: React.CSSProperties = { background: '#080808', padding: '40px 20px', borderRadius: '35px', border: '1px solid #111', textAlign: 'center', marginBottom: '20px' };
-const mlText: React.CSSProperties = { fontSize: '72px', fontWeight: '950', color: '#fff', lineHeight: 1 };
-const unitStyle: React.CSSProperties = { fontSize: '18px', color: '#00f2fe', marginLeft: '8px', textTransform: 'uppercase', letterSpacing: '1px' };
-const goalLabel: React.CSSProperties = { fontSize: '10px', color: '#333', fontWeight: '900', marginTop: '15px', letterSpacing: '1px' };
-const quickAddRow: React.CSSProperties = { display: 'flex', gap: '10px', marginBottom: '15px' };
-const quickBtn: React.CSSProperties = { flex: 1, background: '#111', border: '1px solid #1a1a1a', color: '#fff', padding: '15px', borderRadius: '18px', fontSize: '11px', fontWeight: '900', cursor: 'pointer' };
-const inputActionGroup: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '12px' };
-const inputStyle: React.CSSProperties = { background: '#000', border: '1px solid #1a1a1a', borderRadius: '18px', padding: '18px', color: '#fff', fontSize: '14px', outline: 'none', textAlign: 'center' };
-const btnAddStyle: React.CSSProperties = { background: '#fff', color: '#000', padding: '18px', borderRadius: '18px', border: 'none', fontSize: '11px', cursor: 'pointer', fontWeight: '950', letterSpacing: '1px' };
-const footerActions: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '25px' };
-const btnReset: React.CSSProperties = { background: 'none', border: 'none', color: '#222', fontSize: '10px', fontWeight: '900', cursor: 'pointer', letterSpacing: '1px' };
-const syncStatus: React.CSSProperties = { fontSize: '10px', color: '#15803d', fontWeight: 'bold' };
-const visualSide: React.CSSProperties = { width: '38%', background: '#030303', borderLeft: '1px solid #0f0f0f', minWidth: '320px', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' };
-const bottleSection: React.CSSProperties = { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', width: '100%' };
-const bottleContainer: React.CSSProperties = { width: '150px', height: '300px' };
-const svgStyle: React.CSSProperties = { width: '100%', height: '100%', filter: 'drop-shadow(0 0 20px rgba(0,242,254,0.1))' };
-const btnSaveDB: React.CSSProperties = { width: '100%', maxWidth: '240px', border: 'none', padding: '20px', borderRadius: '22px', fontWeight: '950', fontSize: '12px', letterSpacing: '1px', transition: '0.3s' };
-const percBadge: React.CSSProperties = { position: 'absolute', top: '35px', right: '35px', background: 'linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)', color: '#000', padding: '8px 18px', borderRadius: '15px', fontWeight: '950', fontSize: '14px', boxShadow: '0 10px 20px rgba(0,242,254,0.2)' };
 
 export default WaterPanel;

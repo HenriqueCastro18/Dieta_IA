@@ -6,18 +6,20 @@ import { ProfilePanel } from './canvas/components/Auth/ProfilePanel';
 import { HistoryPanel } from './canvas/components/HistoryPanel';
 import { WaterPanel } from './canvas/components/WaterPanel'; 
 import { CompetitivePanel } from './canvas/components/CompetitivePanel';
+import { WorkoutPanel } from './canvas/components/Workout/WorkoutPanel';
 import { MFAOverlay } from './canvas/components/Auth/MFAOverlay'; 
 import { AuthService } from './services/auth'; 
 import { DBService } from './services/db'; 
+
+type ViewType = 'home' | 'profile' | 'history' | 'water' | 'performance' | 'workout';
 
 function App() {
   const [user, setUser] = useState<any>(null);
   const [ready, setReady] = useState(false);
   const [isMFAVerified, setIsMFAVerified] = useState(false); 
-  const [currentView, setCurrentView] = useState<'home' | 'profile' | 'history' | 'water' | 'performance'>('home');
+  const [currentView, setCurrentView] = useState<ViewType>('home');
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // EFEITO DE AUTENTICAÇÃO E RECUPERAÇÃO DE DADOS (FIRESTORE)
   useEffect(() => {
     const unsubscribe = AuthService.onUserChanged(async (firebaseUser) => {
       if (firebaseUser) {
@@ -43,7 +45,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const handleNavClick = (view: any, e: React.MouseEvent) => {
+  const handleNavClick = (view: ViewType, e: React.MouseEvent) => {
     setCurrentView(view);
     e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   };
@@ -100,6 +102,7 @@ function App() {
               <div className="nav-scroll-container" ref={scrollRef}>
                 <div className="nav-items">
                   <NavItem id="home" active={currentView === 'home'} icon="🏠" label="Início" onClick={handleNavClick} />
+                  <NavItem id="workout" active={currentView === 'workout'} icon="🏋️‍♂️" label="Treino IA" onClick={handleNavClick} />
                   <NavItem id="water" active={currentView === 'water'} icon="💧" label="Água" onClick={handleNavClick} />
                   <NavItem id="performance" active={currentView === 'performance'} icon="🏆" label="Ranking" onClick={handleNavClick} />
                   <NavItem id="history" active={currentView === 'history'} icon="📅" label="Histórico" onClick={handleNavClick} />
@@ -117,6 +120,7 @@ function App() {
               <header style={contentHeaderStyle}>
                 <h2 style={brandTitle}>
                   {currentView === 'home' && "DIETA FÁCIL"}
+                  {currentView === 'workout' && "CENTRO DE TREINAMENTO"}
                   {currentView === 'water' && "HIDRATAÇÃO"}
                   {currentView === 'history' && "MEU RENDIMENTO"}
                   {currentView === 'profile' && "MEU PERFIL"}
@@ -136,17 +140,17 @@ function App() {
                   />
                 )}
 
-                {(currentView === 'history' || currentView === 'water' || currentView === 'performance') && (
+                {(currentView === 'history' || currentView === 'water' || currentView === 'performance' || currentView === 'workout') && (
                   <div className="panel-container central-panel">
                      {currentView === 'history' && <HistoryPanel user={user} />}
                      {currentView === 'water' && <WaterPanel user={user} />}
                      {currentView === 'performance' && <CompetitivePanel user={user} onUpdateUser={setUser} />}
+                     {currentView === 'workout' && <WorkoutPanel user={user} />}
                   </div>
                 )}
 
                 {currentView === 'home' && (
                   <div className="dashboard-grid">
-                    {/* CORREÇÃO AQUI: Passando o user para o NutritionPanel */}
                     <NutritionPanel user={user} />
                     <SummaryPanel user={user} />
                   </div>

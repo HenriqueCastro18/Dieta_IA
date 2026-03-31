@@ -6,22 +6,17 @@ interface FactoryProps {
   scale?: number;
 }
 
-/**
- * FoodModelFactory: Implementação do Strategy Pattern para 
- * representação visual 3D dos macronutrientes.
- */
+
 export const FoodModelFactory: React.FC<FactoryProps> = ({ category, scale = 1 }) => {
-  
-  // Cores padronizadas com a identidade visual do app
+
   const colors = {
-    protein: '#ff4d4d', // Vermelho Vibrante
-    carb: '#ffd700',    // Dourado/Amarelo
-    fat: '#00f2fe',     // Cyan (combinando com seu tema)
-    fiber: '#2ecc71',   // Verde
-    mixed: '#ffffff'    // Branco
+  protein: '#ff4d4d',  
+    carb: '#ffd700',  
+    fat: '#00f2fe',    
+    fiber: '#2ecc71', 
+    mixed: '#ffffff'  
   };
 
-  // Renderização baseada na categoria (Strategy)
   const renderModel = useMemo(() => {
     switch (category) {
       case 'protein':

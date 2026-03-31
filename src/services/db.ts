@@ -22,15 +22,13 @@ import {
   deleteDoc 
 } from "firebase/firestore";
 
-// Interface para o resultado de tentativas falhas
+
 interface FailedAttemptResult {
   attempts: number;
   blocked: boolean;
 }
 
-/**
- * Formata a chave de data para DD-MM-YYYY (padrão para chaves de documentos)
- */
+
 const formatKey = (dateInput: any): string => {
   if (!dateInput) return new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
   
@@ -45,7 +43,7 @@ const formatKey = (dateInput: any): string => {
 };
 
 export const DBService = {
-  // --- CAMADA DE SEGURANÇA (BCRYPT & LOCKOUT) ---
+
 
   hashData: async (value: string): Promise<string> => {
     const salt = await bcrypt.genSalt(10);
@@ -121,7 +119,6 @@ export const DBService = {
     }
   },
 
-  // --- AUTENTICAÇÃO E RECUPERAÇÃO ---
 
   sendPasswordReset: async (email: string): Promise<void> => {
     try {
@@ -182,14 +179,38 @@ export const DBService = {
 
   logout: async () => await signOut(auth),
 
-  // --- SISTEMA DE CACHE / APRENDIZADO DE ALIMENTOS ---
 
-  /**
-   * Salva um alimento analisado pela IA no banco de dados para evitar novas consultas.
-   */
+
+  getUserWorkout: async (uid: string) => {
+    if (!uid) return null;
+    try {
+      const workoutRef = doc(db, "workouts", uid);
+      const snap = await getDoc(workoutRef);
+      return snap.exists() ? (snap.data() as any) : null;
+    } catch (e) {
+      console.error("Erro ao buscar treino:", e);
+      return null;
+    }
+  },
+
+  saveUserWorkout: async (uid: string, workoutData: any) => {
+    if (!uid) return false;
+    try {
+      const workoutRef = doc(db, "workouts", uid);
+      await setDoc(workoutRef, {
+        ...workoutData,
+        updatedAt: Timestamp.now()
+      }, { merge: true });
+      return true;
+    } catch (e) {
+      console.error("Erro ao salvar treino:", e);
+      throw e;
+    }
+  },
+
+
   saveCustomFood: async (foodData: any) => {
     try {
-      // Usamos o searchKey + unitGroup como ID único para evitar duplicatas
       const foodId = `${foodData.searchKey}_${foodData.unitGroup}`;
       const foodRef = doc(db, "learned_foods", foodId);
       
@@ -204,15 +225,11 @@ export const DBService = {
     }
   },
 
-  /**
-   * Busca se um alimento já foi "aprendido" pelo sistema anteriormente.
-   */
   findCustomFood: async (queryStr: string, unit: string) => {
     try {
       const searchKey = queryStr.toLowerCase().trim();
       const foodsRef = collection(db, "learned_foods");
       
-      // Filtra por nome (chave de busca) e pela unidade (g, ml, un)
       const q = query(
         foodsRef, 
         where("searchKey", "==", searchKey), 
@@ -230,7 +247,6 @@ export const DBService = {
     }
   },
 
-  // --- PERFIL, REFEIÇÕES E ÁGUA ---
 
   getUserData: async (uid: string) => {
     if (!uid) return null;
@@ -256,6 +272,10 @@ export const DBService = {
     }
     await updateDoc(userRef, updateData);
     return true;
+  },
+
+  updateUserProfile: async (userId: string, data: any) => {
+    return DBService.updateProfile(userId, data);
   },
 
   getMealsByDate: async (userId: string, dateStr: string) => {
@@ -356,7 +376,6 @@ export const DBService = {
     return snap.exists() ? snap.data() : { amount: 0 };
   },
 
-  // --- CONSISTÊNCIA E RANKING ---
 
   getConsistencyScore: async (userId: string, days: number = 30, offset: number = 0) => {
     if (!userId) return 0;

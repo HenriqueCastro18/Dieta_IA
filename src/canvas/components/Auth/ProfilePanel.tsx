@@ -33,9 +33,7 @@ export const ProfilePanel: React.FC<ProfileProps> = ({ user, onSave, onCancel, i
     }
   };
 
-  /**
-   * REQUISITO TFC: Aplica Hash + Salt (BCrypt)
-   */
+
   const applySecurityUpgrade = async () => {
     try {
       const pinPadrao = "1234";
@@ -44,7 +42,7 @@ export const ProfilePanel: React.FC<ProfileProps> = ({ user, onSave, onCancel, i
       console.log("🔐 Hash Gerado para o Firebase:", pinHash);
 
       return {
-        securityPin: pinHash, // Campo que aparecerá no Firestore
+        securityPin: pinHash,
         mfaEnabled: user?.mfaEnabled || false,
         securityUpgraded: true,
         lastSecurityCheck: new Date().toISOString()
@@ -74,7 +72,6 @@ export const ProfilePanel: React.FC<ProfileProps> = ({ user, onSave, onCancel, i
       const uid = user?.uid || user?.id || auth.currentUser?.uid;
       if (!uid) throw new Error("Usuário não autenticado");
 
-      // Converte todos os campos para os tipos corretos (números)
       const dataToSave = {
         ...formData,
         weight: parseFloat(formData.weight.toString()),
@@ -87,7 +84,6 @@ export const ProfilePanel: React.FC<ProfileProps> = ({ user, onSave, onCancel, i
         goalWater: Math.round(parseFloat(formData.goalWater.toString()) * 1000) 
       };
 
-      // Injeta a segurança (BCrypt)
       const securityData = await applySecurityUpgrade();
 
       const finalUserObj = { 
@@ -97,10 +93,8 @@ export const ProfilePanel: React.FC<ProfileProps> = ({ user, onSave, onCancel, i
         uid: uid 
       };
 
-      // Salva no Firestore
       await DBService.updateProfile(uid, finalUserObj);
 
-      // Notifica o App
       await onSave(finalUserObj);
       
       if(!isFirstLogin) {

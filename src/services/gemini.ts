@@ -1,64 +1,85 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
 
-// No Vite, usamos import.meta.env
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
-export const GeminiService = {
-  async fetchNutrition(query: string) {
-    if (!API_KEY) {
-      console.error("ERRO: VITE_GEMINI_API_KEY não encontrada.");
-      return null;
-    }
+const groq = new Groq({
+  apiKey: API_KEY,
+  dangerouslyAllowBrowser: true 
+});
 
-    try {
-      const genAI = new GoogleGenerativeAI(API_KEY);
 
-      // Configuração para o modelo 2.0 Flash
-      const model = genAI.getGenerativeModel({
-        model: "gemini-2.5-flash",
-        generationConfig: {
-          responseMimeType: "application/json",
-        },
-      });
+export const fetchFoodData = async (query: string) => {
+  if (!API_KEY) {
+    console.error("🔥 [V8 ENGINE] VITE_GROQ_API_KEY não encontrada no .env.");
+    return null;
+  }
 
-      const prompt = `
-        Atue como um especialista em nutrição. Analise o alimento: "${query}".
-        Forneça os dados nutricionais para 100g ou 100ml.
-        Retorne obrigatoriamente este JSON:
-        {
-          "name": "Nome do alimento",
-          "proteinPer100g": 0,
-          "carbsPer100g": 0,
-          "fatsPer100g": 0,
-          "fiber": 0,
-          "sodiumMg": 0,
-          "sugarTotal": 0
-        }
-        Caso não identifique o alimento, retorne null.
-      `;
+  try {
+    const systemPrompt = `Você é o laboratório de nutrição de elite CORE V8.
+    Sua única função é analisar alimentos e retornar os macronutrientes EXATOS para 100g (ou 100ml).
+    Responda APENAS com JSON puro. Zero texto extra.`;
 
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text().trim();
-
-      if (text === "null") return null;
-
-      const parsedData = JSON.parse(text);
-
-      // Sanitização básica para garantir que os cálculos no NutritionPanel funcionem
-      return {
-        name: String(parsedData.name || query),
-        proteinPer100g: Number(parsedData.proteinPer100g) || 0,
-        carbsPer100g: Number(parsedData.carbsPer100g) || 0,
-        fatsPer100g: Number(parsedData.fatsPer100g) || 0,
-        fiber: Number(parsedData.fiber) || 0,
-        sodiumMg: Number(parsedData.sodiumMg) || 0,
-        sugarTotal: Number(parsedData.sugarTotal) || 0
-      };
+    const userPrompt = `
+      Analise: "${query}".
       
-    } catch (error) {
-      console.error("Erro na Gemini API:", error);
-      return null;
-    }
+      ESTRUTURA JSON OBRIGATÓRIA:
+      {
+        "name": "Nome Formatado",
+        "proteinPer100g": 0,
+        "carbsPer100g": 0,
+        "fatsPer100g": 0,
+        "fiber": 0,
+        "sodiumMg": 0,
+        "sugarTotal": 0
+      }
+    `;
+
+    const completion = await groq.chat.completions.create({
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt }
+      ],
+      model: "llama-3.3-70b-versatile",
+      temperature: 0.1, 
+      response_format: { type: "json_object" }
+    });
+
+    let text = completion.choices[0]?.message?.content || "{}";
+
+    text = text.replace(/```json/g, "").replace(/```/g, "").trim();
+
+    if (text === "{}" || text === "null") return null;
+
+    const parsedData = JSON.parse(text);
+
+    return {
+      name: String(parsedData.name || query),
+      proteinPer100g: Number(parsedData.proteinPer100g) || 0,
+      carbsPer100g: Number(parsedData.carbsPer100g) || 0,
+      fatsPer100g: Number(parsedData.fatsPer100g) || 0,
+      fiber: Number(parsedData.fiber) || 0,
+      sodiumMg: Number(parsedData.sodiumMg) || 0,
+      sugarTotal: Number(parsedData.sugarTotal) || 0
+    };
+
+  } catch (error) {
+    console.error("🔥 [V8 ENGINE] Erro na API da Groq:", error);
+    return null;
+  }
+};
+
+
+export const generateText = async (prompt: string) => {
+  if (!API_KEY) throw new Error("VITE_GROQ_API_KEY não configurada.");
+  
+  try {
+    const completion = await groq.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "llama-3.3-70b-versatile",
+    });
+    return completion.choices[0]?.message?.content?.trim() || "";
+  } catch (error) {
+    console.error("🔥 [V8 ENGINE] Erro ao gerar texto com Groq:", error);
+    throw error;
   }
 };

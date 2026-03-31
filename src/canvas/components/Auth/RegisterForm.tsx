@@ -21,17 +21,25 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
       return alert("As senhas não coincidem!");
     }
 
-    if (pass.length < 6) {
-      return alert("A senha deve ter pelo menos 6 caracteres.");
+    if (pass.length < 8) {
+      return alert("A senha deve ter pelo menos 8 caracteres.");
+    }
+
+    if (!/[0-9]/.test(pass)) {
+      return alert("A senha deve conter pelo menos 1 número.");
+    }
+
+    if (!/[^a-zA-Z0-9]/.test(pass)) {
+      return alert("A senha deve conter pelo menos 1 caractere especial.");
     }
 
     setIsSubmitting(true);
     try {
-      // No Firebase, o objeto userData será usado para criar o Auth e o Doc no Firestore
+
       await onRegister({ name, email, password: pass });
     } catch (error: any) {
       console.error("Erro ao registrar:", error);
-      // O erro já é tratado no AuthPanel, mas mantemos o try/catch para o finally
+
     } finally {
       setIsSubmitting(false);
     }
@@ -141,7 +149,6 @@ const RegisterForm: React.FC<RegisterProps> = ({ onRegister, onGoToLogin }) => {
   );
 };
 
-// --- ESTILOS REFINADOS ---
 const headerStyle: React.CSSProperties = { textAlign: 'center', marginBottom: '25px' };
 const logoBadge: React.CSSProperties = { width: '50px', height: '50px', background: '#fff', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: '900', margin: '0 auto 15px', fontSize: '20px' };
 const titleStyle: React.CSSProperties = { color: '#fff', fontSize: '24px', fontWeight: '800' };

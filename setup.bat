@@ -15,16 +15,26 @@ if %errorlevel% neq 0 (
     exit
 )
 
-echo [1/3] Limpando instalacoes antigas (opcional)...
+echo [1/3] Limpando instalacoes antigas...
 if exist node_modules (
     echo Removendo node_modules atual...
     rmdir /s /q node_modules
+)
+if exist package-lock.json (
+    del /f /q package-lock.json
 )
 
 echo.
 echo [2/3] Instalando bibliotecas do projeto...
 echo Isso pode levar alguns instantes dependendo da sua internet...
+
+:: Instala as dependencias base do package.json
 call npm install
+
+:: Garante a instalacao dos pacotes especificos do sistema
+echo Instalando modulos core: Firebase, IA e Animacoes...
+call npm install firebase bcryptjs @emailjs/browser groq-sdk react-responsive-spritesheet
+call npm install @types/bcryptjs --save-dev
 
 echo.
 echo [3/3] Verificando arquivo de ambiente (.env)...
@@ -32,7 +42,7 @@ if not exist .env (
     if exist .env.example (
         echo Criando arquivo .env baseado no .env.example...
         copy .env.example .env
-        echo [AVISO] Nao esqueca de colocar sua VITE_GEMINI_API_KEY no arquivo .env!
+        echo [AVISO] Nao esqueca de configurar suas CHAVES (Gemini/Groq/Firebase) no arquivo .env!
     ) else (
         echo [AVISO] Arquivo .env.example nao encontrado. Crie o .env manualmente.
     )
@@ -48,10 +58,3 @@ echo.
 echo Para rodar o projeto agora, digite: npm run dev
 echo.
 pause
-
-:: npm install firebase
-
-:: npm install bcryptjs
-::npm install @types/bcryptjs --save-dev
-
-:: npm install @emailjs/browser
