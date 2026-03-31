@@ -6,6 +6,8 @@
 ![Google Gemini](https://img.shields.io/badge/Gemini%202.0%20Flash-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq%20Inference-F55036?style=for-the-badge&logo=groq&logoColor=white)
 
+---
+
 ## 🕒 Histórico de Versões (Legacy vs. Production)
 
 O projeto passou por uma refatoração completa de arquitetura para suportar persistência de dados e segurança multicamadas.
@@ -13,9 +15,11 @@ O projeto passou por uma refatoração completa de arquitetura para suportar per
 | Versão | Status | Acesso Direto | Diferenciais Técnicos |
 | :--- | :--- | :--- | :--- |
 | **V1.0 (MVP)** | `Legacy` | [**Visitar V1** 🚀](https://dieta-v1.vercel.app/) | LocalStorage, JSON Estático, Protótipo de UI. |
-| **V2.0 (Atual)** | `Production` | [**Visitar V2** ✨](https://dieta-ia-v2.vercel.app/) | Firebase , MFA|
+| **V2.0 (Core)** | `Stable` | [**Visitar V2** ✨](https://dieta-ia-v2.vercel.app/) | Firebase, MFA, Gemini 2.0 Flash, Cloud Persistence. |
+| **V3.0 (Evolution)** | `Production` | [**Visitar V3** 🔥](https://dieta-ia-v3.vercel.app/) | Gamificação (XP/Pets), Treinos IA, Groq Inference, Spritesheets, Segurança Regex. |
 
 ---
+
 
 > **Dieta Fácil** evoluiu de uma ferramenta de consulta para um ecossistema completo de saúde. O projeto integra Inteligência Artificial generativa de baixa latência, persistência em nuvem, segurança defensiva e uma camada robusta de gamificação (RPG) para o projeto de graduação de Henrique Castro.
 
